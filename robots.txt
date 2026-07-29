@@ -1,0 +1,5 @@
+# wynter.ai
+User-agent: *
+Allow: /
+
+Sitemap: https://wynter.ai/sitemap.xml
