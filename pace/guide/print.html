@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The PACE Field Guide — Parallel Action, Compounding Effort</title>
+<meta name="author" content="Wynter Jones">
+<meta name="description" content="The PACE Field Guide: two laws for getting real throughput out of AI agents. Parallel Action, Compounding Effort.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="print.css">
+</head>
+
+<!--
+  Source for assets/pace-field-guide.pdf. Rendered by headless Chrome to A4 —
+  see build.md for the exact command.
+
+  Pagination is manual: one .sheet is one physical page, and folios are written
+  into the flow because Chrome will not run CSS counters in @page margin boxes.
+  If you add or remove a page, the folio numbers and the contents page do not
+  update themselves. Renumber both, then re-render and look at every page.
+
+  The protocol block on pages 20-21 is canonical and reproduced verbatim. The
+  spans inside it are presentational and add no characters — do not reword,
+  rewrap or re-order anything between the .proto pre tags.
+-->
+
+<body>
+
+<!-- ============================================================== 1 cover -->
+<section class="sheet sheet--dark">
+  <div class="cover">
+    <img class="cover__logo" src="../../assets/wynterai-logo.png" alt="wynter.ai">
+
+    <div class="spacer"></div>
+
+    <span class="rule--accent" style="display:block"></span>
+    <h1 class="cover__title mt-m">The PACE<br>Field Guide</h1>
+    <p class="cover__sub mt-s">Parallel Action, Compounding Effort.<br>Two laws for getting real throughput out of AI agents.</p>
+
+    <div class="spacer"></div>
+
+    <p class="cover__by">Wynter Jones</p>
+    <p class="cover__meta mt-s">wynter.ai</p>
+  </div>
+</section>
+
+<!-- =========================================================== 2 contents -->
+<section class="sheet">
+  <p class="label">Contents</p>
+  <h2 class="h-page mt-s">The PACE Field Guide</h2>
+
+  <div class="toc mt-l">
+    <div class="toc__row toc__row--part">
+      <span class="toc__num">01</span>
+      <span class="toc__title">The Bottleneck</span>
+      <span class="toc__pg">3</span>
+    </div>
+    <div class="toc__row toc__row--part">
+      <span class="toc__num">02</span>
+      <span class="toc__title">Act in Parallel</span>
+      <span class="toc__pg">6</span>
+    </div>
+    <div class="toc__row toc__row--part">
+      <span class="toc__num">03</span>
+      <span class="toc__title">Compound Effort</span>
+      <span class="toc__pg">10</span>
+    </div>
+    <div class="toc__row toc__row--part">
+      <span class="toc__num">04</span>
+      <span class="toc__title">Why Both</span>
+      <span class="toc__pg">14</span>
+    </div>
+    <div class="toc__row toc__row--part">
+      <span class="toc__num">05</span>
+      <span class="toc__title">The Toolkit</span>
+      <span class="toc__pg">16</span>
+    </div>
+
+    <div class="toc__row toc__row--sub">
+      <span></span><span class="toc__title">The Dispatch Brief</span><span class="toc__pg">17</span>
+    </div>
+    <div class="toc__row toc__row--sub">
+      <span></span><span class="toc__title">The Context File</span><span class="toc__pg">19</span>
+    </div>
+    <div class="toc__row toc__row--sub">
+      <span></span><span class="toc__title">The PACE Protocol</span><span class="toc__pg">20</span>
+    </div>
+    <div class="toc__row toc__row--sub">
+      <span></span><span class="toc__title">The Compounding Checklist</span><span class="toc__pg">22</span>
+    </div>
+    <div class="toc__row toc__row--sub">
+      <span></span><span class="toc__title">A week in the life</span><span class="toc__pg">23</span>
+    </div>
+  </div>
+
+  <div class="grid mt-xl">
+    <p class="label rail">How to use it</p>
+    <div class="main">
+      <p class="small">Parts 1 to 4 are the argument. Part 5 is the part you act on — the
+        dispatch brief, the context file, the drop-in protocol and the checklist. If you
+        only have ten minutes, read page 6, page 10, and then go to page 17.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">2</span>
+  </div>
+</section>
+
+<!-- ======================================================== 3 divider 01 -->
+<section class="sheet sheet--dark">
+  <div class="divider">
+    <p class="divider__num">01</p>
+    <div class="spacer"></div>
+    <p class="divider__eyebrow">Part One</p>
+    <h2 class="divider__title mt-s">The Bottleneck</h2>
+    <p class="divider__note mt-m">You were promised a multiplier and you got a faster typist.
+      The reason is structural, and it has nothing to do with how you write prompts.</p>
+  </div>
+</section>
+
+<!-- ============================================================== 4 P1 a -->
+<section class="sheet">
+  <div class="grid">
+    <p class="rail-num rail">01</p>
+    <div class="main">
+      <h2 class="h-page">AI didn&rsquo;t 10x you.<br>Here&rsquo;s why.</h2>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="lead">You have access to a system that writes code faster than you can read
+        it. On paper you should be shipping four times what you shipped last year. You are
+        shipping maybe 1.3 times. That gap is not a prompting problem.</p>
+
+      <p class="mt-m">Here is an honest hour, for most people using agents at work.</p>
+
+      <p>You write a short task. The agent starts. You watch it type. Three minutes in it
+        asks a clarifying question you could have answered in the first message. You answer.
+        You watch more. It finishes. You read the output, spot the thing it got wrong,
+        correct it by hand. Then you open a new session and explain your project again from
+        an empty context window.</p>
+
+      <p>Multiply that by a day. You did not get a multiplier. You got a faster typist and
+        a new way to be interrupted.</p>
+
+      <p class="mt-m">Two things are broken there, and they are not the same thing.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <p class="label rail label--accent">Failure one</p>
+    <div class="main">
+      <h3 class="h-sub">Your attention is single-threaded.</h3>
+      <p class="mt-s">The agent can run concurrently. You cannot. You have one attention and
+        you spent it watching a machine work. Every agent you are actively supervising runs
+        at exactly the speed of one human — yours. The concurrency was there the whole time.
+        You declined to use it.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <p class="label rail label--accent">Failure two</p>
+    <div class="main">
+      <h3 class="h-sub">Your work doesn&rsquo;t accumulate.</h3>
+      <p class="mt-s">Every session starts from zero. You re-explain the same architecture,
+        restate the same conventions, re-correct the same misunderstanding about how your
+        project handles errors. Task ten costs what task one cost, because nothing you
+        learned in tasks one through nine got written down anywhere the agent can reach.
+        That is not a workflow. It is a treadmill with good marketing.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">4</span>
+  </div>
+</section>
+
+<!-- ============================================================== 5 P1 b -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Part One</p>
+    <div class="main">
+      <h2 class="h-page">Two failures,<br>two laws.</h2>
+      <p class="lead mt-s">PACE is not a productivity system. It is two constraints on how
+        you set work up — one for each failure above.</p>
+    </div>
+  </div>
+
+  <span class="rule mt-m" style="display:block"></span>
+
+  <div class="grid mt-m">
+    <p class="rail-num rail">1</p>
+    <div class="main">
+      <h3 class="h-sect">Act in Parallel</h3>
+      <p class="label mt-s">Fixes the attention problem</p>
+      <p class="mt-s">Stop being the thing your agents wait on. Structure work so it runs
+        without you, and spend the time you get back setting up the next piece of work
+        instead of watching this one.</p>
+    </div>
+  </div>
+
+  <span class="rule mt-m" style="display:block"></span>
+
+  <div class="grid mt-m">
+    <p class="rail-num rail">2</p>
+    <div class="main">
+      <h3 class="h-sect">Compound Effort</h3>
+      <p class="label mt-s">Fixes the accumulation problem</p>
+      <p class="mt-s">Make every task leave something behind that makes the next task
+        cheaper. Context written down, corrections folded back into the system, solved
+        problems turned into things you can reuse. The residue is the point.</p>
+    </div>
+  </div>
+
+  <span class="rule mt-m" style="display:block"></span>
+
+  <div class="grid mt-m">
+    <p class="label rail">Note</p>
+    <div class="main">
+      <p>Both laws cost you time at the front of a task and repay it later, which is why
+        most people skip them. Ten minutes of specification does not feel like progress.
+        It is the only thing on this list that reliably is.</p>
+      <p class="mt-s">And to be clear about what this isn&rsquo;t: none of it is about better
+        prompts. Prompt wording matters roughly as much as handwriting mattered in 1990.
+        Real, but not the thing holding you back.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">5</span>
+  </div>
+</section>
+
+<!-- ============================================ 6 divider 02 — law one -->
+<section class="sheet sheet--dark">
+  <div class="divider">
+    <p class="divider__num">02</p>
+    <div class="spacer"></div>
+    <p class="divider__eyebrow">Part Two &mdash; Law One</p>
+    <h2 class="divider__title mt-s">Act in Parallel</h2>
+    <div class="spacer"></div>
+    <span class="law__mark"></span>
+    <p class="law">&ldquo;Your agents can run concurrently. You can&rsquo;t. So stop being
+      the thing they wait on.&rdquo;</p>
+    <p class="law__attrib mt-m">PACE &mdash; Law One</p>
+  </div>
+</section>
+
+<!-- ============================================================== 7 P2 a -->
+<section class="sheet">
+  <div class="grid">
+    <p class="rail-num rail">02</p>
+    <div class="main">
+      <h2 class="h-page">Plan once,<br>at the front.</h2>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="lead">A vague task interrupts you every four minutes. A well-specified task
+        runs for an hour.</p>
+
+      <p class="mt-m">That is the entire trade. Ten minutes of thinking before you dispatch
+        buys an hour in which you are not needed. Skipping those ten minutes does not save
+        ten minutes — it redistributes them across the next hour in four-minute fragments,
+        which is the most expensive way there is to spend attention.</p>
+
+      <p>So front-load every decision the agent would otherwise have to stop and ask
+        about:</p>
+
+      <ul class="list mt-s">
+        <li>What &ldquo;done&rdquo; looks like, concretely enough to check.</li>
+        <li>Which files and systems it may touch, and which it may not.</li>
+        <li>What to do at an ambiguity. Not &ldquo;ask me&rdquo; — <em>assume, and flag it</em>.</li>
+        <li>How it should verify its own work before it reports.</li>
+      </ul>
+
+      <p class="mt-s">If you can&rsquo;t answer those four, the task isn&rsquo;t ready to
+        dispatch. That is information, not a delay.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-l">
+    <p class="label rail label--accent">The unit</p>
+    <div class="main">
+      <h3 class="h-sect">The unit of work</h3>
+      <p class="mt-s">Stop thinking in prompts. Start thinking in units, where the unit is:
+        <strong>a task an agent can finish without asking me anything.</strong></p>
+      <p>That definition does real work. It rules out &ldquo;improve the onboarding
+        flow&rdquo; — too vague, it will be back with questions in four minutes. It rules
+        out &ldquo;rename this variable&rdquo; — done in twelve seconds, not worth the
+        dispatch overhead. What survives is the middle: substantial, bounded, unambiguous.
+        Thirty to ninety minutes of agent time.</p>
+      <p>Most tasks fail the test on the first pass. Rewriting them until they pass
+        <em>is</em> the work.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">7</span>
+  </div>
+</section>
+
+<!-- ============================================================== 8 P2 b -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Law One</p>
+    <div class="main">
+      <h2 class="h-page">Dispatch,<br>then leave.</h2>
+      <p class="lead mt-s">The moment you kick off agent A, your job is not to watch agent A.
+        Your job is to go plan work for agent B.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p>This feels wrong, and the feeling is worth naming. Part of it is curiosity. Most
+        of it is a suspicion that if you look away it will do something stupid. It might.
+        Branches and checkpoints cover that.</p>
+      <p>What watching actually buys you is not safety. It is the sensation of control, and
+        it costs you the entire parallel dividend.</p>
+      <p class="mt-s"><strong>Batch the planning. Parallelise the execution.</strong> Spend
+        the first forty minutes of the morning writing four briefs. Dispatch all four. Spend
+        the rest of the day reviewing what comes back and writing the next four. The desk is
+        quiet in between, and that is the system working, not the system idle.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-l">
+    <p class="label rail label--accent">Failure design</p>
+    <div class="main">
+      <h3 class="h-sect">Design for unattended failure</h3>
+      <p class="mt-s">Running unattended means accepting that some runs will fail badly. The
+        job is to make that cheap rather than to prevent it.</p>
+      <ul class="list mt-s">
+        <li><strong>Checkpoints.</strong> Every agent works on its own branch or worktree. A
+          bad run is a discarded branch, not a lost afternoon.</li>
+        <li><strong>Isolated workspaces.</strong> Two agents editing the same file at the
+          same time is not parallelism. It is a merge conflict with extra steps.</li>
+        <li><strong>Scope written down.</strong> One sentence — &ldquo;do not touch the auth
+          module&rdquo; — prevents an entire category of disaster.</li>
+        <li><strong>Self-verification.</strong> If the agent can run the tests, it should
+          have to run the tests before it reports.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">8</span>
+  </div>
+</section>
+
+<!-- ============================================================== 9 P2 c -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Law One</p>
+    <div class="main">
+      <h2 class="h-page">The skill is dispatch,<br>not prompting.</h2>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="lead">Prompting is what you do when you are in the loop. Dispatch is what you
+        do when you are not.</p>
+
+      <p class="mt-m">Prompting optimises a conversation: how do I phrase this so the next
+        reply is better? It assumes you will be there for the next reply. Dispatch optimises
+        an absence: what does this agent need so that in ninety minutes I get a finished
+        thing instead of a question?</p>
+
+      <p>They pull in different directions. A good prompt can afford to be short, because
+        you are there to fill the gaps. A good dispatch brief cannot, because you
+        aren&rsquo;t. Every hour spent learning to phrase things more cleverly is an hour
+        spent getting better at being the bottleneck.</p>
+
+      <p>The move is not a better sentence. It is a task specified well enough that the
+        conversation never has to happen.</p>
+    </div>
+  </div>
+
+  <div class="callout mt-l">
+    <p class="callout__label">Metric &mdash; Law One</p>
+    <p class="callout__q">Agent-hours per human-hour.</p>
+    <p class="callout__body">Count it honestly for one day: total hours of agent work
+      performed, divided by hours you spent at the desk. Almost everyone lands at
+      <strong>1:1</strong> — one agent, watched. The target is <strong>4:1</strong> and up.</p>
+    <div class="figures">
+      <div>
+        <p class="figure__n figure__n--muted">1:1</p>
+        <p class="figure__cap">One agent, supervised. A faster typist with a human attached.</p>
+      </div>
+      <div>
+        <p class="figure__n figure__n--accent">4:1</p>
+        <p class="figure__cap">Four unattended runs against one planning hour. Same effort, rearranged.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="caption">Going from 1:1 to 4:1 is not four times the work. It is the same
+        work, front-loaded.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">9</span>
+  </div>
+</section>
+
+<!-- =========================================== 10 divider 03 — law two -->
+<section class="sheet sheet--dark">
+  <div class="divider">
+    <p class="divider__num">03</p>
+    <div class="spacer"></div>
+    <p class="divider__eyebrow">Part Three &mdash; Law Two</p>
+    <h2 class="divider__title mt-s">Compound Effort</h2>
+    <div class="spacer"></div>
+    <span class="law__mark"></span>
+    <p class="law">&ldquo;If the tenth task isn&rsquo;t faster than the first, you
+      don&rsquo;t have a system. You have a habit.&rdquo;</p>
+    <p class="law__attrib mt-m">PACE &mdash; Law Two</p>
+  </div>
+</section>
+
+<!-- ============================================================= 11 P3 a -->
+<section class="sheet">
+  <div class="grid">
+    <p class="rail-num rail">03</p>
+    <div class="main">
+      <h2 class="h-page">Context is an asset.</h2>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="lead">Everything you know about your project that the agent doesn&rsquo;t is
+        a tax you pay on every single task.</p>
+
+      <p class="mt-m">You pay it in re-explanation, in wrong assumptions, in corrections you
+        have made before. Written down once, it stops being a tax and starts being
+        infrastructure.</p>
+
+      <p>What belongs in writing: the architecture and why it is shaped that way. The
+        conventions the code follows but never states. The commands to build, test and
+        deploy. The things that look wrong and are deliberate. The decisions that are
+        already closed, so they stop being reopened every fortnight.</p>
+
+      <p>Treat that file the way you would treat an onboarding document for a contractor
+        who starts fresh every morning. That is precisely what you have.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-l">
+    <p class="label rail label--accent">Artifacts</p>
+    <div class="main">
+      <h3 class="h-sect">Every solved problem becomes a thing</h3>
+      <p class="mt-s">You will solve some version of the same problem repeatedly for as long
+        as the project exists. The compounding move is to make each solution retrievable
+        instead of remembered.</p>
+      <ul class="list mt-s">
+        <li>A brief that worked → a saved template.</li>
+        <li>A component you finally got right → the reference implementation, named in the
+          context file so the agent copies that one.</li>
+        <li>A three-hour debugging session → four lines about the failure mode.</li>
+        <li>A repeated multi-step chore → a documented, named procedure.</li>
+      </ul>
+      <p class="mt-s">The bar is deliberately low. A named paragraph on disk beats an
+        unnamed insight in your head, every time.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">11</span>
+  </div>
+</section>
+
+<!-- ============================================================= 12 P3 b -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Law Two</p>
+    <div class="main">
+      <h2 class="h-page">Correct the system,<br>not the output.</h2>
+      <p class="lead mt-s">This is the one that separates the people who compound from the
+        people who are simply busy.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p>The agent produces something wrong. Say it reached for a date library you moved off
+        six months ago. Your instinct is to fix that file. Thirty seconds, done, back to
+        work.</p>
+
+      <p>You just bought a fix that expires. Tomorrow&rsquo;s agent has the same gap and
+        makes the same mistake, and you pay the same thirty seconds again, forever, at a
+        rate set by how often the subject comes up.</p>
+
+      <p>The compounding move costs sixty seconds instead of thirty. Fix the output, then
+        open the context file and write the line that makes the mistake impossible:
+        <em>&ldquo;Dates: use X. Y was removed in March — do not reintroduce it.&rdquo;</em></p>
+
+      <p>Every correction is a fork. One branch fixes today. The other retires the mistake.
+        Take the second one consistently and your error rate falls without you working on
+        it.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-l">
+    <p class="label rail label--accent">Zero setup</p>
+    <div class="main">
+      <h3 class="h-sect">Systems so setup is zero</h3>
+      <p class="mt-s">If the start of every task involves decisions you have already made —
+        spacing, component structure, file layout, naming — you are paying setup costs in
+        perpetuity for no return.</p>
+      <p>A design system, a project template, a scaffold command: these exist so that the
+        answer to &ldquo;how should this look&rdquo; is already on disk and the agent can
+        read it. Zero setup is a compounding position. Every task after it starts further
+        along than the last one did.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">12</span>
+  </div>
+</section>
+
+<!-- ============================================================= 13 P3 c -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Law Two</p>
+    <div class="main">
+      <h2 class="h-page">Audit and prune.</h2>
+      <p class="lead mt-s">Stale context is worse than no context.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p>No context makes the agent ask. Stale context makes it confidently wrong — and you
+        will not catch it, because the output looks like it followed instructions. It did.
+        They were the wrong instructions.</p>
+
+      <p>Context files rot the way comments rot. Once a month, or after any significant
+        refactor, read yours end to end and delete everything that is no longer true.
+        Deleting is the job. A context file that only ever grows becomes a document nobody
+        trusts to be current, which is operationally the same as not having one.</p>
+
+      <p>Delegate the audit. <em>&ldquo;Read this context file against the current code and
+        tell me what&rsquo;s stale&rdquo;</em> is a five-minute task with a high hit
+        rate.</p>
+    </div>
+  </div>
+
+  <div class="callout mt-l">
+    <p class="callout__label">Metric &mdash; Law Two</p>
+    <p class="callout__q">Is task N faster than task 1?</p>
+    <p class="callout__body">Pick a kind of work that recurs — a new endpoint, a new screen,
+      a new report — and write down what the first one cost you. Time it again on the tenth.
+      If the number hasn&rsquo;t moved, nothing you did in between accumulated. You have a
+      habit, not a system.</p>
+    <div class="figures">
+      <div>
+        <p class="figure__n figure__n--muted">Task 1</p>
+        <p class="figure__cap">Full cost. Every decision made from scratch.</p>
+      </div>
+      <div>
+        <p class="figure__n figure__n--accent">Task 10</p>
+        <p class="figure__cap">Should be a fraction. If it isn&rsquo;t, find what you failed to write down.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">13</span>
+  </div>
+</section>
+
+<!-- ======================================================= 14 divider 04 -->
+<section class="sheet sheet--dark">
+  <div class="divider">
+    <p class="divider__num">04</p>
+    <div class="spacer"></div>
+    <p class="divider__eyebrow">Part Four</p>
+    <h2 class="divider__title mt-s">Why Both</h2>
+    <p class="divider__note mt-m">Each law fails on its own, and it fails in a way you will
+      recognise. Together they run as a loop.</p>
+  </div>
+</section>
+
+<!-- =============================================================== 15 P4 -->
+<section class="sheet">
+  <div class="grid">
+    <p class="rail-num rail">04</p>
+    <div class="main">
+      <h2 class="h-page">One law is a<br>half-measure.</h2>
+    </div>
+  </div>
+
+  <div class="compare mt-m">
+    <div class="compare__col">
+      <h3 class="compare__h">Parallel without compounding is chaos.</h3>
+      <p class="compare__b">Five agents running at once, every one of them missing the same
+        context, every one making the same three mistakes, all of them reporting within
+        twenty minutes of each other.</p>
+      <p class="compare__b">You multiplied your output and you multiplied your
+        correction load with it. The correction load wins. This is the setup that looks
+        extremely impressive in week one and has you burnt out by week five — and the
+        failure gets misread as &ldquo;agents don&rsquo;t work on real projects.&rdquo;</p>
+    </div>
+    <div class="compare__col">
+      <h3 class="compare__h">Compounding without parallel is one slow human.</h3>
+      <p class="compare__b">Immaculate context files. Templates for everything. Every problem
+        you have ever solved, documented and findable.</p>
+      <p class="compare__b">And one agent at a time, watched from start to finish,
+        because the operator never stopped being the bottleneck. Genuinely better than where
+        you started — and permanently capped at the speed of one person&rsquo;s attention.</p>
+    </div>
+  </div>
+
+  <span class="rule mt-l" style="display:block"></span>
+
+  <div class="grid mt-m">
+    <p class="label rail label--accent">Together</p>
+    <div class="main">
+      <h3 class="h-sect">The loop</h3>
+      <p class="mt-s">Compounding raises the quality of what every parallel agent starts
+        with. Better starting context means each agent can run longer before it needs you.
+        Longer unattended runs mean you can keep more of them going at once. More agents
+        running means more problems solved, which means more artifacts, which means better
+        context.</p>
+      <p>It is a loop, and it turns in the direction you want. That is the whole reason the
+        two laws ship together rather than as two tips.</p>
+      <p><strong>Throughput that increases while you sleep</strong> is not a slogan. It is
+        just what a system looks like once the same corrections stop repeating.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">15</span>
+  </div>
+</section>
+
+<!-- ======================================================= 16 divider 05 -->
+<section class="sheet sheet--dark">
+  <div class="divider">
+    <p class="divider__num">05</p>
+    <div class="spacer"></div>
+    <p class="divider__eyebrow">Part Five</p>
+    <h2 class="divider__title mt-s">The Toolkit</h2>
+    <p class="divider__note mt-m">Four things to write and one to paste. Everything from here
+      is meant to be used this afternoon, not admired.</p>
+  </div>
+</section>
+
+<!-- ================================================== 17 dispatch brief -->
+<section class="sheet">
+  <div class="grid">
+    <p class="rail-num rail">05</p>
+    <div class="main">
+      <h2 class="h-page">The Dispatch Brief</h2>
+      <p class="lead mt-s">A task written so an agent can work on it for an hour without
+        asking you a question. Longer than a prompt. Much shorter than a spec.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p>Six sections, in this order. The order matters: the agent reads top to bottom and
+        should know what it is building before it learns what it cannot touch.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <ol class="list-num">
+        <li><strong>Objective.</strong> What exists at the end, in one sentence. If you need
+          two sentences, you may have two tasks.</li>
+        <li><strong>Context.</strong> Where things live, what is already true, and what it
+          must read before starting. Pointing at an existing implementation and saying
+          &ldquo;match this&rdquo; is the cheapest way to transmit fifty conventions at
+          once.</li>
+        <li><strong>Constraints.</strong> What it may not touch, change, or install. The
+          most-skipped section, and the one that prevents the worst outcomes.</li>
+        <li><strong>Definition of done.</strong> Checkable by a machine wherever possible.
+          &ldquo;Tests pass and the page renders&rdquo; beats &ldquo;works well.&rdquo;</li>
+        <li><strong>Ambiguity policy.</strong> One line, and it is always roughly the same
+          line: ask everything blocking in one message now, then proceed on stated
+          assumptions and flag them at the end.</li>
+        <li><strong>Report format.</strong> What you want back, so reviewing it takes two
+          minutes instead of twenty.</li>
+      </ol>
+    </div>
+  </div>
+
+  <span class="rule mt-l" style="display:block"></span>
+
+  <div class="grid mt-m">
+    <p class="label rail">Overleaf</p>
+    <div class="main">
+      <p class="small">A real one, annotated. It took four minutes to write and it bought an
+        hour of work nobody had to supervise.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">17</span>
+  </div>
+</section>
+
+<!-- ============================================ 18 annotated brief -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Toolkit</p>
+    <div class="main">
+      <h2 class="h-page">An annotated brief</h2>
+    </div>
+  </div>
+
+  <div class="grid mt-s">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="small">Left: the brief exactly as it was sent. Right: what each section is
+        doing, and which interruption it removes.</p>
+    </div>
+  </div>
+
+  <div class="anno mt-m">
+    <div class="anno__row">
+      <div>
+        <p class="anno__k">Objective</p>
+        <p class="anno__t">Add a CSV export to the Reports page: a button that downloads the
+          currently filtered table as <code>reports-YYYY-MM-DD.csv</code>.</p>
+      </div>
+      <p class="anno__n">Names the artifact and the filename format. Two details that would
+        otherwise each cost a round trip.</p>
+    </div>
+
+    <div class="anno__row">
+      <div>
+        <p class="anno__k">Context</p>
+        <p class="anno__t">Table is in <code>app/views/reports/index.html.erb</code>;
+          filtering happens in <code>ReportsController#index</code>. There is an existing
+          export on the Invoices page (<code>InvoicesController#export</code>) — match its
+          approach, including how it names files and streams the response.</p>
+      </div>
+      <p class="anno__n">&ldquo;Match this&rdquo; carries every convention in that file
+        without listing one of them.</p>
+    </div>
+
+    <div class="anno__row">
+      <div>
+        <p class="anno__k">Constraints</p>
+        <p class="anno__t">Server-side only, no new gems. Don&rsquo;t change the filtering
+          logic. Don&rsquo;t touch <code>InvoicesController</code>.</p>
+      </div>
+      <p class="anno__n">&ldquo;No new gems&rdquo; is three words that prevent an hour of
+        dependency archaeology.</p>
+    </div>
+
+    <div class="anno__row">
+      <div>
+        <p class="anno__k">Done when</p>
+        <p class="anno__t">Export respects every active filter. The file opens in Excel
+          without a mangled first column. A controller test covers the filtered case.
+          <code>bin/rails test</code> is green.</p>
+      </div>
+      <p class="anno__n">The Excel detail is a specific failure the author has been bitten by.
+        Specific beats thorough. A green suite is machine-checkable, so the agent can verify
+        itself.</p>
+    </div>
+
+    <div class="anno__row">
+      <div>
+        <p class="anno__k">Ambiguity</p>
+        <p class="anno__t">Columns: mirror the visible table columns. Anything else blocking,
+          ask it in one message now; otherwise assume, proceed, and flag at the end.</p>
+      </div>
+      <p class="anno__n">Pre-answers the single most likely blocking question, then licenses
+        the agent to keep moving past the rest.</p>
+    </div>
+
+    <div class="anno__row">
+      <div>
+        <p class="anno__k">Report</p>
+        <p class="anno__t">What changed, what you assumed, anything left open.</p>
+      </div>
+      <p class="anno__n">Three headings. Review takes two minutes.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="caption">Reusable, too: next quarter&rsquo;s export brief is this one with
+        three words changed.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">18</span>
+  </div>
+</section>
+
+<!-- ===================================================== 19 context file -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Toolkit</p>
+    <div class="main">
+      <h2 class="h-page">The Context File</h2>
+      <p class="lead mt-s">One file, at the root of the project, read first in every session.
+        Name it for whatever tool you use.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <div class="chips">
+        <span class="chip">CLAUDE.md</span>
+        <span class="chip">AGENTS.md</span>
+        <span class="chip">.cursorrules</span>
+        <span class="chip">.windsurfrules</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid mt-l">
+    <p class="label rail label--accent">Belongs</p>
+    <div class="main">
+      <h3 class="h-sub">What goes in</h3>
+      <ul class="list mt-s">
+        <li>What this project is, in three sentences.</li>
+        <li>The stack, and the version numbers that actually constrain decisions.</li>
+        <li>Commands: build, test, run, deploy.</li>
+        <li>Conventions the code follows and never states.</li>
+        <li>Deliberate oddities — <em>this looks wrong, here is why it stays.</em></li>
+        <li>Closed decisions, so they stop being reopened.</li>
+        <li>Where to look first for the kinds of change that come up most.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <p class="label rail">Doesn&rsquo;t</p>
+    <div class="main">
+      <h3 class="h-sub">What stays out</h3>
+      <ul class="list mt-s">
+        <li>Anything the code states more accurately than prose can. Don&rsquo;t restate the
+          schema — point at it.</li>
+        <li>Aspirations. Describe the codebase you have, not the one you meant to build.</li>
+        <li>History, unless it is load-bearing as <em>don&rsquo;t reintroduce X</em>.</li>
+        <li>Volume. A file nobody trusts to be current gets skipped — by the agent, and by
+          you.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <p class="label rail">Upkeep</p>
+    <div class="main">
+      <p class="small">Append whenever you correct something this file should have prevented.
+        Prune monthly. Keep it under two pages; past that, split it and leave pointers.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">19</span>
+  </div>
+</section>
+
+<!-- ================================================= 20 protocol, part 1 -->
+<section class="sheet sheet--wide">
+  <div class="grid">
+    <p class="label rail">Toolkit</p>
+    <div class="main">
+      <h2 class="h-page">The PACE Protocol</h2>
+      <p class="lead mt-s">The drop-in block. Paste it verbatim into your context file and
+        both laws become the default in every session.</p>
+    </div>
+  </div>
+
+  <div class="proto mt-m">
+    <div class="proto__tab">
+      <span>Paste verbatim</span>
+      <span>CLAUDE.md &nbsp;/&nbsp; AGENTS.md &nbsp;/&nbsp; .cursorrules &nbsp;/&nbsp; .windsurfrules</span>
+    </div>
+<pre><span class="p-h">## PACE — How We Work Here</span>
+
+This project runs on PACE: <span class="p-b">**Parallel Action, Compounding Effort.**</span>
+Apply both laws in every session.
+
+<span class="p-h">### Law 1 — Act in Parallel</span>
+My attention is the bottleneck, not your speed. Work so I don't have to watch you.
+
+- Front-load the questions. Before you start, restate the task, state your
+  assumptions, and ask everything blocking in ONE message. After that, proceed
+  on your stated assumptions rather than stopping to ask — flag them at the end.
+- Plan first, then run. State the plan, then execute it end to end. Report once
+  when you're done, not after every step.
+- Aim to run unattended. If a task is too vague to work on for a long stretch
+  without checking in, say so and propose how to split it into pieces that can.
+- Never stall. If one piece is blocked, park it with a note, move to the next
+  independent piece, and raise the block in your final report.
+- Don't ask "what's next" — check the plan or backlog and take the next
+  unblocked item.
+- Verify your own work before reporting. Run it, test it, read it back.</pre>
+  </div>
+
+  <div class="grid mt-l">
+    <p class="label rail label--accent">Installing it</p>
+    <div class="main">
+      <h3 class="h-sub">Three things worth knowing</h3>
+      <ul class="list mt-s">
+        <li>Put it at the <strong>top</strong> of the context file, above your
+          project-specific notes. It sets the working posture; everything below it is
+          detail.</li>
+        <li>It does not replace your own context. It governs <em>how</em> the agent works;
+          your file still has to say what the project is.</li>
+        <li>Paste it as one block, including Law 2 overleaf. The two laws are load-bearing
+          on each other and half of it is worth much less than all of it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">20</span>
+  </div>
+</section>
+
+<!-- ================================================= 21 protocol, part 2 -->
+<section class="sheet sheet--wide">
+  <div class="grid">
+    <p class="label rail">Toolkit</p>
+    <div class="main">
+      <h2 class="h-page">The PACE Protocol</h2>
+      <p class="lead mt-s">Continued.</p>
+    </div>
+  </div>
+
+  <div class="proto mt-m">
+    <div class="proto__tab">
+      <span>Paste verbatim &mdash; continued</span>
+      <span>wynter.ai/pace/protocol</span>
+    </div>
+<pre><span class="p-h">### Law 2 — Compound Effort</span>
+The tenth task should be faster than the first. Leave the system better than you found it.
+
+- Read the existing context first — this file, the README, the runbooks, the
+  code's own conventions. Match what's there. Don't introduce a second way of
+  doing something that already has a way.
+- Correct the system, not the output. If you got something wrong because the
+  context was missing or stale, fix the context file too, not just this answer.
+- Extract what's reusable. When you solve something that will come up again,
+  make it a template, a component, a helper, or a documented pattern — and say
+  what you extracted.
+- Prefer existing abstractions and the established design system. A new pattern
+  needs a stated reason.
+- Flag rot. If something in this file is stale or contradicts the code, say so.
+
+<span class="p-h">### Every substantial task ends with</span>
+1. What changed
+2. What you assumed
+3. What's still open or blocked
+4. What you'd add to the context files so the next run is faster
+
+<span class="p-d">---</span>
+<span class="p-d">PACE — Parallel Action, Compounding Effort. Free framework: https://wynter.ai/pace</span></pre>
+  </div>
+
+  <div class="grid mt-m">
+    <p class="label rail">Copy it</p>
+    <div class="main">
+      <p class="small">The same block, in a form you can select and copy in one click:
+        <strong>wynter.ai/pace/protocol</strong></p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">21</span>
+  </div>
+</section>
+
+<!-- ======================================================= 22 checklist -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Toolkit</p>
+    <div class="main">
+      <h2 class="h-page">The Compounding Checklist</h2>
+      <p class="lead mt-s">What should exist in your system and probably doesn&rsquo;t yet.
+        Tick honestly.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <ul class="check">
+        <li>A context file at the project root, read first in every session.</li>
+        <li>The PACE protocol pasted into it.</li>
+        <li>At least one dispatch brief saved as a reusable template.</li>
+        <li>A named reference implementation for your most common kind of change.</li>
+        <li>Build, test and deploy commands written where the agent will read them.</li>
+        <li>A design system or scaffold, so a new screen starts at zero setup.</li>
+        <li>Branch or worktree isolation, so a bad unattended run costs nothing.</li>
+        <li>A verification step the agent runs before it reports.</li>
+        <li>A standing report format: changed, assumed, open, context to add.</li>
+        <li>A recurring calendar entry to prune the context file.</li>
+        <li>One number you actually track: agent-hours per human-hour.</li>
+        <li>One recurring task you have timed twice, to prove task N beats task 1.</li>
+      </ul>
+    </div>
+  </div>
+
+  <span class="rule mt-l" style="display:block"></span>
+
+  <div class="grid mt-m">
+    <p class="label rail label--accent">Scoring</p>
+    <div class="main">
+      <p>Counted honestly, most people have two or three. That is not a criticism — every
+        one of these is invisible until it exists, and none of them are urgent on any given
+        Tuesday.</p>
+      <p>Every box you tick pays out on every task after it. Start with the first two. They
+        take twenty minutes together and they change the shape of every session that
+        follows.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">22</span>
+  </div>
+</section>
+
+<!-- ============================================== 23 a week in the life -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Toolkit</p>
+    <div class="main">
+      <h2 class="h-page">A week in the life</h2>
+      <p class="lead mt-s">Both laws running at once. Deliberately unglamorous — the
+        compounding is invisible on any single day.</p>
+    </div>
+  </div>
+
+  <div class="week mt-m">
+    <div class="week__row">
+      <p class="week__day">Monday</p>
+      <div class="week__body">
+        <p>08:40. Not writing code. Writing four briefs — a CSV export, a flaky-test triage,
+          a settings page, a documentation pass. Ninety minutes. Feels unproductive; it is
+          the most leveraged block of the week.</p>
+        <p>10:15. All four dispatched, each on its own branch. The desk goes quiet. Writing
+          the settings brief surfaced a decision nobody had actually made, so it gets made —
+          and it goes in the context file, not just in the brief.</p>
+      </div>
+    </div>
+
+    <div class="week__row">
+      <p class="week__day">Tuesday</p>
+      <div class="week__body">
+        <p>Three of four came back clean. The docs pass invented a section that doesn&rsquo;t
+          exist, because the context file still describes a module removed in April. Fix the
+          docs, then delete the module from the context file. The second part is the part
+          that counts.</p>
+        <p>Afternoon: four new briefs. The settings brief is now a template, so the next
+          screen brief takes eight minutes instead of thirty.</p>
+      </div>
+    </div>
+
+    <div class="week__row">
+      <p class="week__day">Wednesday</p>
+      <div class="week__body">
+        <p>The flaky test was a real race condition, not flakiness. Fixed. Four lines about
+          the failure mode go into the context file, because it will happen again somewhere
+          else.</p>
+      </div>
+    </div>
+
+    <div class="week__row">
+      <p class="week__day">Thursday</p>
+      <div class="week__body">
+        <p>Six agents, not four. Nothing got harder. The briefs are faster to write because
+          half of each one is now a pointer to something already written down.</p>
+      </div>
+    </div>
+
+    <div class="week__row">
+      <p class="week__day">Friday</p>
+      <div class="week__body">
+        <p>16:00. Counting: roughly twenty-six agent-hours against six hours at the desk. Two
+          months ago the same week ran at one to one, and it did not feel any easier.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="caption">Nothing there is impressive on a single day. That is the point.
+        Compounding is invisible in a week and obvious in a quarter.</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">23</span>
+  </div>
+</section>
+
+<!-- ========================================================= 24 sign-off -->
+<section class="sheet">
+  <div class="grid">
+    <p class="label rail">Close</p>
+    <div class="main">
+      <h2 class="h-page">That&rsquo;s the whole thing.</h2>
+    </div>
+  </div>
+
+  <div class="grid mt-m">
+    <div class="rail"></div>
+    <div class="main">
+      <p class="lead">Two laws. Stop being the thing your agents wait on. Make sure the tenth
+        task is faster than the first.</p>
+
+      <p class="mt-m">Everything in this guide is downstream of those two sentences. The
+        briefs, the context file, the checklist, the protocol — they are all just ways of
+        making the two laws survive contact with a normal working week, when you are tired
+        and it would be easier to sit and watch the agent type.</p>
+
+      <p>You can start this afternoon, and it does not require a new tool. Write one brief
+        good enough that you can genuinely walk away from it. Then write down one thing you
+        have already explained twice.</p>
+
+      <p>That is a 2:1 day and the first line of a context file. Everything else compounds
+        from there.</p>
+    </div>
+  </div>
+
+  <div class="grid mt-xl">
+    <div class="rail"></div>
+    <div class="main">
+      <img class="sig" src="../../assets/wynter-jones-signature.png" alt="Wynter Jones">
+      <p class="signoff__name">Wynter Jones</p>
+      <p class="signoff__role">wynter.ai</p>
+    </div>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">24</span>
+  </div>
+</section>
+
+<!-- ======================================================== 25 back page -->
+<section class="sheet sheet--dark">
+  <div class="back">
+    <img class="back__logo" src="../../assets/wynterai-logo.png" alt="wynter.ai">
+
+    <div class="spacer"></div>
+
+    <span class="law__mark"></span>
+    <p class="back__line">The protocol, free, in a form you can copy in one click.</p>
+    <p class="back__url mt-m">wynter.ai/pace/protocol</p>
+    <p class="back__sub mt-m">Paste it into your context file and both laws become the
+      default in every session you run after that.</p>
+
+    <div class="spacer"></div>
+
+    <p class="back__foot">The PACE Field Guide &nbsp;&mdash;&nbsp; Wynter Jones &nbsp;&mdash;&nbsp; wynter.ai</p>
+  </div>
+</section>
+
+</body>
+</html>
