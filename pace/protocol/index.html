@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What to put in your CLAUDE.md — the PACE Protocol</title>
+<meta name="description" content="A block of markdown to paste into your CLAUDE.md, AGENTS.md, .cursorrules or .windsurfrules. It makes a coding agent front-load its questions, run unattended, and leave the context better than it found it. Free, complete, no signup.">
+<link rel="canonical" href="https://wynter.ai/pace/protocol/">
+<meta name="theme-color" content="#0a0a0d">
+<meta name="author" content="Wynter Jones">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Wynter.ai">
+<meta property="og:url" content="https://wynter.ai/pace/protocol/">
+<meta property="og:title" content="What to put in your CLAUDE.md — the PACE Protocol">
+<meta property="og:description" content="Paste this into your CLAUDE.md. Your agent front-loads its questions, runs unattended on stated assumptions, and fixes the context instead of just the answer.">
+<meta property="og:image" content="https://wynter.ai/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wynter.ai — the agentic engineer's toolkit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What to put in your CLAUDE.md — the PACE Protocol">
+<meta name="twitter:description" content="Paste this into your CLAUDE.md. Your agent front-loads its questions, runs unattended on stated assumptions, and fixes the context instead of just the answer.">
+<meta name="twitter:image" content="https://wynter.ai/assets/og.png">
+
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/assets/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/pace.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wynter.ai/#org",
+      "name": "Wynter.ai",
+      "url": "https://wynter.ai/",
+      "logo": "https://wynter.ai/assets/wynterai-logo.png",
+      "founder": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" }
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://wynter.ai/pace/protocol/#article",
+      "url": "https://wynter.ai/pace/protocol/",
+      "headline": "What to put in your CLAUDE.md — the PACE Protocol",
+      "name": "The PACE Protocol",
+      "description": "A block of markdown to paste into your CLAUDE.md, AGENTS.md, .cursorrules or .windsurfrules. It makes a coding agent front-load its questions, run unattended on stated assumptions, and leave the context better than it found it.",
+      "articleSection": "Agentic engineering",
+      "inLanguage": "en",
+      "image": "https://wynter.ai/assets/og.png",
+      "dependencies": "Claude Code, Codex, Cursor, or Windsurf",
+      "proficiencyLevel": "Beginner",
+      "keywords": "CLAUDE.md, AGENTS.md, .cursorrules, .windsurfrules, agent instructions, coding agents, PACE",
+      "author": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" },
+      "publisher": { "@id": "https://wynter.ai/#org" },
+      "isPartOf": { "@id": "https://wynter.ai/pace/#webpage" },
+      "license": "https://wynter.ai/pace/",
+      "version": "1.0"
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="shell">
+    <a class="brand" href="/" aria-label="Wynter.ai home">
+      <img src="/assets/wynterai-logo.png" alt="Wynter.ai" width="510" height="250" fetchpriority="high">
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/about">About</a>
+      <a href="/pricing">Pricing</a>
+      <a class="btn btn-secondary" href="https://account.wynter.ai/login">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page-protocol">
+  <div class="shell">
+
+    <div class="protocol-head">
+      <p class="eyebrow">Free · No signup</p>
+      <h1>The PACE Protocol</h1>
+      <p class="lede">
+        A block of markdown for your agent's instruction file. It front-loads
+        its questions, runs unattended on stated assumptions, and fixes the
+        context instead of just the&nbsp;answer.
+      </p>
+    </div>
+
+    <!-- Adapter strip. Every tool ships the same protocol; only the filename
+         and the path change, so the panels below hold a one-line note and the
+         block itself is never duplicated or swapped. -->
+    <div class="adapters">
+      <div class="tablist" role="tablist" aria-label="Coding agent">
+        <button class="tab" type="button" role="tab" id="tab-claude"
+                aria-controls="panel-claude" aria-selected="true"
+                data-filename="CLAUDE.md" data-names="codeblock-filename">Claude Code</button>
+        <button class="tab" type="button" role="tab" id="tab-codex"
+                aria-controls="panel-codex" aria-selected="false"
+                data-filename="AGENTS.md" data-names="codeblock-filename">Codex</button>
+        <button class="tab" type="button" role="tab" id="tab-cursor"
+                aria-controls="panel-cursor" aria-selected="false"
+                data-filename=".cursorrules" data-names="codeblock-filename">Cursor</button>
+        <button class="tab" type="button" role="tab" id="tab-windsurf"
+                aria-controls="panel-windsurf" aria-selected="false"
+                data-filename=".windsurfrules" data-names="codeblock-filename">Windsurf</button>
+      </div>
+
+      <p class="adapter-note" role="tabpanel" id="panel-claude" aria-labelledby="tab-claude" tabindex="0">
+        Put this in <code>CLAUDE.md</code> at your project root.
+      </p>
+      <p class="adapter-note" role="tabpanel" id="panel-codex" aria-labelledby="tab-codex" tabindex="0" hidden>
+        Put this in <code>AGENTS.md</code> at your project root.
+      </p>
+      <p class="adapter-note" role="tabpanel" id="panel-cursor" aria-labelledby="tab-cursor" tabindex="0" hidden>
+        Put this in <code>.cursorrules</code> at your project root.
+      </p>
+      <p class="adapter-note" role="tabpanel" id="panel-windsurf" aria-labelledby="tab-windsurf" tabindex="0" hidden>
+        Put this in <code>.windsurfrules</code> at your project root.
+      </p>
+    </div>
+
+    <!-- The protocol, in the document. Not fetched, not templated, not built by
+         script: an answer engine reading this page reads the whole thing.
+         The copy button ships `hidden` and is unhidden by /pace.js, so with
+         scripting off there is no button that cannot work — just selectable
+         text. -->
+    <div class="codeblock">
+      <div class="codeblock-bar">
+        <span class="codeblock-name" id="codeblock-filename">CLAUDE.md</span>
+        <button class="btn btn-secondary copy-btn" type="button"
+                data-copy="protocol-text" aria-live="polite" hidden>Copy</button>
+      </div>
+      <pre><code id="protocol-text">## PACE — How We Work Here
+
+This project runs on PACE: **Parallel Action, Compounding Effort.**
+Apply both laws in every session.
+
+### Law 1 — Act in Parallel
+My attention is the bottleneck, not your speed. Work so I don't have to watch you.
+
+- Front-load the questions. Before you start, restate the task, state your
+  assumptions, and ask everything blocking in ONE message. After that, proceed
+  on your stated assumptions rather than stopping to ask — flag them at the end.
+- Plan first, then run. State the plan, then execute it end to end. Report once
+  when you're done, not after every step.
+- Aim to run unattended. If a task is too vague to work on for a long stretch
+  without checking in, say so and propose how to split it into pieces that can.
+- Never stall. If one piece is blocked, park it with a note, move to the next
+  independent piece, and raise the block in your final report.
+- Don't ask "what's next" — check the plan or backlog and take the next
+  unblocked item.
+- Verify your own work before reporting. Run it, test it, read it back.
+
+### Law 2 — Compound Effort
+The tenth task should be faster than the first. Leave the system better than you found it.
+
+- Read the existing context first — this file, the README, the runbooks, the
+  code's own conventions. Match what's there. Don't introduce a second way of
+  doing something that already has a way.
+- Correct the system, not the output. If you got something wrong because the
+  context was missing or stale, fix the context file too, not just this answer.
+- Extract what's reusable. When you solve something that will come up again,
+  make it a template, a component, a helper, or a documented pattern — and say
+  what you extracted.
+- Prefer existing abstractions and the established design system. A new pattern
+  needs a stated reason.
+- Flag rot. If something in this file is stale or contradicts the code, say so.
+
+### Every substantial task ends with
+1. What changed
+2. What you assumed
+3. What's still open or blocked
+4. What you'd add to the context files so the next run is faster
+
+---
+PACE — Parallel Action, Compounding Effort. Free framework: https://wynter.ai/pace</code></pre>
+    </div>
+
+    <section class="section" aria-labelledby="what-changes">
+      <h2 class="section-title tight" id="what-changes">What changes</h2>
+      <p class="section-lede">
+        Four things that happen on a normal Tuesday, before and&nbsp;after.
+      </p>
+
+      <ul class="pairs">
+        <li class="card pair">
+          <p class="pair-before"><b>Before</b> — eleven minutes into a refactor it stops to ask whether to use the existing <code>formatDate</code> helper or add a new one.</p>
+          <p class="pair-after"><b>After</b> — it uses the helper that's already there, says which one in the report, and doesn't interrupt.</p>
+        </li>
+        <li class="card pair">
+          <p class="pair-before"><b>Before</b> — three clarifying questions arrive as three separate messages, each one idle until you happen to look at the terminal.</p>
+          <p class="pair-after"><b>After</b> — all three arrive in the first message. You answer once, and it runs to the end.</p>
+        </li>
+        <li class="card pair">
+          <p class="pair-before"><b>Before</b> — a migration fails, the run stops there, and the four unrelated tasks behind it are untouched an hour later.</p>
+          <p class="pair-after"><b>After</b> — the migration gets parked with a note, the other four ship, and the block is the third line of the final report.</p>
+        </li>
+        <li class="card pair">
+          <p class="pair-before"><b>Before</b> — you correct the same naming convention every week, and the correction dies with the session.</p>
+          <p class="pair-after"><b>After</b> — the first correction gets written into the context file, and next week's run starts already knowing it.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Collapsed because it is the compromise, not the recommendation: it is
+         here for people on a tool with a tight instruction budget. -->
+    <details class="folded">
+      <summary>Short version, for a tight context budget</summary>
+
+      <div class="codeblock">
+        <div class="codeblock-bar">
+          <span class="codeblock-name">PACE — short</span>
+          <button class="btn btn-secondary copy-btn" type="button"
+                  data-copy="protocol-short" aria-live="polite" hidden>Copy</button>
+        </div>
+        <pre><code id="protocol-short">## PACE
+Act in Parallel: ask everything blocking up front in one message, then run
+unattended on stated assumptions. Plan first, execute end to end, report once.
+If blocked, park it and move to the next independent piece — never stall.
+
+Compound Effort: read existing context and match it. When something's wrong
+because context was missing, fix the context, not just the output. Extract
+anything reusable. End with: what changed, what you assumed, what's open, and
+what to add to the context files.
+
+— PACE, wynter.ai/pace</code></pre>
+      </div>
+    </details>
+
+    <aside class="card cta">
+      <div>
+        <h2 class="tight">This is one piece of PACE</h2>
+        <p>The full framework — the two laws, the field guide, and the templates — is free.</p>
+      </div>
+      <a class="btn btn-primary btn-lg" href="/pace/">Read the framework</a>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="shell">
+    <p>&copy; <span id="year">2026</span> Wynter.ai — built by Wynter Jones.</p>
+    <p class="foot-version">PACE Protocol v1.0</p>
+    <nav class="foot-links" aria-label="Legal">
+      <a href="/pace/">PACE</a>
+      <a href="/about">About</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://account.wynter.ai/login">Login</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/site.js" defer></script>
+<script src="/pace.js" defer></script>
+</body>
+</html>

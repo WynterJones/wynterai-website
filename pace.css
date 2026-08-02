@@ -1,0 +1,342 @@
+/* wynter.ai — PACE pages (/pace/ and /pace/protocol/).
+ *
+ * Loaded AFTER styles.css, and additive only: every token, primitive and
+ * component in styles.css (.shell, .btn, .card, .prose, .eyebrow, .site-head,
+ * .site-foot) is reused as-is. What lives here is the handful of things those
+ * pages introduced that the rest of the site has never needed — a copyable code
+ * block, an adapter tab strip, and a before/after pair list.
+ *
+ * Same constraint as styles.css: the Content-Security-Policy in netlify.toml
+ * refuses inline styles, so nothing here may be pushed into a `style`
+ * attribute later.
+ */
+
+/* ============================================================ page frame */
+
+/* Tighter than `.page` on purpose. The protocol block is the reason anyone
+   opens /pace/protocol/, and every pixel above it is a pixel of the thing they
+   came for pushed under the fold. */
+.page-protocol { padding-block: clamp(28px, 4vh, 44px) clamp(48px, 8vh, 88px); }
+
+.protocol-head { max-width: 62ch; }
+
+.protocol-head h1 {
+  margin-top: 12px;
+  font-size: clamp(2rem, 1.4rem + 1.9vw, 2.75rem);
+  font-weight: 700;
+}
+
+.protocol-head .lede {
+  margin-top: 14px;
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.1875rem);
+  line-height: 1.5;
+  color: var(--ink-300);
+}
+
+/* ========================================================== adapter tabs */
+
+.adapters { margin-top: 26px; }
+
+.tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* A real <button> so it is keyboard-operable for free; the tab look is applied
+   on top rather than borrowing .btn, which is sized for calls to action. */
+.tab {
+  appearance: none;
+  border: 1px solid var(--ink-800);
+  border-radius: 999px;
+  background: var(--ink-900);
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--ink-400);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s;
+}
+
+.tab:hover { color: var(--ink-100); border-color: var(--ink-600); }
+
+/* Selected state is carried by border and text weight as well as colour, so it
+   survives a red/grey colour-blindness and a greyscale print. */
+.tab[aria-selected="true"] {
+  color: var(--ink-50);
+  background: var(--ink-800);
+  border-color: var(--signal-500);
+}
+
+/* The "put this at ..." line. One row per adapter, all four in the HTML; JS
+   only toggles `hidden`. With scripting off the first stays visible and the
+   rest never unhide, which is a correct page, not a broken one. */
+.adapter-note {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--ink-400);
+}
+
+.adapter-note code {
+  border: 1px solid var(--ink-700);
+  border-radius: 5px;
+  background: var(--ink-900);
+  padding: 2px 7px;
+  font-size: 13px;
+  color: var(--ink-100);
+}
+
+/* ========================================================== code blocks */
+
+.codeblock {
+  margin-top: 14px;
+  background: var(--ink-900);
+  border: 1px solid var(--ink-700);
+  border-radius: var(--radius-tile);
+  /* The rounded corners have to clip the <pre>'s own scroll area, or the code
+     bleeds square through them at the bottom edge. */
+  overflow: hidden;
+}
+
+.codeblock-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--ink-800);
+  background: var(--ink-850);
+  padding: 9px 10px 9px 16px;
+}
+
+.codeblock-name {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-300);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Capped and scrolled rather than run full height. The protocol is ~45 lines;
+   left to its natural height the copy button sits four screens above the
+   bottom of the block and the page opens on a wall of text with no visible
+   action. Crawlers get the whole thing either way — it is all in the HTML. */
+.codeblock pre {
+  margin: 0;
+  overflow: auto;
+  max-height: min(56vh, 640px);
+  padding: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.codeblock code {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink-200);
+  /* Wrap rather than scroll sideways: the longest line is prose, and a
+     horizontal scrollbar on a phone hides the right-hand third of every
+     sentence. `pre-wrap` keeps the leading indentation that makes the markdown
+     paste back correctly. */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  tab-size: 2;
+}
+
+/* Long enough to be an obvious target, short enough not to crowd the filename
+   on a phone. The width is pinned so swapping the label to "Copied" doesn't
+   make the button jump a few pixels wider under the cursor. */
+.copy-btn {
+  flex: none;
+  min-width: 92px;
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+.copy-btn[data-state="copied"] {
+  background: var(--ink-800);
+  border-color: var(--signal-500);
+  color: var(--ink-50);
+}
+
+/* Announced to screen readers via aria-live on the button's own label, so no
+   separate status region is needed. */
+
+/* The fallback clipboard textarea. Off-canvas rather than `display: none`,
+   because a hidden element cannot be selected and execCommand("copy") would
+   have nothing to copy from. */
+.offscreen {
+  position: fixed;
+  top: 0;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* ==================================================== what changes pairs */
+
+.pairs {
+  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+}
+
+.pair {
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-tile);
+  background: var(--ink-900);
+  padding: 18px 20px;
+}
+
+.pair p { margin-top: 0; font-size: 14.5px; }
+.pair p + p { margin-top: 10px; }
+
+.pair-before { color: var(--ink-400); }
+.pair-after { color: var(--ink-200); }
+
+/* The label does the work of the colour, so the pair still reads when the
+   colour step between the two lines is invisible. */
+.pair b {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.pair-after b { color: var(--signal-400); }
+
+/* ======================================================== short version */
+
+.folded {
+  margin-top: 22px;
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-tile);
+  background: var(--ink-900);
+  padding: 16px 20px;
+}
+
+.folded summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-100);
+}
+.folded summary::-webkit-details-marker { display: none; }
+
+.folded summary::after {
+  content: "+";
+  flex: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-muted);
+}
+.folded[open] summary::after { content: "−"; }
+
+/* The block inside a fold sits on the same ground as the fold itself, so it
+   drops the outer card's background and keeps only the rule and the radius. */
+.folded .codeblock { background: var(--ink-950); }
+.folded .codeblock-bar { background: var(--ink-900); }
+
+/* ========================================================== laws (/pace/) */
+
+.laws {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.law { padding: 24px; }
+
+.law-num {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-400);
+}
+
+.law h3 {
+  margin-top: 10px;
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.law p { margin-top: 12px; font-size: 14.5px; color: var(--ink-300); }
+
+/* The one number that says whether you are doing it. Set apart from the prose
+   because it is the part worth remembering. */
+.law-metric {
+  margin-top: 16px;
+  border-top: 1px solid var(--ink-800);
+  padding-top: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.law-metric strong { color: var(--ink-200); font-weight: 600; }
+
+/* ------------------------------------------------------------- kit list */
+
+.kit {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 32px;
+  list-style: none;
+  padding: 0;
+}
+
+.kit li {
+  border-top: 1px solid var(--ink-800);
+  padding: 14px 0;
+}
+
+.kit-name { font-size: 14.5px; font-weight: 600; color: var(--ink-100); }
+.kit-desc { margin-top: 3px; font-size: 13px; color: var(--ink-400); }
+
+/* --------------------------------------------------------- footer version
+ *
+ * A third child of the footer shell, which is already `space-between` with
+ * wrapping — so it takes the middle on desktop and its own line on a phone
+ * without either of the other two moving. */
+.foot-version { font-variant-numeric: tabular-nums; }
+
+/* ----------------------------------------------------------- responsive */
+
+@media (max-width: 900px) {
+  .laws { grid-template-columns: minmax(0, 1fr); }
+  .kit { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+
+@media (max-width: 560px) {
+  /* At 375px the bar cannot hold a filename and a button on one line without
+     the filename shrinking to three characters and an ellipsis — so stack. */
+  .codeblock-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 9px;
+    padding: 12px;
+  }
+  .codeblock-name { white-space: normal; text-align: left; }
+  .copy-btn { width: 100%; }
+
+  .codeblock pre { padding: 14px 12px; max-height: 62vh; }
+  .codeblock code { font-size: 12.5px; }
+
+  .pair { padding: 16px; }
+  .law { padding: 20px; }
+}

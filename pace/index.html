@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PACE — Parallel Action, Compounding Effort</title>
+<meta name="description" content="AI didn't 10x you because the bottleneck was never the model's speed — it's that your attention is single-threaded and your work doesn't accumulate. PACE is two laws that fix both. Free field guide, protocol, and templates.">
+<link rel="canonical" href="https://wynter.ai/pace/">
+<meta name="theme-color" content="#0a0a0d">
+<meta name="author" content="Wynter Jones">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wynter.ai">
+<meta property="og:url" content="https://wynter.ai/pace/">
+<meta property="og:title" content="AI didn't 10x you. Here's why.">
+<meta property="og:description" content="Your agents can run concurrently. You can't. PACE is two laws — Parallel Action and Compounding Effort — for people who stopped being the thing their agents wait on.">
+<meta property="og:image" content="https://wynter.ai/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wynter.ai — the agentic engineer's toolkit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI didn't 10x you. Here's why.">
+<meta name="twitter:description" content="Your agents can run concurrently. You can't. PACE is two laws — Parallel Action and Compounding Effort — for people who stopped being the thing their agents wait on.">
+<meta name="twitter:image" content="https://wynter.ai/assets/og.png">
+
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/assets/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://account.wynter.ai">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/pace.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wynter.ai/#org",
+      "name": "Wynter.ai",
+      "url": "https://wynter.ai/",
+      "logo": "https://wynter.ai/assets/wynterai-logo.png",
+      "founder": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://wynter.ai/pace/#webpage",
+      "url": "https://wynter.ai/pace/",
+      "name": "PACE — Parallel Action, Compounding Effort",
+      "description": "AI didn't 10x you because the bottleneck was never the model's speed — it's that your attention is single-threaded and your work doesn't accumulate. PACE is two laws that fix both.",
+      "inLanguage": "en",
+      "primaryImageOfPage": "https://wynter.ai/assets/og.png",
+      "isPartOf": { "@id": "https://wynter.ai/#site" },
+      "publisher": { "@id": "https://wynter.ai/#org" },
+      "author": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" },
+      "significantLink": "https://wynter.ai/pace/protocol/",
+      "about": {
+        "@type": "Thing",
+        "name": "PACE",
+        "alternateName": "Parallel Action, Compounding Effort",
+        "description": "A two-law framework for working with coding agents: run work in parallel so your attention stops being the bottleneck, and compound effort so the tenth task is faster than the first."
+      }
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="shell">
+    <a class="brand" href="/" aria-label="Wynter.ai home">
+      <img src="/assets/wynterai-logo.png" alt="Wynter.ai" width="510" height="250" fetchpriority="high">
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/about">About</a>
+      <a href="/pricing">Pricing</a>
+      <a class="btn btn-secondary" href="https://account.wynter.ai/login">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="shell">
+
+    <div class="page-head">
+      <p class="eyebrow">The PACE Framework · Free</p>
+      <h1>AI didn't 10x you. Here's why.</h1>
+      <p class="lede">
+        The bottleneck was never the model's speed. It's that your attention is
+        single-threaded and your work doesn't&nbsp;accumulate.
+      </p>
+    </div>
+
+    <div class="prose">
+      <p>
+        You got a coding agent that writes a module in four minutes, and your
+        week did not get five times more productive. That's not a disappointing
+        model. It's a bottleneck that moved.
+      </p>
+      <p>
+        The slow part used to be typing. Now the slow part is you — reading the
+        output, deciding the next thing, answering a question that arrived while
+        you were somewhere else. An agent that finishes in four minutes and then
+        waits ninety for you to look at it is a four-minute agent on paper and a
+        ninety-minute agent in your calendar.
+      </p>
+      <p>
+        The second half is worse and quieter. Most people run their tenth task
+        exactly the way they ran their first: same explaining, same corrections,
+        same context typed out again from memory. Nothing accumulates. You are
+        fast now, but you are fast in a straight line, and you will still be
+        going the same speed in six months.
+      </p>
+      <p>
+        <strong>PACE</strong> is two laws for those two problems. Parallel
+        Action for the first, Compounding Effort for the second.
+      </p>
+    </div>
+
+    <section class="section" aria-labelledby="the-laws">
+      <h2 class="section-title tight" id="the-laws">The two laws</h2>
+
+      <div class="laws">
+        <article class="card law">
+          <p class="law-num">Law 1</p>
+          <h3>Act in Parallel</h3>
+          <p>
+            Your agents can run concurrently. You cannot. Five of them can be
+            working right now and the only thing stopping that is that four of
+            them are waiting on you to read something.
+          </p>
+          <p>
+            So stop being the thing they wait on. Give a task enough context to
+            run for an hour without you, get every blocking question answered in
+            one message before the work starts, and let it proceed on stated
+            assumptions instead of stopping at the first fork.
+          </p>
+          <p>
+            The skill this rewards isn't prompting. It's <strong>dispatch</strong> —
+            cutting work into pieces that can run unattended, and briefing them
+            well enough that they do.
+          </p>
+          <p class="law-metric">
+            Metric: <strong>agent-hours per human-hour.</strong> If it's hovering
+            near one, you're supervising, not dispatching.
+          </p>
+        </article>
+
+        <article class="card law">
+          <p class="law-num">Law 2</p>
+          <h3>Compound Effort</h3>
+          <p>
+            If your tenth task isn't faster than your first, you don't have a
+            system. You have a habit. A habit you're very good at and that will
+            never get better on its own.
+          </p>
+          <p>
+            Context is an asset. The conventions you explained, the mistake you
+            corrected, the shape of a brief that worked — every one of those is
+            either written down where the next run picks it up, or it evaporates
+            when the session closes.
+          </p>
+          <p>
+            So correct the system, not the output. When something comes out
+            wrong because the context was missing, fixing the answer buys you
+            one task. Fixing the context buys you every task after it.
+          </p>
+          <p class="law-metric">
+            Metric: <strong>is task ten cheaper than task one?</strong> If not,
+            nothing you did in between was a system.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="why-both">
+      <h2 class="section-title tight" id="why-both">Why it takes both</h2>
+      <div class="prose tight">
+        <p>
+          Parallel without compounding is chaos. Six agents running, six sets of
+          output to reconcile, the same corrections issued six times, and a
+          person at the middle of it burning out inside a month. Volume with no
+          memory is just a faster way to make the same mess.
+        </p>
+        <p>
+          Compounding without parallel is a beautiful system operated by one slow
+          human. The templates are good, the context files are current, the
+          conventions are documented — and everything still moves at the speed of
+          one person reading one thing at a time.
+        </p>
+        <p>
+          Together they change shape. Work runs wide, and every run leaves the
+          next one cheaper. That's throughput that keeps climbing while you're
+          asleep, which is the only version of this that ever felt like 10x.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="what-you-get">
+      <h2 class="section-title tight" id="what-you-get">What you get</h2>
+      <p class="section-lede">
+        The whole framework, free. No card, no trial&nbsp;clock.
+      </p>
+
+      <ul class="kit">
+        <li>
+          <p class="kit-name">The field guide</p>
+          <p class="kit-desc">The two laws in full, with the failure modes each one is there to catch and what applying them actually looks like on a working week.</p>
+        </li>
+        <li>
+          <p class="kit-name">The PACE Protocol</p>
+          <p class="kit-desc">The markdown block for your agent's instruction file. Already public — read it before you decide whether any of this is for you.</p>
+        </li>
+        <li>
+          <p class="kit-name">The Dispatch Brief template</p>
+          <p class="kit-desc">The structure of a task an agent can run for an hour without you: scope, constraints, what to assume, what done means.</p>
+        </li>
+        <li>
+          <p class="kit-name">The Context File template</p>
+          <p class="kit-desc">What belongs in a project's context file and what doesn't, so it stays the thing that makes runs cheaper rather than a wall nobody reads.</p>
+        </li>
+        <li>
+          <p class="kit-name">The Compounding Checklist</p>
+          <p class="kit-desc">The end-of-task pass that turns one finished job into a faster next one — what to extract, what to write down, what to correct upstream.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- The CTA links out rather than posting: the home page's form posts to
+         WynterHub's /start endpoint, and this page hands off to the hosted lead
+         page instead. Note the difference before changing either. -->
+    <aside class="card cta">
+      <div>
+        <h2 class="tight">Get the framework</h2>
+        <p>The field guide, the protocol, and the three templates. Free — and the protocol is already on this site if you'd rather just take that.</p>
+      </div>
+      <div class="actions tight">
+        <a class="btn btn-primary btn-lg" href="https://account.wynter.ai/join/wynter-ai">Get PACE free</a>
+        <a class="btn btn-secondary btn-lg" href="/pace/protocol/">Read the protocol</a>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="shell">
+    <p>&copy; <span id="year">2026</span> Wynter.ai — built by Wynter Jones.</p>
+    <p class="foot-version">PACE Protocol v1.0</p>
+    <nav class="foot-links" aria-label="Legal">
+      <a href="/pace/protocol/">Protocol</a>
+      <a href="/about">About</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://account.wynter.ai/login">Login</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/site.js" defer></script>
+</body>
+</html>
