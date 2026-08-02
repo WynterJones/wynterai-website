@@ -265,15 +265,32 @@ ul, ol { list-style: none; max-width: var(--measure); }
 
 .list > li + li { margin-top: 2.6mm; }
 
-/* 1.2pt, not a hairline: below about 1pt the dash starts dropping in and out
-   between markers when the PDF is rasterised at screen resolutions. */
+/* One marker, one size, one colour, on every item in the document. The accent
+ * is not carrying emphasis here — it is the marker, the same way .rule--accent
+ * and .law__mark are — and nothing in the markup opts an item into a second
+ * treatment. If a list ever does need to mark its key items, add a class and
+ * say so; do not reintroduce a rule that keys off position.
+ *
+ * A square, not the 3mm x 1.2pt dash this started as. The marker is a filled
+ * rect sitting at a fractional device offset that differs from item to item,
+ * and the rasteriser snaps it to whole pixels: at 1.2pt the same dash came out
+ * 2, 3 or 4 pixels tall down a single list, which read as an alternating
+ * red/grey pattern nobody had written. Raising it to 2pt halved the spread but
+ * did not close it — the error is one pixel however thin the bar is, so the
+ * only fix is a marker big enough in its short dimension that one pixel stops
+ * mattering. At 1.6mm it measures 6-7 rows at 110dpi and the spread is
+ * invisible; the shape also sits inside the x-height, which the dash never did.
+ *
+ * Check this by measuring, not by looking: render at -r 110 and compare the
+ * pixel height of consecutive markers down a list whose items wrap differently
+ * (page 7 and page 24 are the two worst cases in the document). */
 .list > li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.6em;
-  width: 3mm;
-  height: 1.2pt;
+  top: 0.5em;
+  width: 1.6mm;
+  height: 1.6mm;
   background: var(--accent);
 }
 
@@ -826,6 +843,207 @@ ul, ol { list-style: none; max-width: var(--measure); }
      these two pages run on a different grid. */
   --rail:    34mm;
 }
+/* -------------------------------------------------- divider atmosphere */
+
+/* Every part divider carries a full-bleed plate behind its type, and so does
+ * the cover. Three decisions worth writing down.
+ *
+ * 1. An <img>, not a background-image. Chrome embeds an <img> as an image
+ *    XObject whatever the print-colour settings say; a CSS background is
+ *    dropped unless print-color-adjust is exact. Backgrounds ARE used for the
+ *    scrim below, which is why that element re-declares the property rather
+ *    than relying on inheriting it from body.
+ *
+ * 2. Opacity is per-plate, not global. The five plates were generated
+ *    separately and their line work differs by more than 3x in luminance —
+ *    measured over the centre crop the page actually shows, the 99th
+ *    percentile runs from L=65 on the toolkit plate to L=213 on the
+ *    compounding one. A single opacity turns some dividers into a picture and
+ *    leaves others blank. These five values put the brightest strokes on every
+ *    divider at roughly L=55 over the ink-950 ground: present as atmosphere,
+ *    never competing with the part number or the title.
+ *
+ * 3. The plates are 16:9 and the page is portrait, so `cover` crops to the
+ *    middle ~39% of each image. All five were composed around their centre, so
+ *    the subject survives; check the crop, not the source file, after any
+ *    swap. */
+
+.plate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* Both overrides are load-bearing against the global `img` rule, which sets
+     max-width: 100% and height: auto — under those the plate sets to its own
+     aspect ratio and leaves the foot of the page bare. */
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  break-inside: avoid;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.plate--01 { opacity: 0.44; }
+.plate--02 { opacity: 0.36; }
+.plate--03 { opacity: 0.34; }
+.plate--04 { opacity: 0.34; }
+.plate--05 { opacity: 0.30; }
+
+/* The cover runs the parallel plate a third quieter than its divider does. The
+   divider has 34pt of type on it; the cover has 46pt of it, over a much larger
+   area of clear ground, and the plate only has to suggest a texture. */
+.plate--cover { opacity: 0.18; }
+
+/* The cover's own wash. Different from .scrim: the title block sits in the
+   middle third here, not the bottom, and the logo has to stay clean at the
+   top, so this darkens both ends and lets the waist of the page carry the
+   texture. */
+.scrim--cover {
+  background:
+    linear-gradient(90deg,
+      rgba(10, 10, 13, 0.62) 0%,
+      rgba(10, 10, 13, 0.18) 50%,
+      rgba(10, 10, 13, 0.00) 82%),
+    linear-gradient(180deg,
+      rgba(10, 10, 13, 0.88) 0%,
+      rgba(10, 10, 13, 0.42) 18%,
+      rgba(10, 10, 13, 0.30) 40%,
+      rgba(10, 10, 13, 0.72) 66%,
+      rgba(10, 10, 13, 0.95) 100%);
+}
+
+/* Two washes over the plate. The vertical one keeps the foot of the page —
+   where the note, the law and the attribution all sit — close to solid ink,
+   and pulls the very top down so the ghost numeral still reads as a ghost.
+   The horizontal one protects the left column, which is where every line of
+   type on these pages starts. Neither is decoration: remove them and the
+   plates start fighting the words. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  break-inside: avoid;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  background:
+    linear-gradient(90deg,
+      rgba(10, 10, 13, 0.50) 0%,
+      rgba(10, 10, 13, 0.12) 44%,
+      rgba(10, 10, 13, 0.00) 72%),
+    linear-gradient(180deg,
+      rgba(10, 10, 13, 0.58) 0%,
+      rgba(10, 10, 13, 0.16) 24%,
+      rgba(10, 10, 13, 0.32) 46%,
+      rgba(10, 10, 13, 0.76) 68%,
+      rgba(10, 10, 13, 0.93) 86%,
+      rgba(10, 10, 13, 0.97) 100%);
+}
+
+/* Lift whatever sits above the plate out of its stacking order. */
+.cover, .divider, .back { position: relative; z-index: 1; }
+
+/* The ghost numeral was tuned against flat ink-950. With a plate behind it,
+   #24242c sits below the brightest strokes of the plate and stops reading as
+   the topmost layer. Four values lighter restores the order without making it
+   a numeral anyone actually reads. */
+.sheet--plate .divider__num { color: #33333d; }
+
+/* --------------------------------------------------------------- figures */
+
+/* Diagrams are inline SVG, never raster. They carry type, so they have to stay
+ * sharp at plate resolution and selectable in the PDF; they use the same
+ * tokens as the rest of the document rather than a second set baked into a
+ * PNG; and seven of them add about 20KB rather than several megabytes.
+ *
+ * Coordinates: every figure sets a viewBox whose user unit is one point at
+ * final size — viewBox width 448 rendered into the 158mm block is 447.87pt, so
+ * font-size="8" really is 8pt on paper. Nothing in a figure is set below 7.5.
+ *
+ * Colour never carries a distinction on its own. Every paired series is also
+ * separated by stroke weight, dash pattern or fill, so the figures survive a
+ * greyscale printer. */
+
+.fig {
+  width: var(--block);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.fig__head {
+  display: flex;
+  align-items: baseline;
+  gap: 5mm;
+  padding-bottom: 2.4mm;
+  margin-bottom: 5mm;
+  border-bottom: 0.6pt solid var(--rule-strong);
+}
+
+.fig__n {
+  font-size: 7.4rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  white-space: nowrap;
+}
+
+.fig__t {
+  font-size: 9.8rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--text);
+}
+
+.fig__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--sans);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.fig__svg text { fill: var(--text-2); }
+
+.fig__cap {
+  font-size: 8.4rem;
+  line-height: 1.45;
+  color: var(--text-3);
+  margin-top: 4mm;
+  max-width: 136mm;
+}
+
+/* Token bindings for the figures. Presentation attributes can't resolve var(),
+   so fills and strokes come in as classes and only geometry is written inline. */
+.fs-ink   { fill: var(--text); }
+.fs-mid   { fill: var(--text-2); }
+.fs-mute  { fill: var(--text-3); }
+.fs-acc   { fill: var(--accent); }
+.fs-acct  { fill: var(--accent-text); }
+.fs-none  { fill: none; }
+.fs-paper { fill: var(--paper); }
+.fs-tint  { fill: var(--paper-tint); }
+.fs-bar   { fill: #eceae7; }
+
+.st-ink   { stroke: var(--text); }
+.st-mid   { stroke: var(--text-2); }
+.st-mute  { stroke: var(--text-3); }
+.st-rule  { stroke: var(--rule); }
+.st-rules { stroke: var(--rule-strong); }
+.st-acc   { stroke: var(--accent); }
+.st-none  { stroke: none; }
+
+.tw-6 { font-weight: 600; }
+.tw-7 { font-weight: 700; }
+
+/* Small caps-ish annotation inside a figure — the SVG equivalent of .label. */
+.t-lab {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 /* ----------------------------------------------- embedded typefaces (end) */
 
 /* Inter and JetBrains Mono, base64-inlined as woff2 and subset to the glyphs

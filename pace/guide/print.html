@@ -26,7 +26,9 @@
 <body>
 
 <!-- ============================================================== 1 cover -->
-<section class="sheet sheet--dark">
+<section class="sheet sheet--dark sheet--plate">
+  <img class="plate plate--cover" src="../../assets/pace/divider-02-parallel.png" alt="">
+  <span class="scrim scrim--cover"></span>
   <div class="cover">
     <img class="cover__logo" src="../../assets/wynterai-logo.png" alt="wynter.ai">
 
@@ -62,33 +64,33 @@
     <div class="toc__row toc__row--part">
       <span class="toc__num">03</span>
       <span class="toc__title">Compound Effort</span>
-      <span class="toc__pg">10</span>
+      <span class="toc__pg">12</span>
     </div>
     <div class="toc__row toc__row--part">
       <span class="toc__num">04</span>
       <span class="toc__title">Why Both</span>
-      <span class="toc__pg">14</span>
+      <span class="toc__pg">17</span>
     </div>
     <div class="toc__row toc__row--part">
       <span class="toc__num">05</span>
       <span class="toc__title">The Toolkit</span>
-      <span class="toc__pg">16</span>
+      <span class="toc__pg">20</span>
     </div>
 
     <div class="toc__row toc__row--sub">
-      <span></span><span class="toc__title">The Dispatch Brief</span><span class="toc__pg">17</span>
+      <span></span><span class="toc__title">The Dispatch Brief</span><span class="toc__pg">21</span>
     </div>
     <div class="toc__row toc__row--sub">
-      <span></span><span class="toc__title">The Context File</span><span class="toc__pg">19</span>
+      <span></span><span class="toc__title">The Context File</span><span class="toc__pg">23</span>
     </div>
     <div class="toc__row toc__row--sub">
-      <span></span><span class="toc__title">The PACE Protocol</span><span class="toc__pg">20</span>
+      <span></span><span class="toc__title">The PACE Protocol</span><span class="toc__pg">24</span>
     </div>
     <div class="toc__row toc__row--sub">
-      <span></span><span class="toc__title">The Compounding Checklist</span><span class="toc__pg">22</span>
+      <span></span><span class="toc__title">The Compounding Checklist</span><span class="toc__pg">26</span>
     </div>
     <div class="toc__row toc__row--sub">
-      <span></span><span class="toc__title">A week in the life</span><span class="toc__pg">23</span>
+      <span></span><span class="toc__title">A week in the life</span><span class="toc__pg">27</span>
     </div>
   </div>
 
@@ -97,7 +99,7 @@
     <div class="main">
       <p class="small">Parts 1 to 4 are the argument. Part 5 is the part you act on — the
         dispatch brief, the context file, the drop-in protocol and the checklist. If you
-        only have ten minutes, read page 6, page 10, and then go to page 17.</p>
+        only have ten minutes, read page 6, page 12, and then go to page 21.</p>
     </div>
   </div>
 
@@ -108,7 +110,9 @@
 </section>
 
 <!-- ======================================================== 3 divider 01 -->
-<section class="sheet sheet--dark">
+<section class="sheet sheet--dark sheet--plate">
+  <img class="plate plate--01" src="../../assets/pace/divider-01-bottleneck.png" alt="">
+  <span class="scrim"></span>
   <div class="divider">
     <p class="divider__num">01</p>
     <div class="spacer"></div>
@@ -237,7 +241,9 @@
 </section>
 
 <!-- ============================================ 6 divider 02 — law one -->
-<section class="sheet sheet--dark">
+<section class="sheet sheet--dark sheet--plate">
+  <img class="plate plate--02" src="../../assets/pace/divider-02-parallel.png" alt="">
+  <span class="scrim"></span>
   <div class="divider">
     <p class="divider__num">02</p>
     <div class="spacer"></div>
@@ -308,7 +314,136 @@
   </div>
 </section>
 
-<!-- ============================================================== 8 P2 b -->
+<!-- ======================================================== 8 figure 01 -->
+<!--
+  Figure geometry, once, because it repeats in every figure below: the viewBox
+  is authored so one user unit is one point at final size (viewBox width 448
+  set into the 158mm block is 447.87pt), which makes font-size="8" mean 8pt on
+  paper. Nothing is set below 7.5. Both panels share one time scale — 45.5
+  units per hour from x=66 — and the vertical gridlines exist to make that
+  legible at a glance.
+-->
+<section class="sheet">
+  <div class="fig">
+    <div class="fig__head">
+      <span class="fig__n">Figure 01</span>
+      <span class="fig__t">The same four tasks, twice</span>
+    </div>
+
+    <svg class="fig__svg" viewBox="0 0 448 546" role="img"
+         aria-label="Two timelines of the same four tasks. Run serially they take eight hours of wall-clock time and occupy your attention throughout. Run in parallel they take 2.4 hours and occupy your attention only to dispatch and review.">
+      <defs>
+        <marker id="f1-acc" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-acc"/></marker>
+      </defs>
+
+      <!-- shared hour gridlines, drawn per panel so they never cross a heading -->
+      <g class="st-rule" stroke-width="0.6">
+        <path d="M66,44V218 M111.5,44V218 M157,44V218 M202.5,44V218 M248,44V218 M293.5,44V218 M339,44V218 M384.5,44V218 M430,44V218"/>
+        <path d="M66,320V528 M111.5,320V528 M157,320V528 M202.5,320V528 M248,320V528 M293.5,320V528 M339,320V528 M384.5,320V528 M430,320V528"/>
+      </g>
+
+      <!-- ------------------------------------------------ panel A, serial -->
+      <text x="0" y="14" font-size="10" class="tw-6 fs-ink">Serial &#8212; you stay in the loop</text>
+      <text x="0" y="29" font-size="8" class="fs-mute">Four tasks, one attention, strictly one after another.</text>
+
+      <rect x="66" y="48" width="364" height="22" class="fs-mid"/>
+      <text x="60" y="63" font-size="8" text-anchor="end" class="fs-mid">Your attention</text>
+
+      <!-- the four review gaps: attention is spent here too, which is the point -->
+      <g class="fs-acc" opacity="0.08">
+        <rect x="143.35" y="86" width="13.65" height="110"/>
+        <rect x="234.35" y="86" width="13.65" height="110"/>
+        <rect x="325.35" y="86" width="13.65" height="110"/>
+        <rect x="416.35" y="86" width="13.65" height="110"/>
+      </g>
+
+      <g class="fs-bar st-mute" stroke-width="0.8">
+        <rect x="66"  y="86"  width="77.35" height="20"/>
+        <rect x="157" y="116" width="77.35" height="20"/>
+        <rect x="248" y="146" width="77.35" height="20"/>
+        <rect x="339" y="176" width="77.35" height="20"/>
+      </g>
+      <g font-size="8" text-anchor="end" class="fs-mid">
+        <text x="60" y="100">Task 1</text>
+        <text x="60" y="130">Task 2</text>
+        <text x="60" y="160">Task 3</text>
+        <text x="60" y="190">Task 4</text>
+      </g>
+
+      <path d="M150.2,198V205" class="st-mute" stroke-width="0.6"/>
+      <text x="150.2" y="214" font-size="7.5" text-anchor="middle" class="fs-acct">you read the output</text>
+
+      <path d="M66,221V226 H430 V221" class="st-acc fs-none" stroke-width="0.9"/>
+      <text x="248" y="239" font-size="8.5" text-anchor="middle" class="tw-6 fs-acct">8 hours of wall-clock time</text>
+
+      <path d="M0,262H448" class="st-rule" stroke-width="0.6"/>
+
+      <!-- ---------------------------------------------- panel B, parallel -->
+      <text x="0" y="286" font-size="10" class="tw-6 fs-ink">Parallel &#8212; you dispatch, then leave</text>
+      <text x="0" y="301" font-size="8" class="fs-mute">The same four tasks, running at the same time.</text>
+
+      <text x="77.9"  y="316" font-size="7.5" text-anchor="middle" class="fs-acct">dispatch &#215;4</text>
+      <text x="161.5" y="316" font-size="7.5" text-anchor="middle" class="fs-acct">review &#215;4</text>
+
+      <rect x="66" y="322" width="364" height="22" class="fs-none st-rule" stroke-width="0.6" stroke-dasharray="3 2"/>
+      <text x="60" y="337" font-size="8" text-anchor="end" class="fs-mid">Your attention</text>
+      <g class="fs-acc">
+        <rect x="66"    y="325" width="4.5" height="16"/>
+        <rect x="72.4"  y="325" width="4.5" height="16"/>
+        <rect x="78.7"  y="325" width="4.5" height="16"/>
+        <rect x="85.1"  y="325" width="4.5" height="16"/>
+        <rect x="149.8" y="325" width="4.5" height="16"/>
+        <rect x="156.1" y="325" width="4.5" height="16"/>
+        <rect x="162.5" y="325" width="4.5" height="16"/>
+        <rect x="168.8" y="325" width="4.5" height="16"/>
+      </g>
+
+      <path d="M89.6,348V352 H149.8 V348" class="st-mute fs-none" stroke-width="0.6"/>
+      <text x="119.7" y="364" font-size="7.5" text-anchor="middle" class="fs-mute">you are elsewhere</text>
+
+      <g class="fs-bar st-mute" stroke-width="0.8">
+        <rect x="72.37" y="376" width="77.35" height="20"/>
+        <rect x="78.74" y="406" width="77.35" height="20"/>
+        <rect x="85.11" y="436" width="77.35" height="20"/>
+        <rect x="91.48" y="466" width="77.35" height="20"/>
+      </g>
+      <g font-size="8" text-anchor="end" class="fs-mid">
+        <text x="60" y="390">Task 1</text>
+        <text x="60" y="420">Task 2</text>
+        <text x="60" y="450">Task 3</text>
+        <text x="60" y="480">Task 4</text>
+      </g>
+
+      <path d="M66,497V502 H173.3 V497" class="st-acc fs-none" stroke-width="0.9"/>
+      <path d="M173.3,497V502 H430 V497" class="st-mute fs-none" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <text x="66"  y="516" font-size="8.5" class="tw-6 fs-acct">2.4 hours of wall-clock time</text>
+      <text x="430" y="516" font-size="8.5" text-anchor="end" class="tw-6 fs-mid">5.6 hours you get back</text>
+
+      <!-- ------------------------------------------------------ shared axis -->
+      <path d="M66,528H430" class="st-rules" stroke-width="0.8"/>
+      <g class="st-rules" stroke-width="0.8">
+        <path d="M66,528v4 M111.5,528v4 M157,528v4 M202.5,528v4 M248,528v4 M293.5,528v4 M339,528v4 M384.5,528v4 M430,528v4"/>
+      </g>
+      <g font-size="7.5" text-anchor="middle" class="fs-mute">
+        <text x="66" y="543">0</text><text x="111.5" y="543">1</text><text x="157" y="543">2</text>
+        <text x="202.5" y="543">3</text><text x="248" y="543">4</text><text x="293.5" y="543">5</text>
+        <text x="339" y="543">6</text><text x="384.5" y="543">7</text><text x="430" y="543">8</text>
+      </g>
+      <text x="60" y="543" font-size="7.5" text-anchor="end" class="fs-mute">hours</text>
+    </svg>
+
+    <p class="fig__cap">Same four tasks, same total agent time, same person. The only variable is
+      whether you stayed in the room while they ran.</p>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">8</span>
+  </div>
+</section>
+
+<!-- ============================================================== 9 P2 b -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Law One</p>
@@ -355,11 +490,146 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">8</span>
+    <span class="folio__n">9</span>
   </div>
 </section>
 
-<!-- ============================================================== 9 P2 c -->
+<!-- =================================================== 10 figures 02, 03 -->
+<section class="sheet">
+  <div class="fig">
+    <div class="fig__head">
+      <span class="fig__n">Figure 02</span>
+      <span class="fig__t">The dispatch loop</span>
+    </div>
+
+    <svg class="fig__svg" viewBox="0 0 448 200" role="img"
+         aria-label="A five-step loop: plan, dispatch, the agent runs unattended, review, extract. Your attention follows the first two steps, leaves during the unattended run, and returns at review.">
+      <defs>
+        <marker id="f2-acc" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-acc"/></marker>
+        <marker id="f2-mid" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mid"/></marker>
+      </defs>
+
+      <!-- your attention: present, then away, then back -->
+      <text x="5" y="30" font-size="7.5" class="t-lab fs-mute">Your attention</text>
+      <path d="M5,52H178" class="st-acc" stroke-width="1.6"/>
+      <path d="M178,52 C190,52 190,26 202,26 H246 C258,26 258,52 270,52"
+            class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <path d="M270,52H443" class="st-acc" stroke-width="1.6"/>
+      <text x="224" y="20" font-size="7.5" text-anchor="middle" class="fs-mute">you go elsewhere</text>
+      <g class="st-rules" stroke-width="0.6" stroke-dasharray="2 2">
+        <path d="M42,54V86 M133,54V86 M315,54V86 M406,54V86"/>
+      </g>
+
+      <!-- the five steps -->
+      <g class="fs-none st-rules" stroke-width="0.8">
+        <rect x="5"   y="88" width="74" height="52"/>
+        <rect x="96"  y="88" width="74" height="52"/>
+        <rect x="278" y="88" width="74" height="52"/>
+        <rect x="369" y="88" width="74" height="52"/>
+      </g>
+      <rect x="187" y="88" width="74" height="52" class="fs-none st-mute" stroke-width="0.9" stroke-dasharray="4 3"/>
+
+      <g text-anchor="middle">
+        <text x="42"  y="110" font-size="8.5" class="tw-6 fs-ink">Plan</text>
+        <text x="42"  y="123" font-size="7.5" class="fs-mute">write the brief</text>
+        <text x="133" y="110" font-size="8.5" class="tw-6 fs-ink">Dispatch</text>
+        <text x="133" y="123" font-size="7.5" class="fs-mute">hand it over</text>
+        <text x="224" y="110" font-size="8.5" class="tw-6 fs-acct">Runs</text>
+        <text x="224" y="123" font-size="7.5" class="fs-mute">unattended</text>
+        <text x="315" y="110" font-size="8.5" class="tw-6 fs-ink">Review</text>
+        <text x="315" y="123" font-size="7.5" class="fs-mute">read the output</text>
+        <text x="406" y="110" font-size="8.5" class="tw-6 fs-ink">Extract</text>
+        <text x="406" y="123" font-size="7.5" class="fs-mute">what is reusable</text>
+      </g>
+
+      <g class="st-mid" stroke-width="1" marker-end="url(#f2-mid)">
+        <path d="M81,114H88"/>
+        <path d="M172,114H179"/>
+        <path d="M263,114H270"/>
+        <path d="M354,114H361"/>
+      </g>
+
+      <!-- and round again -->
+      <path d="M406,140 V176 H42 V148" class="st-acc fs-none" stroke-width="1.4" marker-end="url(#f2-acc)"/>
+      <text x="224" y="190" font-size="8" text-anchor="middle" class="fs-mid">and the next brief is already written</text>
+    </svg>
+
+    <p class="fig__cap">The unattended stretch is the whole point. If your attention never leaves the
+      line, you are having a conversation, not running a loop.</p>
+  </div>
+
+  <div class="fig mt-l">
+    <div class="fig__head">
+      <span class="fig__n">Figure 03</span>
+      <span class="fig__t">The unit-of-work test</span>
+    </div>
+
+    <svg class="fig__svg" viewBox="0 0 448 206" role="img"
+         aria-label="A decision test. Can an agent finish this task without asking you anything? If it is too vague, specify it. If it is too small, just do it. If yes, dispatch it.">
+      <defs>
+        <marker id="f3-mid" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mid"/></marker>
+      </defs>
+
+      <rect x="134" y="6" width="180" height="28" class="fs-tint st-rules" stroke-width="0.8"/>
+      <text x="224" y="25" font-size="8.5" text-anchor="middle" class="tw-6 fs-ink">A task you are about to dispatch</text>
+      <path d="M224,34V44" class="st-mid" stroke-width="1" marker-end="url(#f3-mid)"/>
+
+      <rect x="24" y="50" width="400" height="42" class="fs-tint st-rules" stroke-width="0.8"/>
+      <rect x="24" y="50" width="2.4" height="42" class="fs-acc"/>
+      <text x="224" y="77" font-size="11" text-anchor="middle" class="tw-6 fs-ink">Can an agent finish it without asking me anything?</text>
+
+      <g class="st-mid" stroke-width="1" marker-end="url(#f3-mid)">
+        <path d="M79,92V118"/>
+        <path d="M224,92V118"/>
+        <path d="M369,92V118"/>
+      </g>
+      <text x="85"  y="110" font-size="7.5" class="t-lab fs-mute">No &#8212; too vague</text>
+      <text x="230" y="110" font-size="7.5" class="t-lab fs-mute">No &#8212; too small</text>
+      <text x="375" y="110" font-size="7.5" class="t-lab fs-acct">Yes</text>
+
+      <rect x="16"  y="124" width="126" height="76" class="fs-none st-rules" stroke-width="0.8"/>
+      <rect x="161" y="124" width="126" height="76" class="fs-none st-rules" stroke-width="0.8"/>
+      <rect x="306" y="124" width="126" height="76" class="fs-acc" opacity="0.05"/>
+      <rect x="306" y="124" width="126" height="76" class="fs-none st-acc" stroke-width="1.2"/>
+      <rect x="306" y="124" width="2.4" height="76" class="fs-acc"/>
+
+      <text x="28"  y="143" font-size="8.5" class="tw-6 fs-ink">Too vague</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="28" y="159">Rewrite it. Name the</text>
+        <text x="28" y="169">done-condition and the</text>
+        <text x="28" y="179">ambiguity policy.</text>
+      </g>
+
+      <text x="173" y="143" font-size="8.5" class="tw-6 fs-ink">Too small</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="173" y="159">Just do it. Twelve</text>
+        <text x="173" y="169">seconds beats the</text>
+        <text x="173" y="179">dispatch overhead.</text>
+      </g>
+
+      <text x="320" y="143" font-size="8.5" class="tw-6 fs-acct">Dispatch it.</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="320" y="159">Substantial, bounded,</text>
+        <text x="320" y="169">unambiguous. Thirty to</text>
+        <text x="320" y="179">ninety minutes of</text>
+        <text x="320" y="189">agent time.</text>
+      </g>
+    </svg>
+
+    <p class="fig__cap">Most tasks fail on the first pass, and both failures are useful information.
+      Rewriting them until they pass is the work.</p>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">10</span>
+  </div>
+</section>
+
+<!-- ============================================================= 11 P2 c -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Law One</p>
@@ -417,12 +687,14 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">9</span>
+    <span class="folio__n">11</span>
   </div>
 </section>
 
-<!-- =========================================== 10 divider 03 — law two -->
-<section class="sheet sheet--dark">
+<!-- =========================================== 12 divider 03 — law two -->
+<section class="sheet sheet--dark sheet--plate">
+  <img class="plate plate--03" src="../../assets/pace/divider-03-compound.png" alt="">
+  <span class="scrim"></span>
   <div class="divider">
     <p class="divider__num">03</p>
     <div class="spacer"></div>
@@ -436,7 +708,7 @@
   </div>
 </section>
 
-<!-- ============================================================= 11 P3 a -->
+<!-- ============================================================= 13 P3 a -->
 <section class="sheet">
   <div class="grid">
     <p class="rail-num rail">03</p>
@@ -486,11 +758,11 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">11</span>
+    <span class="folio__n">13</span>
   </div>
 </section>
 
-<!-- ============================================================= 12 P3 b -->
+<!-- ============================================================= 14 P3 b -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Law Two</p>
@@ -538,11 +810,154 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">12</span>
+    <span class="folio__n">14</span>
   </div>
 </section>
 
-<!-- ============================================================= 13 P3 c -->
+<!-- =================================================== 15 figures 04, 05 -->
+<section class="sheet">
+  <div class="fig">
+    <div class="fig__head">
+      <span class="fig__n">Figure 04</span>
+      <span class="fig__t">Where a correction goes</span>
+    </div>
+
+    <svg class="fig__svg" viewBox="0 0 448 236" role="img"
+         aria-label="A task produces a wrong output and you correct it. The correction can go into this one output, where it stops, or into the context file, from which the next task starts at a higher baseline.">
+      <defs>
+        <marker id="f4-acc" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-acc"/></marker>
+        <marker id="f4-mid" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mid"/></marker>
+        <marker id="f4-mute" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mute"/></marker>
+      </defs>
+
+      <g class="fs-none st-rules" stroke-width="0.8">
+        <rect x="12"  y="14" width="124" height="44"/>
+        <rect x="162" y="14" width="124" height="44"/>
+        <rect x="312" y="14" width="124" height="44"/>
+      </g>
+      <g text-anchor="middle">
+        <text x="74"  y="34" font-size="8.5" class="tw-6 fs-ink">Task N</text>
+        <text x="74"  y="48" font-size="7.5" class="fs-mute">you dispatch it</text>
+        <text x="224" y="34" font-size="8.5" class="tw-6 fs-ink">Wrong output</text>
+        <text x="224" y="48" font-size="7.5" class="fs-mute">a stale assumption</text>
+        <text x="374" y="34" font-size="8.5" class="tw-6 fs-ink">You correct it</text>
+        <text x="374" y="48" font-size="7.5" class="fs-mute">the fork is here</text>
+      </g>
+      <g class="st-mid" stroke-width="1" marker-end="url(#f4-mid)">
+        <path d="M138,36H154"/>
+        <path d="M288,36H304"/>
+      </g>
+
+      <!-- the fork -->
+      <path d="M360,58 V80 H224 V102" class="st-acc fs-none" stroke-width="1.4" marker-end="url(#f4-acc)"/>
+      <text x="300" y="74" font-size="7.5" text-anchor="middle" class="fs-acct">into the system</text>
+      <path d="M388,58 V102" class="st-mute fs-none" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#f4-mute)"/>
+      <text x="382" y="95" font-size="7.5" text-anchor="end" class="fs-mute">into this output</text>
+
+      <rect x="162" y="110" width="124" height="48" class="fs-acc" opacity="0.05"/>
+      <rect x="162" y="110" width="124" height="48" class="fs-none st-acc" stroke-width="1.2"/>
+      <rect x="162" y="110" width="2.4" height="48" class="fs-acc"/>
+      <text x="176" y="130" font-size="8.5" class="tw-6 fs-acct">The context file</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="176" y="145">the rule that makes the</text>
+        <text x="176" y="155">mistake impossible</text>
+      </g>
+
+      <rect x="312" y="110" width="124" height="48" class="fs-none st-mute" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <text x="326" y="130" font-size="8.5" class="tw-6 fs-mute">This output only</text>
+      <text x="326" y="145" font-size="7.5" class="fs-mute">nothing else changes</text>
+
+      <path d="M374,158V176" class="st-mute" stroke-width="1"/>
+      <path d="M352,178H396" class="st-mute" stroke-width="1.8"/>
+      <g font-size="7.5" text-anchor="middle" class="fs-mute">
+        <text x="374" y="192">The same mistake</text>
+        <text x="374" y="202">returns tomorrow.</text>
+      </g>
+
+      <path d="M224,158 V212 H74 V64" class="st-acc fs-none" stroke-width="1.4" marker-end="url(#f4-acc)"/>
+      <text x="149" y="226" font-size="7.5" text-anchor="middle" class="fs-acct">Task N+1 starts from a higher baseline</text>
+    </svg>
+
+    <p class="fig__cap">Every correction is a fork. One branch fixes today; the other retires the
+      mistake. They cost thirty seconds and sixty.</p>
+  </div>
+
+  <div class="fig mt-l">
+    <div class="fig__head">
+      <span class="fig__n">Figure 05</span>
+      <span class="fig__t">What compounding looks like</span>
+    </div>
+
+    <svg class="fig__svg" viewBox="0 0 448 250" role="img"
+         aria-label="Cost per task over ten tasks. Without a system the cost is flat: task ten costs what task one cost. With a system the first task costs more and every task after it costs less, crossing below the flat line between task two and task three.">
+      <path d="M60,28V204" class="st-rules" stroke-width="0.8"/>
+      <path d="M60,204H430" class="st-rules" stroke-width="0.8"/>
+      <g class="st-rules" stroke-width="0.8">
+        <path d="M60,204v4 M100.4,204v4 M140.9,204v4 M181.3,204v4 M221.8,204v4 M262.2,204v4 M302.7,204v4 M343.1,204v4 M383.6,204v4 M424,204v4"/>
+      </g>
+      <g font-size="7.5" text-anchor="middle" class="fs-mute">
+        <text x="60" y="219">1</text><text x="100.4" y="219">2</text><text x="140.9" y="219">3</text>
+        <text x="181.3" y="219">4</text><text x="221.8" y="219">5</text><text x="262.2" y="219">6</text>
+        <text x="302.7" y="219">7</text><text x="343.1" y="219">8</text><text x="383.6" y="219">9</text>
+        <text x="424" y="219">10</text>
+      </g>
+      <text x="242" y="240" font-size="8" text-anchor="middle" class="tw-6 fs-mid">Task number</text>
+      <text x="22" y="119" font-size="8" text-anchor="middle" class="tw-6 fs-mid" transform="rotate(-90 22 119)">Cost per task</text>
+      <text x="54" y="207" font-size="7.5" text-anchor="end" class="fs-mute">0</text>
+
+      <!-- no system: flat, dashed, hollow square markers -->
+      <path d="M60,68H424" class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="6 3"/>
+      <g class="fs-paper st-mute" stroke-width="0.8">
+        <rect x="57.8" y="65.8" width="4.4" height="4.4"/>
+        <rect x="98.2" y="65.8" width="4.4" height="4.4"/>
+        <rect x="138.7" y="65.8" width="4.4" height="4.4"/>
+        <rect x="179.1" y="65.8" width="4.4" height="4.4"/>
+        <rect x="219.6" y="65.8" width="4.4" height="4.4"/>
+        <rect x="260" y="65.8" width="4.4" height="4.4"/>
+        <rect x="300.5" y="65.8" width="4.4" height="4.4"/>
+        <rect x="340.9" y="65.8" width="4.4" height="4.4"/>
+        <rect x="381.4" y="65.8" width="4.4" height="4.4"/>
+        <rect x="421.8" y="65.8" width="4.4" height="4.4"/>
+      </g>
+
+      <!-- compounding: solid, heavier, filled round markers -->
+      <polyline points="60,43.5 100.4,61.2 140.9,74.8 181.3,95.2 221.8,114.2 262.2,129.2 302.7,140.1 343.1,148.2 383.6,155 424,160.5"
+                class="fs-none st-acc" stroke-width="1.8" stroke-linejoin="round"/>
+      <g class="fs-acc">
+        <circle cx="60" cy="43.5" r="2.4"/><circle cx="100.4" cy="61.2" r="2.4"/>
+        <circle cx="140.9" cy="74.8" r="2.4"/><circle cx="181.3" cy="95.2" r="2.4"/>
+        <circle cx="221.8" cy="114.2" r="2.4"/><circle cx="262.2" cy="129.2" r="2.4"/>
+        <circle cx="302.7" cy="140.1" r="2.4"/><circle cx="343.1" cy="148.2" r="2.4"/>
+        <circle cx="383.6" cy="155" r="2.4"/><circle cx="424" cy="160.5" r="2.4"/>
+      </g>
+
+      <path d="M120.7,68V204" class="st-acc fs-none" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <circle cx="120.7" cy="68" r="4.2" class="fs-paper st-acc" stroke-width="1.4"/>
+      <text x="130" y="50" font-size="8.5" class="tw-6 fs-acct">The pay-back point</text>
+      <text x="130" y="61" font-size="7.5" class="fs-mid">everything after this is profit</text>
+
+      <path d="M200,169H224" class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="6 3"/>
+      <rect x="209.8" y="166.8" width="4.4" height="4.4" class="fs-paper st-mute" stroke-width="0.8"/>
+      <text x="232" y="172" font-size="7.5" class="fs-mid">No system &#8212; task 10 costs what task 1 cost</text>
+      <path d="M200,187H224" class="st-acc fs-none" stroke-width="1.8"/>
+      <circle cx="212" cy="187" r="2.4" class="fs-acc"/>
+      <text x="232" y="190" font-size="7.5" class="fs-mid">Compounding &#8212; every task cheaper than the last</text>
+    </svg>
+
+    <p class="fig__cap">The up-front cost is real: task one is more expensive under a system than
+      without one. It is paid back somewhere around task three.</p>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">15</span>
+  </div>
+</section>
+
+<!-- ============================================================= 16 P3 c -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Law Two</p>
@@ -591,12 +1006,14 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">13</span>
+    <span class="folio__n">16</span>
   </div>
 </section>
 
-<!-- ======================================================= 14 divider 04 -->
-<section class="sheet sheet--dark">
+<!-- ======================================================= 17 divider 04 -->
+<section class="sheet sheet--dark sheet--plate">
+  <img class="plate plate--04" src="../../assets/pace/divider-04-both.png" alt="">
+  <span class="scrim"></span>
   <div class="divider">
     <p class="divider__num">04</p>
     <div class="spacer"></div>
@@ -607,7 +1024,7 @@
   </div>
 </section>
 
-<!-- =============================================================== 15 P4 -->
+<!-- =============================================================== 18 P4 -->
 <section class="sheet">
   <div class="grid">
     <p class="rail-num rail">04</p>
@@ -657,12 +1074,81 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">15</span>
+    <span class="folio__n">18</span>
   </div>
 </section>
 
-<!-- ======================================================= 16 divider 05 -->
-<section class="sheet sheet--dark">
+<!-- ======================================================= 19 figure 06 -->
+<section class="sheet">
+  <div class="fig mt-m">
+    <div class="fig__head">
+      <span class="fig__n">Figure 06</span>
+      <span class="fig__t">Why it has to be both</span>
+    </div>
+
+    <svg class="fig__svg" viewBox="0 0 448 442" role="img"
+         aria-label="A two-by-two of parallel action against compounding effort. Neither is a treadmill. Parallel alone is chaos and burnout. Compounding alone is a beautiful system run by one slow human. Both is throughput that rises while you sleep.">
+      <rect x="245" y="20" width="189" height="189" class="fs-acc" opacity="0.05"/>
+      <rect x="56" y="20" width="378" height="378" class="fs-none st-rules" stroke-width="1"/>
+      <path d="M245,20V398 M56,209H434" class="st-rules" stroke-width="1"/>
+      <rect x="245" y="20" width="189" height="189" class="fs-none st-acc" stroke-width="1.6"/>
+
+      <!-- top left: compounding, no parallel -->
+      <text x="70" y="90" font-size="10" class="tw-6 fs-ink">A beautiful system,</text>
+      <text x="70" y="103" font-size="10" class="tw-6 fs-ink">one slow human</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="70" y="123">Immaculate context, templates for everything</text>
+        <text x="70" y="133">&#8212; and one agent at a time, watched from</text>
+        <text x="70" y="143">start to finish.</text>
+      </g>
+
+      <!-- top right: both -->
+      <text x="259" y="90" font-size="10" class="tw-6 fs-acct">Throughput that rises</text>
+      <text x="259" y="103" font-size="10" class="tw-6 fs-acct">while you sleep</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="259" y="123">Better context buys longer unattended runs;</text>
+        <text x="259" y="133">longer runs mean more of them at once.</text>
+        <text x="259" y="143">The loop turns your way.</text>
+      </g>
+
+      <!-- bottom left: neither -->
+      <text x="70" y="286" font-size="10" class="tw-6 fs-ink">A treadmill</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="70" y="306">One agent, watched start to finish.</text>
+        <text x="70" y="316">Task ten costs what task one cost.</text>
+      </g>
+
+      <!-- bottom right: parallel, no compounding -->
+      <text x="259" y="286" font-size="10" class="tw-6 fs-ink">Chaos, then burnout</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="259" y="306">Five agents, five copies of the same</text>
+        <text x="259" y="316">missing context. Impressive in week one,</text>
+        <text x="259" y="326">over by week five.</text>
+      </g>
+
+      <path d="M56,416H434" class="st-mute" stroke-width="0.8"/>
+      <path d="M434,412 L442,416 L434,420 z" class="fs-mute"/>
+      <text x="245" y="434" font-size="8" text-anchor="middle" class="t-lab fs-mid">Parallel action</text>
+
+      <path d="M38,398V28" class="st-mute" stroke-width="0.8"/>
+      <path d="M34,28 L38,20 L42,28 z" class="fs-mute"/>
+      <text x="20" y="209" font-size="8" text-anchor="middle" class="t-lab fs-mid" transform="rotate(-90 20 209)">Compounding effort</text>
+    </svg>
+
+    <p class="fig__cap">Each law on its own moves you one square. Neither of them, on its own, gets
+      you to the top right.</p>
+  </div>
+
+  <div class="folio">
+    <span>The PACE Field Guide</span>
+    <span class="folio__n">19</span>
+  </div>
+</section>
+
+<!-- ======================================================= 20 divider 05 -->
+<section class="sheet sheet--dark sheet--plate">
+  <img class="plate plate--05" src="../../assets/pace/divider-05-toolkit.png" alt="">
+  <span class="scrim"></span>
   <div class="divider">
     <p class="divider__num">05</p>
     <div class="spacer"></div>
@@ -673,7 +1159,7 @@
   </div>
 </section>
 
-<!-- ================================================== 17 dispatch brief -->
+<!-- ================================================== 21 dispatch brief -->
 <section class="sheet">
   <div class="grid">
     <p class="rail-num rail">05</p>
@@ -727,11 +1213,11 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">17</span>
+    <span class="folio__n">21</span>
   </div>
 </section>
 
-<!-- ============================================ 18 annotated brief -->
+<!-- ================================================ 22 annotated brief -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Toolkit</p>
@@ -822,11 +1308,11 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">18</span>
+    <span class="folio__n">22</span>
   </div>
 </section>
 
-<!-- ===================================================== 19 context file -->
+<!-- ===================================================== 23 context file -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Toolkit</p>
@@ -890,11 +1376,11 @@
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">19</span>
+    <span class="folio__n">23</span>
   </div>
 </section>
 
-<!-- ================================================= 20 protocol, part 1 -->
+<!-- ================================================= 24 protocol, part 1 -->
 <section class="sheet sheet--wide">
   <div class="grid">
     <p class="label rail">Toolkit</p>
@@ -950,11 +1436,11 @@ My attention is the bottleneck, not your speed. Work so I don't have to watch yo
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">20</span>
+    <span class="folio__n">24</span>
   </div>
 </section>
 
-<!-- ================================================= 21 protocol, part 2 -->
+<!-- ================================================= 25 protocol, part 2 -->
 <section class="sheet sheet--wide">
   <div class="grid">
     <p class="label rail">Toolkit</p>
@@ -1004,11 +1490,11 @@ The tenth task should be faster than the first. Leave the system better than you
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">21</span>
+    <span class="folio__n">25</span>
   </div>
 </section>
 
-<!-- ======================================================= 22 checklist -->
+<!-- ======================================================= 26 checklist -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Toolkit</p>
@@ -1055,11 +1541,11 @@ The tenth task should be faster than the first. Leave the system better than you
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">22</span>
+    <span class="folio__n">26</span>
   </div>
 </section>
 
-<!-- ============================================== 23 a week in the life -->
+<!-- ============================================== 27 a week in the life -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Toolkit</p>
@@ -1131,11 +1617,11 @@ The tenth task should be faster than the first. Leave the system better than you
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">23</span>
+    <span class="folio__n">27</span>
   </div>
 </section>
 
-<!-- ========================================================= 24 sign-off -->
+<!-- ========================================================= 28 sign-off -->
 <section class="sheet">
   <div class="grid">
     <p class="label rail">Close</p>
@@ -1175,11 +1661,11 @@ The tenth task should be faster than the first. Leave the system better than you
 
   <div class="folio">
     <span>The PACE Field Guide</span>
-    <span class="folio__n">24</span>
+    <span class="folio__n">28</span>
   </div>
 </section>
 
-<!-- ======================================================== 25 back page -->
+<!-- ======================================================== 29 back page -->
 <section class="sheet sheet--dark">
   <div class="back">
     <img class="back__logo" src="../../assets/wynterai-logo.png" alt="wynter.ai">
