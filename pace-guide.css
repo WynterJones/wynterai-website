@@ -1,0 +1,847 @@
+/* wynter.ai — /pace/guide/ : the PACE Field Guide, as a web page.
+ *
+ * Loaded AFTER styles.css and pace.css, and additive only. Neither of those
+ * files is touched: the shell, header, footer, buttons, cards, eyebrows and
+ * the whole `.codeblock` component come across as-is, and what lives here is
+ * only what a 6,000-word illustrated document needed that the rest of the site
+ * has never had — a sticky contents rail, chapter banners, and the bindings
+ * that put the guide's figures on a dark ground.
+ *
+ * Same constraint as the other two: netlify.toml serves `style-src 'self'`
+ * with no `unsafe-inline`, so nothing here may be pushed into a `style`
+ * attribute later. That is also why the figures re-colour through custom
+ * properties rather than through edited SVG markup — see "figures" below.
+ */
+
+/* ============================================================ page frame */
+
+.page-guide { padding-block: clamp(26px, 4vh, 40px) clamp(56px, 9vh, 96px); }
+
+/* The contents rail is a fixed width because it holds a fixed list: five parts
+   and five subsections, none of which wrap at 232px. The article takes what is
+   left, which at the 1120px shell is ~784px — wider than the 68ch measure the
+   prose is set to, so banners, figures and panels run past the text column
+   rather than being boxed in by it. */
+.guide-layout {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 64px);
+  align-items: start;
+  margin-top: 40px;
+}
+
+/* Anything linkable clears the sticky header when it is jumped to. */
+.guide-layout [id] { scroll-margin-top: calc(var(--head-h) + 18px); }
+
+/* =============================================================== masthead */
+
+.guide-head { max-width: 62ch; }
+
+.guide-head h1 {
+  margin-top: 12px;
+  font-size: clamp(2.125rem, 1.4rem + 2.4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.guide-head .lede {
+  margin-top: 16px;
+  font-size: clamp(1.0625rem, 0.98rem + 0.4vw, 1.3125rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+  color: var(--ink-300);
+}
+
+/* Byline and reading time on one wrapping row. Separators are drawn by CSS
+   rather than typed into the markup so they don't end up in the reading order
+   as a row of loose bullets. */
+.guide-facts {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: baseline;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.guide-facts > * + *::before {
+  content: "·";
+  margin-right: 10px;
+  color: var(--ink-600);
+}
+
+.guide-facts strong { font-weight: 600; color: var(--ink-200); }
+
+/* ========================================================= download panel
+ *
+ * Twice on the page: under the masthead and at the end. It is not a gate and
+ * it must not read as one, so it never asks for anything — the whole document
+ * is already above and below it.
+ */
+
+.dl {
+  margin-top: 26px;
+  padding: 20px 22px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 20px;
+  background: linear-gradient(180deg, rgba(255, 49, 49, 0.05), transparent 140px), var(--ink-900);
+}
+
+.dl-title { font-size: 15px; font-weight: 600; color: var(--ink-50); }
+.dl-note { margin-top: 4px; max-width: 54ch; font-size: 13.5px; color: var(--ink-400); }
+.dl .btn { flex: none; }
+
+.dl-end { margin-top: 44px; }
+
+/* ---------------------------------------------------------- how to use it */
+
+.use-note {
+  margin-top: 26px;
+  border-left: 2px solid var(--ink-700);
+  padding-left: 18px;
+}
+
+.use-note p {
+  margin-top: 8px;
+  max-width: 66ch;
+  font-size: 14.5px;
+  color: var(--ink-400);
+}
+
+.use-note a {
+  color: var(--ink-200);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--ink-600);
+}
+.use-note a:hover { color: var(--ink-50); text-decoration-color: var(--signal-500); }
+
+/* ========================================================== contents rail */
+
+.guide-toc { position: sticky; top: calc(var(--head-h) + 18px); }
+
+/* Capped to the viewport and scrolled inside itself, so a rail longer than the
+   window can still reach its own last item. */
+.toc-inner {
+  max-height: calc(100dvh - var(--head-h) - 44px);
+  overflow-y: auto;
+  padding-bottom: 4px;
+}
+
+.toc-list {
+  margin-top: 12px;
+  list-style: none;
+  padding: 0;
+  counter-reset: none;
+}
+
+.toc-list > li { border-top: 1px solid var(--ink-800); }
+
+.toc-list a {
+  display: flex;
+  gap: 10px;
+  padding: 9px 0;
+  font-size: 14px;
+  color: var(--ink-300);
+  transition: color 0.15s;
+}
+.toc-list a:hover { color: var(--ink-50); }
+
+.toc-n {
+  flex: none;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.toc-sub {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0 0 0 26px;
+}
+
+.toc-sub a {
+  padding: 5px 0;
+  font-size: 13px;
+  color: var(--ink-400);
+}
+
+.toc-dl {
+  margin-top: 18px;
+  width: 100%;
+}
+
+/* ========================================================= chapter banners
+ *
+ * The five plates from the PDF, downsampled for the web and used the same way
+ * they are used on paper: a full-width band of atmosphere with the part number
+ * and title set into it. The art is near-black line work to begin with, so the
+ * scrim only has to lift the left third far enough for reversed type — a
+ * heavier wash would flatten the drawing into a texture.
+ */
+
+.banner {
+  position: relative;
+  margin-top: 76px;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(230px, 30vw, 330px);
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-tile);
+  background: var(--ink-950);
+  overflow: hidden;
+}
+
+/* The first banner opens the grid, so it top-aligns with the contents rail
+   rather than pushing a part-break gap under a masthead it already follows. */
+.guide-body > .part:first-child > .banner { margin-top: 0; }
+
+.banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.92;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(10, 10, 13, 0.94) 0%,
+    rgba(10, 10, 13, 0.86) 34%,
+    rgba(10, 10, 13, 0.45) 68%,
+    rgba(10, 10, 13, 0.12) 100%
+  );
+}
+
+.banner-text {
+  position: relative;
+  z-index: 1;
+  max-width: 50ch;
+  padding: clamp(22px, 3vw, 34px);
+}
+
+.banner-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+.banner-num {
+  font-size: 12px;
+  color: var(--signal-400);
+  font-variant-numeric: tabular-nums;
+}
+
+.banner-title {
+  margin-top: 10px;
+  font-size: clamp(1.75rem, 1.25rem + 1.6vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.banner-note {
+  margin-top: 14px;
+  max-width: 46ch;
+  font-size: 15px;
+  color: var(--ink-300);
+}
+
+/* The two law dividers carry the law itself instead of a note. */
+.banner-law { margin-top: 18px; max-width: 42ch; }
+
+.banner-law::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  background: var(--signal-500);
+}
+
+.banner-law p {
+  margin-top: 14px;
+  font-size: clamp(1rem, 0.94rem + 0.4vw, 1.1875rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--ink-100);
+}
+
+.banner-law cite {
+  display: block;
+  margin-top: 12px;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ========================================================= body typography
+ *
+ * 17px at 1.7 over a 68ch measure. The measure is set on the flowing elements
+ * rather than on the column, so panels, figures and banners keep the full
+ * ~784px and only the sentences are held to a readable line.
+ */
+
+.part { margin-top: 0; }
+
+.part > h3,
+.part > p,
+.part > ul,
+.part > ol,
+.block > h4,
+.block > p,
+.block > ul,
+.block > ol,
+.sub > h3,
+.sub > p,
+.sub > ul,
+.sub > ol,
+.close > h2,
+.close > p {
+  max-width: 68ch;
+}
+
+.part > h3, .sub > h3 {
+  margin-top: 52px;
+  font-size: clamp(1.5rem, 1.25rem + 0.8vw, 1.9375rem);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+}
+
+.block > h4 {
+  margin-top: 8px;
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.part > p, .sub > p, .block > p, .close > p {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink-200);
+}
+
+.part .lead, .sub .lead, .close .lead {
+  margin-top: 18px;
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.012em;
+  color: var(--ink-100);
+}
+
+.guide-body strong { color: var(--ink-50); font-weight: 600; }
+.guide-body em { color: var(--ink-100); font-style: italic; }
+
+.guide-body code {
+  border: 1px solid var(--ink-700);
+  border-radius: 5px;
+  background: var(--ink-900);
+  padding: 1px 6px;
+  font-size: 0.86em;
+  color: var(--ink-100);
+}
+
+.guide-body a:not(.btn) {
+  color: var(--ink-50);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--ink-600);
+}
+.guide-body a:not(.btn):hover { text-decoration-color: var(--signal-500); }
+
+.caption {
+  margin-top: 18px;
+  max-width: 60ch;
+  font-size: 14px;
+  color: var(--ink-400);
+}
+
+/* A hairline between the argument's beats, matching the rules in the PDF. */
+.rule {
+  margin-top: 34px;
+  border: 0;
+  border-top: 1px solid var(--ink-800);
+}
+
+/* ------------------------------------------------------------------ lists
+ *
+ * The marker is a filled square rather than a disc, which is the same decision
+ * the PDF made and for the same reason: a round marker at this size reads as a
+ * smudge next to Inter's flat-sided lowercase.
+ */
+
+.list, .check {
+  margin-top: 14px;
+  list-style: none;
+  padding: 0;
+}
+
+.list > li, .check > li {
+  position: relative;
+  margin-top: 11px;
+  padding-left: 24px;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ink-200);
+}
+
+.list > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  background: var(--signal-500);
+}
+
+.list-num {
+  margin-top: 14px;
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+}
+
+.list-num > li {
+  position: relative;
+  margin-top: 16px;
+  padding-left: 34px;
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ink-200);
+  counter-increment: step;
+}
+
+.list-num > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.16em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--signal-400);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The checklist is a list of things to own, so the marker is an empty box —
+   the shape says "not ticked yet" without the page pretending to be a form. */
+.check > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.42em;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--ink-600);
+  border-radius: 2px;
+}
+
+/* -------------------------------------------------------- labelled blocks
+ *
+ * The PDF sets these against a 30mm rail of small caps. There is no rail on a
+ * phone, so the label sits above the heading instead and keeps the letter-
+ * spacing that made it read as furniture rather than as a first line.
+ */
+
+.block { margin-top: 40px; }
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.label-accent { color: var(--signal-400); }
+
+.num-block { margin-top: 30px; display: flex; gap: 18px; }
+
+.num-block > .num {
+  flex: none;
+  width: 34px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--ink-700);
+  font-variant-numeric: tabular-nums;
+}
+
+.num-block h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+}
+
+.num-block p { margin-top: 10px; max-width: 62ch; font-size: 16px; line-height: 1.65; color: var(--ink-200); }
+.num-block .label { margin-top: 6px; }
+
+/* ================================================================ figures
+ *
+ * The six diagrams are the PDF's own SVG, lifted unedited. They were drawn for
+ * a warm-white ground and every fill and stroke in them resolves through a
+ * custom property (that is why print.css binds them as .fs-* / .st-* classes
+ * rather than presentation attributes) — so re-pointing those properties on
+ * the <svg> is the whole port. No figure is duplicated, nothing is recoloured
+ * by hand, and a change to the PDF's geometry can be pasted straight back in.
+ *
+ * Two values do not come across by simple inversion:
+ *   .fs-bar was a literal #eceae7, a light bar on paper, and needs a dark fill
+ *     that still sits under its own --text-3 outline.
+ *   the accent washes are authored at 5-8% opacity, which is invisible over
+ *     #121216 — red loses far more contrast against a dark ground than the
+ *     same wash loses against paper, so both steps are roughly doubled.
+ */
+
+.fig {
+  margin: 40px 0 0;
+  border: 1px solid var(--ink-700);
+  border-radius: var(--radius-tile);
+  background: var(--ink-900);
+  padding: clamp(16px, 2.4vw, 26px);
+}
+
+.fig-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink-800);
+}
+
+.fig-n {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-400);
+}
+
+.fig-t { font-size: 14.5px; font-weight: 600; color: var(--ink-100); }
+
+/* Below ~720px the drawing would fall under 6px type, so it keeps a floor and
+   scrolls instead. Focusable, because a scroll region that only a pointer can
+   reach is a keyboard trap in the other direction. */
+.fig-scroll {
+  margin-top: 18px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fig-scroll:focus-visible { outline: 2px solid var(--signal-500); outline-offset: 4px; }
+
+.fig figcaption {
+  margin-top: 16px;
+  max-width: 60ch;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-400);
+}
+
+.fig__svg {
+  /* The PDF's interior tokens, re-pointed at the dark ground. Names are kept
+     so the SVG bindings below are the same lines print.css carries. */
+  --text:        var(--ink-50);
+  --text-2:      #c9c9cd;
+  --text-3:      #a3a3aa;
+  --accent:      var(--signal-500);
+  --accent-text: var(--signal-400);
+  --paper:       var(--ink-900);
+  --paper-tint:  #1e1e26;
+  --rule:        #262630;
+  --rule-strong: #4c4c58;
+
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--font-sans);
+}
+
+.fig__svg text { fill: var(--text-2); }
+
+.fig__svg .fs-ink   { fill: var(--text); }
+.fig__svg .fs-mid   { fill: var(--text-2); }
+.fig__svg .fs-mute  { fill: var(--text-3); }
+.fig__svg .fs-acc   { fill: var(--accent); }
+.fig__svg .fs-acct  { fill: var(--accent-text); }
+.fig__svg .fs-none  { fill: none; }
+.fig__svg .fs-paper { fill: var(--paper); }
+.fig__svg .fs-tint  { fill: var(--paper-tint); }
+.fig__svg .fs-bar   { fill: #2b2b35; }
+
+.fig__svg .st-ink   { stroke: var(--text); }
+.fig__svg .st-mid   { stroke: var(--text-2); }
+.fig__svg .st-mute  { stroke: var(--text-3); }
+.fig__svg .st-rule  { stroke: var(--rule); }
+.fig__svg .st-rules { stroke: var(--rule-strong); }
+.fig__svg .st-acc   { stroke: var(--accent); }
+.fig__svg .st-none  { stroke: none; }
+
+.fig__svg .tw-6 { font-weight: 600; }
+.fig__svg .tw-7 { font-weight: 700; }
+
+.fig__svg .t-lab {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Presentation attributes carry no specificity, so these override the authored
+   values without touching the markup. */
+.fig__svg .fs-acc[opacity="0.08"] { opacity: 0.12; }
+.fig__svg .fs-acc[opacity="0.05"] { opacity: 0.11; }
+
+/* Figure 01's "your attention" bar is the one place a --text-2 fill lands on a
+   shape rather than on type. At the value that makes 8pt labels readable it
+   becomes a 364-unit slab of near-white and the loudest thing in the figure —
+   which is the opposite of what it means. Shapes take a ground-level grey;
+   text keeps the readable one. */
+.fig__svg rect.fs-mid { fill: var(--ink-500); }
+
+/* =============================================================== callouts */
+
+.callout {
+  margin-top: 40px;
+  border: 1px solid var(--ink-700);
+  border-left: 2px solid var(--signal-500);
+  border-radius: var(--radius-tile);
+  background: linear-gradient(180deg, rgba(255, 49, 49, 0.05), transparent 180px), var(--ink-900);
+  padding: clamp(20px, 2.6vw, 28px);
+}
+
+.callout-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-400);
+}
+
+.callout-q {
+  margin-top: 12px;
+  font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.625rem);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  line-height: 1.2;
+  color: var(--ink-50);
+}
+
+.callout-body { margin-top: 14px; max-width: 62ch; font-size: 16px; line-height: 1.65; color: var(--ink-200); }
+
+.callout-figs {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 28px;
+  border-top: 1px solid var(--ink-800);
+  padding-top: 20px;
+}
+
+.cf-n {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.cf-muted { color: var(--ink-500); }
+.cf-accent { color: var(--signal-400); }
+
+.cf-cap { margin-top: 8px; font-size: 13.5px; line-height: 1.55; color: var(--ink-400); }
+
+/* ================================================================ compare */
+
+.compare {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.compare-col {
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-tile);
+  background: var(--ink-900);
+  padding: 22px;
+}
+
+.compare-col h4 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink-50);
+}
+
+.compare-col p { margin-top: 12px; font-size: 15px; line-height: 1.6; color: var(--ink-300); }
+
+/* ======================================================== annotated brief */
+
+.anno { margin-top: 26px; }
+
+.anno-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 10px 28px;
+  border-top: 1px solid var(--ink-800);
+  padding: 18px 0;
+}
+
+.anno-row:last-child { border-bottom: 1px solid var(--ink-800); }
+
+.anno-k {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-400);
+}
+
+.anno-t { margin-top: 8px; font-size: 15.5px; line-height: 1.6; color: var(--ink-100); }
+
+/* The annotation is commentary on the line beside it, so it is set a step down
+   and a step back — never at the same weight as the brief itself. */
+.anno-n { font-size: 13.5px; line-height: 1.6; color: var(--ink-400); }
+
+/* ================================================================== chips */
+
+.chips { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+.chips li {
+  border: 1px solid var(--ink-700);
+  border-radius: 999px;
+  background: var(--ink-900);
+  padding: 5px 13px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--ink-200);
+}
+
+.chips { list-style: none; padding: 0; }
+
+/* ========================================================= week in the life */
+
+.week { margin-top: 26px; }
+
+.week-row {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 8px 24px;
+  border-top: 1px solid var(--ink-800);
+  padding: 20px 0;
+}
+
+.week-row:last-child { border-bottom: 1px solid var(--ink-800); }
+
+.week-day {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-400);
+  padding-top: 3px;
+}
+
+.week-body p { font-size: 15.5px; line-height: 1.65; color: var(--ink-200); }
+.week-body p + p { margin-top: 12px; }
+
+/* ============================================================ code blocks
+ *
+ * `.codeblock` itself is pace.css's, unchanged — same markup, same copy button,
+ * same /pace.js. Only the spacing around it belongs to this page.
+ */
+
+.sub .codeblock { margin-top: 22px; }
+
+/* ================================================================== close */
+
+.close { margin-top: 76px; border-top: 1px solid var(--ink-800); padding-top: 44px; }
+
+.close > h2 {
+  margin-top: 12px;
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.signoff { margin-top: 44px; }
+.signoff-name { font-size: 16px; font-weight: 600; color: var(--ink-50); }
+.signoff-role { margin-top: 2px; font-size: 13px; color: var(--text-muted); }
+
+.guide-body .cta { margin-top: 26px; }
+
+/* ============================================================ responsive */
+
+@media (max-width: 1040px) {
+  .guide-layout { grid-template-columns: 200px minmax(0, 1fr); }
+}
+
+/* Below the two-column threshold the rail stops being a rail: it unsticks and
+   becomes the contents list the document would have had on paper, at the top,
+   before the first part. Nothing depends on script for that. */
+@media (max-width: 900px) {
+  .guide-layout { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 26px; }
+
+  .guide-toc {
+    position: static;
+    border: 1px solid var(--ink-800);
+    border-radius: var(--radius-tile);
+    background: var(--ink-900);
+    padding: 18px 20px;
+    margin-bottom: 8px;
+  }
+
+  .toc-inner { max-height: none; overflow: visible; }
+  .toc-list > li:first-child { border-top: 0; }
+  .toc-dl { width: auto; }
+
+  .banner { margin-top: 56px; min-height: 210px; }
+  .compare { grid-template-columns: minmax(0, 1fr); }
+  .anno-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .anno-n { margin-top: 6px; }
+  .week-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+}
+
+@media (max-width: 720px) {
+  /* Under this width the figures would set their smallest labels below 6px, so
+     they hold a floor and the container scrolls sideways instead. */
+  .fig__svg { min-width: 600px; }
+
+  .part > p, .sub > p, .block > p, .close > p { font-size: 16.5px; }
+  .callout-figs { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+
+@media (max-width: 560px) {
+  .dl { padding: 18px; }
+  .dl .btn { width: 100%; }
+  .banner-text { padding: 20px 18px; }
+  .fig { padding: 14px; }
+  .list > li, .check > li, .list-num > li { font-size: 16px; }
+}
