@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to get more out of AI coding agents — the PACE Field Guide</title>
+<meta name="description" content="The whole PACE Field Guide on one page, free and ungated: why AI coding agents haven't 10x'd you, and the two laws that fix it — Parallel Action, Compounding Effort.">
+<link rel="canonical" href="https://wynter.ai/pace/guide/">
+<meta name="theme-color" content="#0a0a0d">
+<meta name="author" content="Wynter Jones">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Wynter.ai">
+<meta property="og:url" content="https://wynter.ai/pace/guide/">
+<meta property="og:title" content="How to get more out of AI coding agents — the PACE Field Guide">
+<meta property="og:description" content="Your agents can run concurrently. You can't. The complete field guide — two laws, six diagrams, the dispatch brief, the context file and the drop-in protocol. Free, no email.">
+<meta property="og:image" content="https://wynter.ai/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wynter.ai — the agentic engineer's toolkit">
+<meta property="article:author" content="Wynter Jones">
+<meta property="article:published_time" content="2026-08-03">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to get more out of AI coding agents — the PACE Field Guide">
+<meta name="twitter:description" content="Your agents can run concurrently. You can't. The complete field guide — two laws, six diagrams, the dispatch brief, the context file and the drop-in protocol. Free, no email.">
+<meta name="twitter:image" content="https://wynter.ai/assets/og.png">
+
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/assets/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/pace.css">
+<link rel="stylesheet" href="/pace-guide.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wynter.ai/#org",
+      "name": "Wynter.ai",
+      "url": "https://wynter.ai/",
+      "logo": "https://wynter.ai/assets/wynterai-logo.png",
+      "founder": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" }
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://wynter.ai/pace/guide/#article",
+      "url": "https://wynter.ai/pace/guide/",
+      "headline": "How to get more out of AI coding agents — the PACE Field Guide",
+      "name": "The PACE Field Guide",
+      "alternativeHeadline": "Parallel Action, Compounding Effort",
+      "description": "The complete PACE Field Guide: why a coding agent that writes code in four minutes did not make your week four times faster, and the two laws — Parallel Action and Compounding Effort — that fix it. Includes the dispatch brief, the context file, the drop-in protocol and the compounding checklist.",
+      "articleSection": [
+        "The Bottleneck",
+        "Act in Parallel",
+        "Compound Effort",
+        "Why Both",
+        "The Toolkit"
+      ],
+      "inLanguage": "en",
+      "image": "https://wynter.ai/assets/og.png",
+      "datePublished": "2026-08-03",
+      "dateModified": "2026-08-03",
+      "wordCount": 4453,
+      "timeRequired": "PT20M",
+      "isAccessibleForFree": true,
+      "dependencies": "Claude Code, Codex, Cursor, or Windsurf",
+      "proficiencyLevel": "Beginner",
+      "keywords": "AI coding agents, agentic engineering, parallel agents, CLAUDE.md, AGENTS.md, context file, dispatch brief, PACE",
+      "author": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" },
+      "publisher": { "@id": "https://wynter.ai/#org" },
+      "isPartOf": { "@id": "https://wynter.ai/pace/#webpage" },
+      "encoding": {
+        "@type": "MediaObject",
+        "contentUrl": "https://wynter.ai/assets/pace-field-guide.pdf",
+        "encodingFormat": "application/pdf",
+        "name": "The PACE Field Guide (PDF)"
+      },
+      "version": "1.0"
+    }
+  ]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="shell">
+    <a class="brand" href="/" aria-label="Wynter.ai home">
+      <img src="/assets/wynterai-logo.png" alt="Wynter.ai" width="510" height="250" fetchpriority="high">
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/about">About</a>
+      <a href="/pricing">Pricing</a>
+      <a class="btn btn-secondary" href="https://account.wynter.ai/login">Login</a>
+    </nav>
+  </div>
+</header>
+
+<!--
+  The web edition of assets/pace-field-guide.pdf. Same document, same copy,
+  re-set for a screen and a dark ground.
+
+  Three things about this page are deliberate and load-bearing:
+
+  1. It is ungated. There is no form, no wall and no partial excerpt — the
+     whole guide is in the HTML. That is the entire point of the page, and it
+     is what makes it quotable by an answer engine.
+
+  2. Nothing is injected. Every word below, including the protocol block, is in
+     the source. /pace.js only unhides the copy button and reads textContent;
+     with scripting off the page is complete and the contents list degrades to
+     a plain list of links.
+
+  3. The six figures are the PDF's own SVG, unedited. They were authored
+     against custom properties (see .fs-* / .st-* in print.css), so the dark
+     port is a token re-point in pace-guide.css rather than a second copy of
+     every diagram. Geometry can be pasted back and forth; colour cannot drift.
+
+  Copy that referred to the physical object has been adjusted and nothing else:
+  page numbers became anchors, "overleaf" became "below", and the two printed
+  halves of the protocol are one block here because there is no page to turn.
+-->
+
+<main id="main" class="page-guide">
+  <div class="shell">
+
+    <article class="guide-article">
+
+      <header class="guide-head">
+        <p class="eyebrow">The PACE Field Guide · Free · No signup</p>
+        <h1>The PACE Field Guide</h1>
+        <p class="lede">
+          Parallel Action, Compounding Effort. Two laws for getting real
+          throughput out of AI&nbsp;agents.
+        </p>
+        <p class="guide-facts">
+          <span>Wynter Jones</span>
+          <span><strong>20 minute</strong> read</span>
+          <span>Five parts</span>
+          <span>Complete — nothing held back</span>
+        </p>
+      </header>
+
+      <aside class="card dl" id="download">
+        <div>
+          <p class="dl-title">Prefer it on paper?</p>
+          <p class="dl-note">The same guide, formatted to print — 29 pages, A4, typeset for
+            a printer rather than a screen. No email, no form; it is the same document you
+            are reading.</p>
+        </div>
+        <a class="btn btn-primary btn-lg" href="/assets/pace-field-guide.pdf" download>Download the PDF</a>
+      </aside>
+
+      <div class="use-note">
+        <p class="label">How to use it</p>
+        <p>Parts 1 to 4 are the argument. Part 5 is the part you act on — the
+          dispatch brief, the context file, the drop-in protocol and the checklist. If you
+          only have ten minutes, read <a href="#act-in-parallel">Act in Parallel</a>,
+          <a href="#compound-effort">Compound Effort</a>, and then go to
+          <a href="#dispatch-brief">The Dispatch Brief</a>.</p>
+      </div>
+
+      <!-- The contents rail. A grid sibling of the body rather than a child of it,
+           so the sticky column can run the length of the document on a desktop
+           and simply fall into place under the masthead on a phone. -->
+      <div class="guide-layout">
+
+        <aside class="guide-toc">
+        <nav class="toc-inner" aria-labelledby="contents-heading">
+          <p class="eyebrow" id="contents-heading">Contents</p>
+          <ol class="toc-list">
+            <li><a href="#the-bottleneck"><span class="toc-n">01</span> <span>The Bottleneck</span></a></li>
+            <li><a href="#act-in-parallel"><span class="toc-n">02</span> <span>Act in Parallel</span></a></li>
+            <li><a href="#compound-effort"><span class="toc-n">03</span> <span>Compound Effort</span></a></li>
+            <li><a href="#why-both"><span class="toc-n">04</span> <span>Why Both</span></a></li>
+            <li>
+              <a href="#the-toolkit"><span class="toc-n">05</span> <span>The Toolkit</span></a>
+              <ul class="toc-sub">
+                <li><a href="#dispatch-brief">The Dispatch Brief</a></li>
+                <li><a href="#context-file">The Context File</a></li>
+                <li><a href="#pace-protocol">The PACE Protocol</a></li>
+                <li><a href="#compounding-checklist">The Compounding Checklist</a></li>
+                <li><a href="#week-in-the-life">A week in the life</a></li>
+              </ul>
+            </li>
+          </ol>
+          <a class="btn btn-secondary toc-dl" href="/assets/pace-field-guide.pdf" download>Download the PDF</a>
+        </nav>
+      </aside>
+
+        <div class="guide-body">
+
+        <!-- ================================================= part one -->
+        <section class="part" id="the-bottleneck" aria-labelledby="part-01-title">
+          <div class="banner">
+            <img class="banner-img" src="/assets/pace/divider-01-bottleneck-web.webp"
+                 alt="A wide fan of pale hairlines converging from the left into a single narrow red slit, with one thin line continuing alone on the far side."
+                 width="1400" height="764" decoding="async">
+            <div class="banner-text">
+              <p class="banner-eyebrow"><span class="banner-num">01</span> Part One</p>
+              <h2 class="banner-title" id="part-01-title">The Bottleneck</h2>
+              <p class="banner-note">You were promised a multiplier and you got a faster typist.
+                The reason is structural, and it has nothing to do with how you write prompts.</p>
+            </div>
+          </div>
+
+          <h3>AI didn&rsquo;t 10x you. Here&rsquo;s why.</h3>
+
+          <p class="lead">You have access to a system that writes code faster than you can read
+            it. On paper you should be shipping four times what you shipped last year. You are
+            shipping maybe 1.3 times. That gap is not a prompting problem.</p>
+
+          <p>Here is an honest hour, for most people using agents at work.</p>
+
+          <p>You write a short task. The agent starts. You watch it type. Three minutes in it
+            asks a clarifying question you could have answered in the first message. You answer.
+            You watch more. It finishes. You read the output, spot the thing it got wrong,
+            correct it by hand. Then you open a new session and explain your project again from
+            an empty context window.</p>
+
+          <p>Multiply that by a day. You did not get a multiplier. You got a faster typist and
+            a new way to be interrupted.</p>
+
+          <p>Two things are broken there, and they are not the same thing.</p>
+
+          <div class="block">
+            <p class="label label-accent">Failure one</p>
+            <h4>Your attention is single-threaded.</h4>
+            <p>The agent can run concurrently. You cannot. You have one attention and
+              you spent it watching a machine work. Every agent you are actively supervising runs
+              at exactly the speed of one human — yours. The concurrency was there the whole time.
+              You declined to use it.</p>
+          </div>
+
+          <div class="block">
+            <p class="label label-accent">Failure two</p>
+            <h4>Your work doesn&rsquo;t accumulate.</h4>
+            <p>Every session starts from zero. You re-explain the same architecture,
+              restate the same conventions, re-correct the same misunderstanding about how your
+              project handles errors. Task ten costs what task one cost, because nothing you
+              learned in tasks one through nine got written down anywhere the agent can reach.
+              That is not a workflow. It is a treadmill with good marketing.</p>
+          </div>
+
+          <h3>Two failures, two laws.</h3>
+
+          <p class="lead">PACE is not a productivity system. It is two constraints on how
+            you set work up — one for each failure above.</p>
+
+          <hr class="rule">
+
+          <div class="num-block">
+            <p class="num">1</p>
+            <div>
+              <h4>Act in Parallel</h4>
+              <p class="label">Fixes the attention problem</p>
+              <p>Stop being the thing your agents wait on. Structure work so it runs
+                without you, and spend the time you get back setting up the next piece of work
+                instead of watching this one.</p>
+            </div>
+          </div>
+
+          <hr class="rule">
+
+          <div class="num-block">
+            <p class="num">2</p>
+            <div>
+              <h4>Compound Effort</h4>
+              <p class="label">Fixes the accumulation problem</p>
+              <p>Make every task leave something behind that makes the next task
+                cheaper. Context written down, corrections folded back into the system, solved
+                problems turned into things you can reuse. The residue is the point.</p>
+            </div>
+          </div>
+
+          <hr class="rule">
+
+          <div class="block">
+            <p class="label">Note</p>
+            <p>Both laws cost you time at the front of a task and repay it later, which is why
+              most people skip them. Ten minutes of specification does not feel like progress.
+              It is the only thing on this list that reliably is.</p>
+            <p>And to be clear about what this isn&rsquo;t: none of it is about better
+              prompts. Prompt wording matters roughly as much as handwriting mattered in 1990.
+              Real, but not the thing holding you back.</p>
+          </div>
+        </section>
+
+        <!-- ================================================= part two -->
+        <section class="part" id="act-in-parallel" aria-labelledby="part-02-title">
+          <div class="banner">
+            <img class="banner-img" src="/assets/pace/divider-02-parallel-web.webp"
+                 alt="Many pale horizontal lines running side by side across the frame at different lengths, punctuated by small red and white markers."
+                 width="1376" height="768" loading="lazy" decoding="async">
+            <div class="banner-text">
+              <p class="banner-eyebrow"><span class="banner-num">02</span> Part Two &mdash; Law One</p>
+              <h2 class="banner-title" id="part-02-title">Act in Parallel</h2>
+              <blockquote class="banner-law">
+                <p>&ldquo;Your agents can run concurrently. You can&rsquo;t. So stop being
+                  the thing they wait on.&rdquo;</p>
+                <cite>PACE &mdash; Law One</cite>
+              </blockquote>
+            </div>
+          </div>
+
+          <h3>Plan once, at the front.</h3>
+
+          <p class="lead">A vague task interrupts you every four minutes. A well-specified task
+            runs for an hour.</p>
+
+          <p>That is the entire trade. Ten minutes of thinking before you dispatch
+            buys an hour in which you are not needed. Skipping those ten minutes does not save
+            ten minutes — it redistributes them across the next hour in four-minute fragments,
+            which is the most expensive way there is to spend attention.</p>
+
+          <p>So front-load every decision the agent would otherwise have to stop and ask
+            about:</p>
+
+          <ul class="list">
+            <li>What &ldquo;done&rdquo; looks like, concretely enough to check.</li>
+            <li>Which files and systems it may touch, and which it may not.</li>
+            <li>What to do at an ambiguity. Not &ldquo;ask me&rdquo; — <em>assume, and flag it</em>.</li>
+            <li>How it should verify its own work before it reports.</li>
+          </ul>
+
+          <p>If you can&rsquo;t answer those four, the task isn&rsquo;t ready to
+            dispatch. That is information, not a delay.</p>
+
+          <div class="block">
+            <p class="label label-accent">The unit</p>
+            <h4>The unit of work</h4>
+            <p>Stop thinking in prompts. Start thinking in units, where the unit is:
+              <strong>a task an agent can finish without asking me anything.</strong></p>
+            <p>That definition does real work. It rules out &ldquo;improve the onboarding
+              flow&rdquo; — too vague, it will be back with questions in four minutes. It rules
+              out &ldquo;rename this variable&rdquo; — done in twelve seconds, not worth the
+              dispatch overhead. What survives is the middle: substantial, bounded, unambiguous.
+              Thirty to ninety minutes of agent time.</p>
+            <p>Most tasks fail the test on the first pass. Rewriting them until they pass
+              <em>is</em> the work.</p>
+          </div>
+
+          <figure class="fig" id="figure-01">
+            <p class="fig-head">
+              <span class="fig-n">Figure 01</span>
+              <span class="fig-t">The same four tasks, twice</span>
+            </p>
+            <div class="fig-scroll" tabindex="0">
+<svg class="fig__svg" viewBox="0 0 448 546" role="img"
+         aria-label="Two timelines of the same four tasks. Run serially they take eight hours of wall-clock time and occupy your attention throughout. Run in parallel they take 2.4 hours and occupy your attention only to dispatch and review.">
+      <defs>
+        <marker id="f1-acc" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-acc"/></marker>
+      </defs>
+
+      <!-- shared hour gridlines, drawn per panel so they never cross a heading -->
+      <g class="st-rule" stroke-width="0.6">
+        <path d="M66,44V218 M111.5,44V218 M157,44V218 M202.5,44V218 M248,44V218 M293.5,44V218 M339,44V218 M384.5,44V218 M430,44V218"/>
+        <path d="M66,320V528 M111.5,320V528 M157,320V528 M202.5,320V528 M248,320V528 M293.5,320V528 M339,320V528 M384.5,320V528 M430,320V528"/>
+      </g>
+
+      <!-- ------------------------------------------------ panel A, serial -->
+      <text x="0" y="14" font-size="10" class="tw-6 fs-ink">Serial &#8212; you stay in the loop</text>
+      <text x="0" y="29" font-size="8" class="fs-mute">Four tasks, one attention, strictly one after another.</text>
+
+      <rect x="66" y="48" width="364" height="22" class="fs-mid"/>
+      <text x="60" y="63" font-size="8" text-anchor="end" class="fs-mid">Your attention</text>
+
+      <!-- the four review gaps: attention is spent here too, which is the point -->
+      <g class="fs-acc" opacity="0.08">
+        <rect x="143.35" y="86" width="13.65" height="110"/>
+        <rect x="234.35" y="86" width="13.65" height="110"/>
+        <rect x="325.35" y="86" width="13.65" height="110"/>
+        <rect x="416.35" y="86" width="13.65" height="110"/>
+      </g>
+
+      <g class="fs-bar st-mute" stroke-width="0.8">
+        <rect x="66"  y="86"  width="77.35" height="20"/>
+        <rect x="157" y="116" width="77.35" height="20"/>
+        <rect x="248" y="146" width="77.35" height="20"/>
+        <rect x="339" y="176" width="77.35" height="20"/>
+      </g>
+      <g font-size="8" text-anchor="end" class="fs-mid">
+        <text x="60" y="100">Task 1</text>
+        <text x="60" y="130">Task 2</text>
+        <text x="60" y="160">Task 3</text>
+        <text x="60" y="190">Task 4</text>
+      </g>
+
+      <path d="M150.2,198V205" class="st-mute" stroke-width="0.6"/>
+      <text x="150.2" y="214" font-size="7.5" text-anchor="middle" class="fs-acct">you read the output</text>
+
+      <path d="M66,221V226 H430 V221" class="st-acc fs-none" stroke-width="0.9"/>
+      <text x="248" y="239" font-size="8.5" text-anchor="middle" class="tw-6 fs-acct">8 hours of wall-clock time</text>
+
+      <path d="M0,262H448" class="st-rule" stroke-width="0.6"/>
+
+      <!-- ---------------------------------------------- panel B, parallel -->
+      <text x="0" y="286" font-size="10" class="tw-6 fs-ink">Parallel &#8212; you dispatch, then leave</text>
+      <text x="0" y="301" font-size="8" class="fs-mute">The same four tasks, running at the same time.</text>
+
+      <text x="77.9"  y="316" font-size="7.5" text-anchor="middle" class="fs-acct">dispatch &#215;4</text>
+      <text x="161.5" y="316" font-size="7.5" text-anchor="middle" class="fs-acct">review &#215;4</text>
+
+      <rect x="66" y="322" width="364" height="22" class="fs-none st-rule" stroke-width="0.6" stroke-dasharray="3 2"/>
+      <text x="60" y="337" font-size="8" text-anchor="end" class="fs-mid">Your attention</text>
+      <g class="fs-acc">
+        <rect x="66"    y="325" width="4.5" height="16"/>
+        <rect x="72.4"  y="325" width="4.5" height="16"/>
+        <rect x="78.7"  y="325" width="4.5" height="16"/>
+        <rect x="85.1"  y="325" width="4.5" height="16"/>
+        <rect x="149.8" y="325" width="4.5" height="16"/>
+        <rect x="156.1" y="325" width="4.5" height="16"/>
+        <rect x="162.5" y="325" width="4.5" height="16"/>
+        <rect x="168.8" y="325" width="4.5" height="16"/>
+      </g>
+
+      <path d="M89.6,348V352 H149.8 V348" class="st-mute fs-none" stroke-width="0.6"/>
+      <text x="119.7" y="364" font-size="7.5" text-anchor="middle" class="fs-mute">you are elsewhere</text>
+
+      <g class="fs-bar st-mute" stroke-width="0.8">
+        <rect x="72.37" y="376" width="77.35" height="20"/>
+        <rect x="78.74" y="406" width="77.35" height="20"/>
+        <rect x="85.11" y="436" width="77.35" height="20"/>
+        <rect x="91.48" y="466" width="77.35" height="20"/>
+      </g>
+      <g font-size="8" text-anchor="end" class="fs-mid">
+        <text x="60" y="390">Task 1</text>
+        <text x="60" y="420">Task 2</text>
+        <text x="60" y="450">Task 3</text>
+        <text x="60" y="480">Task 4</text>
+      </g>
+
+      <path d="M66,497V502 H173.3 V497" class="st-acc fs-none" stroke-width="0.9"/>
+      <path d="M173.3,497V502 H430 V497" class="st-mute fs-none" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <text x="66"  y="516" font-size="8.5" class="tw-6 fs-acct">2.4 hours of wall-clock time</text>
+      <text x="430" y="516" font-size="8.5" text-anchor="end" class="tw-6 fs-mid">5.6 hours you get back</text>
+
+      <!-- ------------------------------------------------------ shared axis -->
+      <path d="M66,528H430" class="st-rules" stroke-width="0.8"/>
+      <g class="st-rules" stroke-width="0.8">
+        <path d="M66,528v4 M111.5,528v4 M157,528v4 M202.5,528v4 M248,528v4 M293.5,528v4 M339,528v4 M384.5,528v4 M430,528v4"/>
+      </g>
+      <g font-size="7.5" text-anchor="middle" class="fs-mute">
+        <text x="66" y="543">0</text><text x="111.5" y="543">1</text><text x="157" y="543">2</text>
+        <text x="202.5" y="543">3</text><text x="248" y="543">4</text><text x="293.5" y="543">5</text>
+        <text x="339" y="543">6</text><text x="384.5" y="543">7</text><text x="430" y="543">8</text>
+      </g>
+      <text x="60" y="543" font-size="7.5" text-anchor="end" class="fs-mute">hours</text>
+    </svg>
+            </div>
+            <figcaption>Same four tasks, same total agent time, same person. The only variable is
+              whether you stayed in the room while they ran.</figcaption>
+          </figure>
+
+          <h3>Dispatch, then leave.</h3>
+
+          <p class="lead">The moment you kick off agent A, your job is not to watch agent A.
+            Your job is to go plan work for agent B.</p>
+
+          <p>This feels wrong, and the feeling is worth naming. Part of it is curiosity. Most
+            of it is a suspicion that if you look away it will do something stupid. It might.
+            Branches and checkpoints cover that.</p>
+
+          <p>What watching actually buys you is not safety. It is the sensation of control, and
+            it costs you the entire parallel dividend.</p>
+
+          <p><strong>Batch the planning. Parallelise the execution.</strong> Spend
+            the first forty minutes of the morning writing four briefs. Dispatch all four. Spend
+            the rest of the day reviewing what comes back and writing the next four. The desk is
+            quiet in between, and that is the system working, not the system idle.</p>
+
+          <div class="block">
+            <p class="label label-accent">Failure design</p>
+            <h4>Design for unattended failure</h4>
+            <p>Running unattended means accepting that some runs will fail badly. The
+              job is to make that cheap rather than to prevent it.</p>
+            <ul class="list">
+              <li><strong>Checkpoints.</strong> Every agent works on its own branch or worktree. A
+                bad run is a discarded branch, not a lost afternoon.</li>
+              <li><strong>Isolated workspaces.</strong> Two agents editing the same file at the
+                same time is not parallelism. It is a merge conflict with extra steps.</li>
+              <li><strong>Scope written down.</strong> One sentence — &ldquo;do not touch the auth
+                module&rdquo; — prevents an entire category of disaster.</li>
+              <li><strong>Self-verification.</strong> If the agent can run the tests, it should
+                have to run the tests before it reports.</li>
+            </ul>
+          </div>
+
+          <figure class="fig" id="figure-02">
+            <p class="fig-head">
+              <span class="fig-n">Figure 02</span>
+              <span class="fig-t">The dispatch loop</span>
+            </p>
+            <div class="fig-scroll" tabindex="0">
+<svg class="fig__svg" viewBox="0 0 448 200" role="img"
+         aria-label="A five-step loop: plan, dispatch, the agent runs unattended, review, extract. Your attention follows the first two steps, leaves during the unattended run, and returns at review.">
+      <defs>
+        <marker id="f2-acc" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-acc"/></marker>
+        <marker id="f2-mid" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mid"/></marker>
+      </defs>
+
+      <!-- your attention: present, then away, then back -->
+      <text x="5" y="30" font-size="7.5" class="t-lab fs-mute">Your attention</text>
+      <path d="M5,52H178" class="st-acc" stroke-width="1.6"/>
+      <path d="M178,52 C190,52 190,26 202,26 H246 C258,26 258,52 270,52"
+            class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <path d="M270,52H443" class="st-acc" stroke-width="1.6"/>
+      <text x="224" y="20" font-size="7.5" text-anchor="middle" class="fs-mute">you go elsewhere</text>
+      <g class="st-rules" stroke-width="0.6" stroke-dasharray="2 2">
+        <path d="M42,54V86 M133,54V86 M315,54V86 M406,54V86"/>
+      </g>
+
+      <!-- the five steps -->
+      <g class="fs-none st-rules" stroke-width="0.8">
+        <rect x="5"   y="88" width="74" height="52"/>
+        <rect x="96"  y="88" width="74" height="52"/>
+        <rect x="278" y="88" width="74" height="52"/>
+        <rect x="369" y="88" width="74" height="52"/>
+      </g>
+      <rect x="187" y="88" width="74" height="52" class="fs-none st-mute" stroke-width="0.9" stroke-dasharray="4 3"/>
+
+      <g text-anchor="middle">
+        <text x="42"  y="110" font-size="8.5" class="tw-6 fs-ink">Plan</text>
+        <text x="42"  y="123" font-size="7.5" class="fs-mute">write the brief</text>
+        <text x="133" y="110" font-size="8.5" class="tw-6 fs-ink">Dispatch</text>
+        <text x="133" y="123" font-size="7.5" class="fs-mute">hand it over</text>
+        <text x="224" y="110" font-size="8.5" class="tw-6 fs-acct">Runs</text>
+        <text x="224" y="123" font-size="7.5" class="fs-mute">unattended</text>
+        <text x="315" y="110" font-size="8.5" class="tw-6 fs-ink">Review</text>
+        <text x="315" y="123" font-size="7.5" class="fs-mute">read the output</text>
+        <text x="406" y="110" font-size="8.5" class="tw-6 fs-ink">Extract</text>
+        <text x="406" y="123" font-size="7.5" class="fs-mute">what is reusable</text>
+      </g>
+
+      <g class="st-mid" stroke-width="1" marker-end="url(#f2-mid)">
+        <path d="M81,114H88"/>
+        <path d="M172,114H179"/>
+        <path d="M263,114H270"/>
+        <path d="M354,114H361"/>
+      </g>
+
+      <!-- and round again -->
+      <path d="M406,140 V176 H42 V148" class="st-acc fs-none" stroke-width="1.4" marker-end="url(#f2-acc)"/>
+      <text x="224" y="190" font-size="8" text-anchor="middle" class="fs-mid">and the next brief is already written</text>
+    </svg>
+            </div>
+            <figcaption>The unattended stretch is the whole point. If your attention never leaves the
+              line, you are having a conversation, not running a loop.</figcaption>
+          </figure>
+
+          <figure class="fig" id="figure-03">
+            <p class="fig-head">
+              <span class="fig-n">Figure 03</span>
+              <span class="fig-t">The unit-of-work test</span>
+            </p>
+            <div class="fig-scroll" tabindex="0">
+<svg class="fig__svg" viewBox="0 0 448 206" role="img"
+         aria-label="A decision test. Can an agent finish this task without asking you anything? If it is too vague, specify it. If it is too small, just do it. If yes, dispatch it.">
+      <defs>
+        <marker id="f3-mid" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mid"/></marker>
+      </defs>
+
+      <rect x="134" y="6" width="180" height="28" class="fs-tint st-rules" stroke-width="0.8"/>
+      <text x="224" y="25" font-size="8.5" text-anchor="middle" class="tw-6 fs-ink">A task you are about to dispatch</text>
+      <path d="M224,34V44" class="st-mid" stroke-width="1" marker-end="url(#f3-mid)"/>
+
+      <rect x="24" y="50" width="400" height="42" class="fs-tint st-rules" stroke-width="0.8"/>
+      <rect x="24" y="50" width="2.4" height="42" class="fs-acc"/>
+      <text x="224" y="77" font-size="11" text-anchor="middle" class="tw-6 fs-ink">Can an agent finish it without asking me anything?</text>
+
+      <g class="st-mid" stroke-width="1" marker-end="url(#f3-mid)">
+        <path d="M79,92V118"/>
+        <path d="M224,92V118"/>
+        <path d="M369,92V118"/>
+      </g>
+      <text x="85"  y="110" font-size="7.5" class="t-lab fs-mute">No &#8212; too vague</text>
+      <text x="230" y="110" font-size="7.5" class="t-lab fs-mute">No &#8212; too small</text>
+      <text x="375" y="110" font-size="7.5" class="t-lab fs-acct">Yes</text>
+
+      <rect x="16"  y="124" width="126" height="76" class="fs-none st-rules" stroke-width="0.8"/>
+      <rect x="161" y="124" width="126" height="76" class="fs-none st-rules" stroke-width="0.8"/>
+      <rect x="306" y="124" width="126" height="76" class="fs-acc" opacity="0.05"/>
+      <rect x="306" y="124" width="126" height="76" class="fs-none st-acc" stroke-width="1.2"/>
+      <rect x="306" y="124" width="2.4" height="76" class="fs-acc"/>
+
+      <text x="28"  y="143" font-size="8.5" class="tw-6 fs-ink">Too vague</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="28" y="159">Rewrite it. Name the</text>
+        <text x="28" y="169">done-condition and the</text>
+        <text x="28" y="179">ambiguity policy.</text>
+      </g>
+
+      <text x="173" y="143" font-size="8.5" class="tw-6 fs-ink">Too small</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="173" y="159">Just do it. Twelve</text>
+        <text x="173" y="169">seconds beats the</text>
+        <text x="173" y="179">dispatch overhead.</text>
+      </g>
+
+      <text x="320" y="143" font-size="8.5" class="tw-6 fs-acct">Dispatch it.</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="320" y="159">Substantial, bounded,</text>
+        <text x="320" y="169">unambiguous. Thirty to</text>
+        <text x="320" y="179">ninety minutes of</text>
+        <text x="320" y="189">agent time.</text>
+      </g>
+    </svg>
+            </div>
+            <figcaption>Most tasks fail on the first pass, and both failures are useful information.
+              Rewriting them until they pass is the work.</figcaption>
+          </figure>
+
+          <h3>The skill is dispatch, not prompting.</h3>
+
+          <p class="lead">Prompting is what you do when you are in the loop. Dispatch is what you
+            do when you are not.</p>
+
+          <p>Prompting optimises a conversation: how do I phrase this so the next
+            reply is better? It assumes you will be there for the next reply. Dispatch optimises
+            an absence: what does this agent need so that in ninety minutes I get a finished
+            thing instead of a question?</p>
+
+          <p>They pull in different directions. A good prompt can afford to be short, because
+            you are there to fill the gaps. A good dispatch brief cannot, because you
+            aren&rsquo;t. Every hour spent learning to phrase things more cleverly is an hour
+            spent getting better at being the bottleneck.</p>
+
+          <p>The move is not a better sentence. It is a task specified well enough that the
+            conversation never has to happen.</p>
+
+          <aside class="callout">
+            <p class="callout-label">Metric &mdash; Law One</p>
+            <p class="callout-q">Agent-hours per human-hour.</p>
+            <p class="callout-body">Count it honestly for one day: total hours of agent work
+              performed, divided by hours you spent at the desk. Almost everyone lands at
+              <strong>1:1</strong> — one agent, watched. The target is <strong>4:1</strong> and up.</p>
+            <div class="callout-figs">
+              <div>
+                <p class="cf-n cf-muted">1:1</p>
+                <p class="cf-cap">One agent, supervised. A faster typist with a human attached.</p>
+              </div>
+              <div>
+                <p class="cf-n cf-accent">4:1</p>
+                <p class="cf-cap">Four unattended runs against one planning hour. Same effort, rearranged.</p>
+              </div>
+            </div>
+          </aside>
+
+          <p class="caption">Going from 1:1 to 4:1 is not four times the work. It is the same
+            work, front-loaded.</p>
+        </section>
+
+        <!-- =============================================== part three -->
+        <section class="part" id="compound-effort" aria-labelledby="part-03-title">
+          <div class="banner">
+            <img class="banner-img" src="/assets/pace/divider-03-compound-web.webp"
+                 alt="A red curve rising steeply out of a flat base, drawn over a stack of pale horizontal bars that grow longer as they climb."
+                 width="1376" height="768" loading="lazy" decoding="async">
+            <div class="banner-text">
+              <p class="banner-eyebrow"><span class="banner-num">03</span> Part Three &mdash; Law Two</p>
+              <h2 class="banner-title" id="part-03-title">Compound Effort</h2>
+              <blockquote class="banner-law">
+                <p>&ldquo;If the tenth task isn&rsquo;t faster than the first, you
+                  don&rsquo;t have a system. You have a habit.&rdquo;</p>
+                <cite>PACE &mdash; Law Two</cite>
+              </blockquote>
+            </div>
+          </div>
+
+          <h3>Context is an asset.</h3>
+
+          <p class="lead">Everything you know about your project that the agent doesn&rsquo;t is
+            a tax you pay on every single task.</p>
+
+          <p>You pay it in re-explanation, in wrong assumptions, in corrections you
+            have made before. Written down once, it stops being a tax and starts being
+            infrastructure.</p>
+
+          <p>What belongs in writing: the architecture and why it is shaped that way. The
+            conventions the code follows but never states. The commands to build, test and
+            deploy. The things that look wrong and are deliberate. The decisions that are
+            already closed, so they stop being reopened every fortnight.</p>
+
+          <p>Treat that file the way you would treat an onboarding document for a contractor
+            who starts fresh every morning. That is precisely what you have.</p>
+
+          <div class="block">
+            <p class="label label-accent">Artifacts</p>
+            <h4>Every solved problem becomes a thing</h4>
+            <p>You will solve some version of the same problem repeatedly for as long
+              as the project exists. The compounding move is to make each solution retrievable
+              instead of remembered.</p>
+            <ul class="list">
+              <li>A brief that worked → a saved template.</li>
+              <li>A component you finally got right → the reference implementation, named in the
+                context file so the agent copies that one.</li>
+              <li>A three-hour debugging session → four lines about the failure mode.</li>
+              <li>A repeated multi-step chore → a documented, named procedure.</li>
+            </ul>
+            <p>The bar is deliberately low. A named paragraph on disk beats an
+              unnamed insight in your head, every time.</p>
+          </div>
+
+          <h3>Correct the system, not the output.</h3>
+
+          <p class="lead">This is the one that separates the people who compound from the
+            people who are simply busy.</p>
+
+          <p>The agent produces something wrong. Say it reached for a date library you moved off
+            six months ago. Your instinct is to fix that file. Thirty seconds, done, back to
+            work.</p>
+
+          <p>You just bought a fix that expires. Tomorrow&rsquo;s agent has the same gap and
+            makes the same mistake, and you pay the same thirty seconds again, forever, at a
+            rate set by how often the subject comes up.</p>
+
+          <p>The compounding move costs sixty seconds instead of thirty. Fix the output, then
+            open the context file and write the line that makes the mistake impossible:
+            <em>&ldquo;Dates: use X. Y was removed in March — do not reintroduce it.&rdquo;</em></p>
+
+          <p>Every correction is a fork. One branch fixes today. The other retires the mistake.
+            Take the second one consistently and your error rate falls without you working on
+            it.</p>
+
+          <div class="block">
+            <p class="label label-accent">Zero setup</p>
+            <h4>Systems so setup is zero</h4>
+            <p>If the start of every task involves decisions you have already made —
+              spacing, component structure, file layout, naming — you are paying setup costs in
+              perpetuity for no return.</p>
+            <p>A design system, a project template, a scaffold command: these exist so that the
+              answer to &ldquo;how should this look&rdquo; is already on disk and the agent can
+              read it. Zero setup is a compounding position. Every task after it starts further
+              along than the last one did.</p>
+          </div>
+
+          <figure class="fig" id="figure-04">
+            <p class="fig-head">
+              <span class="fig-n">Figure 04</span>
+              <span class="fig-t">Where a correction goes</span>
+            </p>
+            <div class="fig-scroll" tabindex="0">
+<svg class="fig__svg" viewBox="0 0 448 236" role="img"
+         aria-label="A task produces a wrong output and you correct it. The correction can go into this one output, where it stops, or into the context file, from which the next task starts at a higher baseline.">
+      <defs>
+        <marker id="f4-acc" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-acc"/></marker>
+        <marker id="f4-mid" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mid"/></marker>
+        <marker id="f4-mute" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mute"/></marker>
+      </defs>
+
+      <g class="fs-none st-rules" stroke-width="0.8">
+        <rect x="12"  y="14" width="124" height="44"/>
+        <rect x="162" y="14" width="124" height="44"/>
+        <rect x="312" y="14" width="124" height="44"/>
+      </g>
+      <g text-anchor="middle">
+        <text x="74"  y="34" font-size="8.5" class="tw-6 fs-ink">Task N</text>
+        <text x="74"  y="48" font-size="7.5" class="fs-mute">you dispatch it</text>
+        <text x="224" y="34" font-size="8.5" class="tw-6 fs-ink">Wrong output</text>
+        <text x="224" y="48" font-size="7.5" class="fs-mute">a stale assumption</text>
+        <text x="374" y="34" font-size="8.5" class="tw-6 fs-ink">You correct it</text>
+        <text x="374" y="48" font-size="7.5" class="fs-mute">the fork is here</text>
+      </g>
+      <g class="st-mid" stroke-width="1" marker-end="url(#f4-mid)">
+        <path d="M138,36H154"/>
+        <path d="M288,36H304"/>
+      </g>
+
+      <!-- the fork -->
+      <path d="M360,58 V80 H224 V102" class="st-acc fs-none" stroke-width="1.4" marker-end="url(#f4-acc)"/>
+      <text x="300" y="74" font-size="7.5" text-anchor="middle" class="fs-acct">into the system</text>
+      <path d="M388,58 V102" class="st-mute fs-none" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#f4-mute)"/>
+      <text x="382" y="95" font-size="7.5" text-anchor="end" class="fs-mute">into this output</text>
+
+      <rect x="162" y="110" width="124" height="48" class="fs-acc" opacity="0.05"/>
+      <rect x="162" y="110" width="124" height="48" class="fs-none st-acc" stroke-width="1.2"/>
+      <rect x="162" y="110" width="2.4" height="48" class="fs-acc"/>
+      <text x="176" y="130" font-size="8.5" class="tw-6 fs-acct">The context file</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="176" y="145">the rule that makes the</text>
+        <text x="176" y="155">mistake impossible</text>
+      </g>
+
+      <rect x="312" y="110" width="124" height="48" class="fs-none st-mute" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <text x="326" y="130" font-size="8.5" class="tw-6 fs-mute">This output only</text>
+      <text x="326" y="145" font-size="7.5" class="fs-mute">nothing else changes</text>
+
+      <path d="M374,158V176" class="st-mute" stroke-width="1"/>
+      <path d="M352,178H396" class="st-mute" stroke-width="1.8"/>
+      <g font-size="7.5" text-anchor="middle" class="fs-mute">
+        <text x="374" y="192">The same mistake</text>
+        <text x="374" y="202">returns tomorrow.</text>
+      </g>
+
+      <path d="M224,158 V212 H74 V64" class="st-acc fs-none" stroke-width="1.4" marker-end="url(#f4-acc)"/>
+      <text x="149" y="226" font-size="7.5" text-anchor="middle" class="fs-acct">Task N+1 starts from a higher baseline</text>
+    </svg>
+            </div>
+            <figcaption>Every correction is a fork. One branch fixes today; the other retires the
+              mistake. They cost thirty seconds and sixty.</figcaption>
+          </figure>
+
+          <figure class="fig" id="figure-05">
+            <p class="fig-head">
+              <span class="fig-n">Figure 05</span>
+              <span class="fig-t">What compounding looks like</span>
+            </p>
+            <div class="fig-scroll" tabindex="0">
+<svg class="fig__svg" viewBox="0 0 448 250" role="img"
+         aria-label="Cost per task over ten tasks. Without a system the cost is flat: task ten costs what task one cost. With a system the first task costs more and every task after it costs less, crossing below the flat line between task two and task three.">
+      <path d="M60,28V204" class="st-rules" stroke-width="0.8"/>
+      <path d="M60,204H430" class="st-rules" stroke-width="0.8"/>
+      <g class="st-rules" stroke-width="0.8">
+        <path d="M60,204v4 M100.4,204v4 M140.9,204v4 M181.3,204v4 M221.8,204v4 M262.2,204v4 M302.7,204v4 M343.1,204v4 M383.6,204v4 M424,204v4"/>
+      </g>
+      <g font-size="7.5" text-anchor="middle" class="fs-mute">
+        <text x="60" y="219">1</text><text x="100.4" y="219">2</text><text x="140.9" y="219">3</text>
+        <text x="181.3" y="219">4</text><text x="221.8" y="219">5</text><text x="262.2" y="219">6</text>
+        <text x="302.7" y="219">7</text><text x="343.1" y="219">8</text><text x="383.6" y="219">9</text>
+        <text x="424" y="219">10</text>
+      </g>
+      <text x="242" y="240" font-size="8" text-anchor="middle" class="tw-6 fs-mid">Task number</text>
+      <text x="22" y="119" font-size="8" text-anchor="middle" class="tw-6 fs-mid" transform="rotate(-90 22 119)">Cost per task</text>
+      <text x="54" y="207" font-size="7.5" text-anchor="end" class="fs-mute">0</text>
+
+      <!-- no system: flat, dashed, hollow square markers -->
+      <path d="M60,68H424" class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="6 3"/>
+      <g class="fs-paper st-mute" stroke-width="0.8">
+        <rect x="57.8" y="65.8" width="4.4" height="4.4"/>
+        <rect x="98.2" y="65.8" width="4.4" height="4.4"/>
+        <rect x="138.7" y="65.8" width="4.4" height="4.4"/>
+        <rect x="179.1" y="65.8" width="4.4" height="4.4"/>
+        <rect x="219.6" y="65.8" width="4.4" height="4.4"/>
+        <rect x="260" y="65.8" width="4.4" height="4.4"/>
+        <rect x="300.5" y="65.8" width="4.4" height="4.4"/>
+        <rect x="340.9" y="65.8" width="4.4" height="4.4"/>
+        <rect x="381.4" y="65.8" width="4.4" height="4.4"/>
+        <rect x="421.8" y="65.8" width="4.4" height="4.4"/>
+      </g>
+
+      <!-- compounding: solid, heavier, filled round markers -->
+      <polyline points="60,43.5 100.4,61.2 140.9,74.8 181.3,95.2 221.8,114.2 262.2,129.2 302.7,140.1 343.1,148.2 383.6,155 424,160.5"
+                class="fs-none st-acc" stroke-width="1.8" stroke-linejoin="round"/>
+      <g class="fs-acc">
+        <circle cx="60" cy="43.5" r="2.4"/><circle cx="100.4" cy="61.2" r="2.4"/>
+        <circle cx="140.9" cy="74.8" r="2.4"/><circle cx="181.3" cy="95.2" r="2.4"/>
+        <circle cx="221.8" cy="114.2" r="2.4"/><circle cx="262.2" cy="129.2" r="2.4"/>
+        <circle cx="302.7" cy="140.1" r="2.4"/><circle cx="343.1" cy="148.2" r="2.4"/>
+        <circle cx="383.6" cy="155" r="2.4"/><circle cx="424" cy="160.5" r="2.4"/>
+      </g>
+
+      <path d="M120.7,68V204" class="st-acc fs-none" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <circle cx="120.7" cy="68" r="4.2" class="fs-paper st-acc" stroke-width="1.4"/>
+      <text x="130" y="50" font-size="8.5" class="tw-6 fs-acct">The pay-back point</text>
+      <text x="130" y="61" font-size="7.5" class="fs-mid">everything after this is profit</text>
+
+      <path d="M200,169H224" class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="6 3"/>
+      <rect x="209.8" y="166.8" width="4.4" height="4.4" class="fs-paper st-mute" stroke-width="0.8"/>
+      <text x="232" y="172" font-size="7.5" class="fs-mid">No system &#8212; task 10 costs what task 1 cost</text>
+      <path d="M200,187H224" class="st-acc fs-none" stroke-width="1.8"/>
+      <circle cx="212" cy="187" r="2.4" class="fs-acc"/>
+      <text x="232" y="190" font-size="7.5" class="fs-mid">Compounding &#8212; every task cheaper than the last</text>
+    </svg>
+            </div>
+            <figcaption>The up-front cost is real: task one is more expensive under a system than
+              without one. It is paid back somewhere around task three.</figcaption>
+          </figure>
+
+          <h3>Audit and prune.</h3>
+
+          <p class="lead">Stale context is worse than no context.</p>
+
+          <p>No context makes the agent ask. Stale context makes it confidently wrong — and you
+            will not catch it, because the output looks like it followed instructions. It did.
+            They were the wrong instructions.</p>
+
+          <p>Context files rot the way comments rot. Once a month, or after any significant
+            refactor, read yours end to end and delete everything that is no longer true.
+            Deleting is the job. A context file that only ever grows becomes a document nobody
+            trusts to be current, which is operationally the same as not having one.</p>
+
+          <p>Delegate the audit. <em>&ldquo;Read this context file against the current code and
+            tell me what&rsquo;s stale&rdquo;</em> is a five-minute task with a high hit
+            rate.</p>
+
+          <aside class="callout">
+            <p class="callout-label">Metric &mdash; Law Two</p>
+            <p class="callout-q">Is task N faster than task 1?</p>
+            <p class="callout-body">Pick a kind of work that recurs — a new endpoint, a new screen,
+              a new report — and write down what the first one cost you. Time it again on the tenth.
+              If the number hasn&rsquo;t moved, nothing you did in between accumulated. You have a
+              habit, not a system.</p>
+            <div class="callout-figs">
+              <div>
+                <p class="cf-n cf-muted">Task 1</p>
+                <p class="cf-cap">Full cost. Every decision made from scratch.</p>
+              </div>
+              <div>
+                <p class="cf-n cf-accent">Task 10</p>
+                <p class="cf-cap">Should be a fraction. If it isn&rsquo;t, find what you failed to write down.</p>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- ================================================ part four -->
+        <section class="part" id="why-both" aria-labelledby="part-04-title">
+          <div class="banner">
+            <img class="banner-img" src="/assets/pace/divider-04-both-web.webp"
+                 alt="Two sets of pale lines woven at right angles into a square lattice, with small red marks at the crossings."
+                 width="1400" height="764" loading="lazy" decoding="async">
+            <div class="banner-text">
+              <p class="banner-eyebrow"><span class="banner-num">04</span> Part Four</p>
+              <h2 class="banner-title" id="part-04-title">Why Both</h2>
+              <p class="banner-note">Each law fails on its own, and it fails in a way you will
+                recognise. Together they run as a loop.</p>
+            </div>
+          </div>
+
+          <h3>One law is a half-measure.</h3>
+
+          <div class="compare">
+            <div class="compare-col">
+              <h4>Parallel without compounding is chaos.</h4>
+              <p>Five agents running at once, every one of them missing the same
+                context, every one making the same three mistakes, all of them reporting within
+                twenty minutes of each other.</p>
+              <p>You multiplied your output and you multiplied your
+                correction load with it. The correction load wins. This is the setup that looks
+                extremely impressive in week one and has you burnt out by week five — and the
+                failure gets misread as &ldquo;agents don&rsquo;t work on real projects.&rdquo;</p>
+            </div>
+            <div class="compare-col">
+              <h4>Compounding without parallel is one slow human.</h4>
+              <p>Immaculate context files. Templates for everything. Every problem
+                you have ever solved, documented and findable.</p>
+              <p>And one agent at a time, watched from start to finish,
+                because the operator never stopped being the bottleneck. Genuinely better than where
+                you started — and permanently capped at the speed of one person&rsquo;s attention.</p>
+            </div>
+          </div>
+
+          <hr class="rule">
+
+          <div class="block">
+            <p class="label label-accent">Together</p>
+            <h4>The loop</h4>
+            <p>Compounding raises the quality of what every parallel agent starts
+              with. Better starting context means each agent can run longer before it needs you.
+              Longer unattended runs mean you can keep more of them going at once. More agents
+              running means more problems solved, which means more artifacts, which means better
+              context.</p>
+            <p>It is a loop, and it turns in the direction you want. That is the whole reason the
+              two laws ship together rather than as two tips.</p>
+            <p><strong>Throughput that increases while you sleep</strong> is not a slogan. It is
+              just what a system looks like once the same corrections stop repeating.</p>
+          </div>
+
+          <figure class="fig" id="figure-06">
+            <p class="fig-head">
+              <span class="fig-n">Figure 06</span>
+              <span class="fig-t">Why it has to be both</span>
+            </p>
+            <div class="fig-scroll" tabindex="0">
+<svg class="fig__svg" viewBox="0 0 448 442" role="img"
+         aria-label="A two-by-two of parallel action against compounding effort. Neither is a treadmill. Parallel alone is chaos and burnout. Compounding alone is a beautiful system run by one slow human. Both is throughput that rises while you sleep.">
+      <rect x="245" y="20" width="189" height="189" class="fs-acc" opacity="0.05"/>
+      <rect x="56" y="20" width="378" height="378" class="fs-none st-rules" stroke-width="1"/>
+      <path d="M245,20V398 M56,209H434" class="st-rules" stroke-width="1"/>
+      <rect x="245" y="20" width="189" height="189" class="fs-none st-acc" stroke-width="1.6"/>
+
+      <!-- top left: compounding, no parallel -->
+      <text x="70" y="90" font-size="10" class="tw-6 fs-ink">A beautiful system,</text>
+      <text x="70" y="103" font-size="10" class="tw-6 fs-ink">one slow human</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="70" y="123">Immaculate context, templates for everything</text>
+        <text x="70" y="133">&#8212; and one agent at a time, watched from</text>
+        <text x="70" y="143">start to finish.</text>
+      </g>
+
+      <!-- top right: both -->
+      <text x="259" y="90" font-size="10" class="tw-6 fs-acct">Throughput that rises</text>
+      <text x="259" y="103" font-size="10" class="tw-6 fs-acct">while you sleep</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="259" y="123">Better context buys longer unattended runs;</text>
+        <text x="259" y="133">longer runs mean more of them at once.</text>
+        <text x="259" y="143">The loop turns your way.</text>
+      </g>
+
+      <!-- bottom left: neither -->
+      <text x="70" y="286" font-size="10" class="tw-6 fs-ink">A treadmill</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="70" y="306">One agent, watched start to finish.</text>
+        <text x="70" y="316">Task ten costs what task one cost.</text>
+      </g>
+
+      <!-- bottom right: parallel, no compounding -->
+      <text x="259" y="286" font-size="10" class="tw-6 fs-ink">Chaos, then burnout</text>
+      <g font-size="7.5" class="fs-mid">
+        <text x="259" y="306">Five agents, five copies of the same</text>
+        <text x="259" y="316">missing context. Impressive in week one,</text>
+        <text x="259" y="326">over by week five.</text>
+      </g>
+
+      <path d="M56,416H434" class="st-mute" stroke-width="0.8"/>
+      <path d="M434,412 L442,416 L434,420 z" class="fs-mute"/>
+      <text x="245" y="434" font-size="8" text-anchor="middle" class="t-lab fs-mid">Parallel action</text>
+
+      <path d="M38,398V28" class="st-mute" stroke-width="0.8"/>
+      <path d="M34,28 L38,20 L42,28 z" class="fs-mute"/>
+      <text x="20" y="209" font-size="8" text-anchor="middle" class="t-lab fs-mid" transform="rotate(-90 20 209)">Compounding effort</text>
+    </svg>
+            </div>
+            <figcaption>Each law on its own moves you one square. Neither of them, on its own, gets
+              you to the top right.</figcaption>
+          </figure>
+        </section>
+
+        <!-- ================================================ part five -->
+        <section class="part" id="the-toolkit" aria-labelledby="part-05-title">
+          <div class="banner">
+            <img class="banner-img" src="/assets/pace/divider-05-toolkit-web.webp"
+                 alt="A grid of pale technical line drawings — gears, dials, a valve, a robot arm, a chip — with one panel picked out in red."
+                 width="1400" height="764" loading="lazy" decoding="async">
+            <div class="banner-text">
+              <p class="banner-eyebrow"><span class="banner-num">05</span> Part Five</p>
+              <h2 class="banner-title" id="part-05-title">The Toolkit</h2>
+              <p class="banner-note">Four things to write and one to paste. Everything from here
+                is meant to be used this afternoon, not admired.</p>
+            </div>
+          </div>
+
+          <!-- ------------------------------------------ dispatch brief -->
+          <section class="sub" id="dispatch-brief">
+            <h3>The Dispatch Brief</h3>
+
+            <p class="lead">A task written so an agent can work on it for an hour without
+              asking you a question. Longer than a prompt. Much shorter than a spec.</p>
+
+            <p>Six sections, in this order. The order matters: the agent reads top to bottom and
+              should know what it is building before it learns what it cannot touch.</p>
+
+            <ol class="list-num">
+              <li><strong>Objective.</strong> What exists at the end, in one sentence. If you need
+                two sentences, you may have two tasks.</li>
+              <li><strong>Context.</strong> Where things live, what is already true, and what it
+                must read before starting. Pointing at an existing implementation and saying
+                &ldquo;match this&rdquo; is the cheapest way to transmit fifty conventions at
+                once.</li>
+              <li><strong>Constraints.</strong> What it may not touch, change, or install. The
+                most-skipped section, and the one that prevents the worst outcomes.</li>
+              <li><strong>Definition of done.</strong> Checkable by a machine wherever possible.
+                &ldquo;Tests pass and the page renders&rdquo; beats &ldquo;works well.&rdquo;</li>
+              <li><strong>Ambiguity policy.</strong> One line, and it is always roughly the same
+                line: ask everything blocking in one message now, then proceed on stated
+                assumptions and flag them at the end.</li>
+              <li><strong>Report format.</strong> What you want back, so reviewing it takes two
+                minutes instead of twenty.</li>
+            </ol>
+
+            <hr class="rule">
+
+            <div class="block">
+              <p class="label">Below</p>
+              <h4>An annotated brief</h4>
+              <p class="caption">A real one, annotated. It took four minutes to write and it bought an
+                hour of work nobody had to supervise. The brief exactly as it was sent, and what
+                each section is doing — which interruption it removes.</p>
+            </div>
+
+            <div class="anno">
+              <div class="anno-row">
+                <div>
+                  <p class="anno-k">Objective</p>
+                  <p class="anno-t">Add a CSV export to the Reports page: a button that downloads the
+                    currently filtered table as <code>reports-YYYY-MM-DD.csv</code>.</p>
+                </div>
+                <p class="anno-n">Names the artifact and the filename format. Two details that would
+                  otherwise each cost a round trip.</p>
+              </div>
+
+              <div class="anno-row">
+                <div>
+                  <p class="anno-k">Context</p>
+                  <p class="anno-t">Table is in <code>app/views/reports/index.html.erb</code>;
+                    filtering happens in <code>ReportsController#index</code>. There is an existing
+                    export on the Invoices page (<code>InvoicesController#export</code>) — match its
+                    approach, including how it names files and streams the response.</p>
+                </div>
+                <p class="anno-n">&ldquo;Match this&rdquo; carries every convention in that file
+                  without listing one of them.</p>
+              </div>
+
+              <div class="anno-row">
+                <div>
+                  <p class="anno-k">Constraints</p>
+                  <p class="anno-t">Server-side only, no new gems. Don&rsquo;t change the filtering
+                    logic. Don&rsquo;t touch <code>InvoicesController</code>.</p>
+                </div>
+                <p class="anno-n">&ldquo;No new gems&rdquo; is three words that prevent an hour of
+                  dependency archaeology.</p>
+              </div>
+
+              <div class="anno-row">
+                <div>
+                  <p class="anno-k">Done when</p>
+                  <p class="anno-t">Export respects every active filter. The file opens in Excel
+                    without a mangled first column. A controller test covers the filtered case.
+                    <code>bin/rails test</code> is green.</p>
+                </div>
+                <p class="anno-n">The Excel detail is a specific failure the author has been bitten by.
+                  Specific beats thorough. A green suite is machine-checkable, so the agent can verify
+                  itself.</p>
+              </div>
+
+              <div class="anno-row">
+                <div>
+                  <p class="anno-k">Ambiguity</p>
+                  <p class="anno-t">Columns: mirror the visible table columns. Anything else blocking,
+                    ask it in one message now; otherwise assume, proceed, and flag at the end.</p>
+                </div>
+                <p class="anno-n">Pre-answers the single most likely blocking question, then licenses
+                  the agent to keep moving past the rest.</p>
+              </div>
+
+              <div class="anno-row">
+                <div>
+                  <p class="anno-k">Report</p>
+                  <p class="anno-t">What changed, what you assumed, anything left open.</p>
+                </div>
+                <p class="anno-n">Three headings. Review takes two minutes.</p>
+              </div>
+            </div>
+
+            <p class="caption">Reusable, too: next quarter&rsquo;s export brief is this one with
+              three words changed.</p>
+          </section>
+
+          <!-- -------------------------------------------- context file -->
+          <section class="sub" id="context-file">
+            <h3>The Context File</h3>
+
+            <p class="lead">One file, at the root of the project, read first in every session.
+              Name it for whatever tool you use.</p>
+
+            <ul class="chips">
+              <li>CLAUDE.md</li>
+              <li>AGENTS.md</li>
+              <li>.cursorrules</li>
+              <li>.windsurfrules</li>
+            </ul>
+
+            <div class="block">
+              <p class="label label-accent">Belongs</p>
+              <h4>What goes in</h4>
+              <ul class="list">
+                <li>What this project is, in three sentences.</li>
+                <li>The stack, and the version numbers that actually constrain decisions.</li>
+                <li>Commands: build, test, run, deploy.</li>
+                <li>Conventions the code follows and never states.</li>
+                <li>Deliberate oddities — <em>this looks wrong, here is why it stays.</em></li>
+                <li>Closed decisions, so they stop being reopened.</li>
+                <li>Where to look first for the kinds of change that come up most.</li>
+              </ul>
+            </div>
+
+            <div class="block">
+              <p class="label">Doesn&rsquo;t</p>
+              <h4>What stays out</h4>
+              <ul class="list">
+                <li>Anything the code states more accurately than prose can. Don&rsquo;t restate the
+                  schema — point at it.</li>
+                <li>Aspirations. Describe the codebase you have, not the one you meant to build.</li>
+                <li>History, unless it is load-bearing as <em>don&rsquo;t reintroduce X</em>.</li>
+                <li>Volume. A file nobody trusts to be current gets skipped — by the agent, and by
+                  you.</li>
+              </ul>
+            </div>
+
+            <div class="block">
+              <p class="label">Upkeep</p>
+              <p class="caption">Append whenever you correct something this file should have prevented.
+                Prune monthly. Keep it under two pages; past that, split it and leave pointers.</p>
+            </div>
+          </section>
+
+          <!-- ------------------------------------------ pace protocol -->
+          <section class="sub" id="pace-protocol">
+            <h3>The PACE Protocol</h3>
+
+            <p class="lead">The drop-in block. Paste it verbatim into your context file and
+              both laws become the default in every session.</p>
+
+            <!-- The same component /pace/protocol/ uses, with the same markup and
+                 the same /pace.js behaviour: the text is in the document, the
+                 button ships hidden and is unhidden by script, and the clipboard
+                 gets textContent — so what is copied is byte-for-byte what is
+                 printed here and on the protocol page. -->
+            <div class="codeblock">
+              <div class="codeblock-bar">
+                <span class="codeblock-name">CLAUDE.md &nbsp;/&nbsp; AGENTS.md &nbsp;/&nbsp; .cursorrules &nbsp;/&nbsp; .windsurfrules</span>
+                <button class="btn btn-secondary copy-btn" type="button"
+                        data-copy="protocol-text" aria-live="polite" hidden>Copy</button>
+              </div>
+              <pre><code id="protocol-text">## PACE — How We Work Here
+
+This project runs on PACE: **Parallel Action, Compounding Effort.**
+Apply both laws in every session.
+
+### Law 1 — Act in Parallel
+My attention is the bottleneck, not your speed. Work so I don't have to watch you.
+
+- Front-load the questions. Before you start, restate the task, state your
+  assumptions, and ask everything blocking in ONE message. After that, proceed
+  on your stated assumptions rather than stopping to ask — flag them at the end.
+- Plan first, then run. State the plan, then execute it end to end. Report once
+  when you're done, not after every step.
+- Aim to run unattended. If a task is too vague to work on for a long stretch
+  without checking in, say so and propose how to split it into pieces that can.
+- Never stall. If one piece is blocked, park it with a note, move to the next
+  independent piece, and raise the block in your final report.
+- Don't ask "what's next" — check the plan or backlog and take the next
+  unblocked item.
+- Verify your own work before reporting. Run it, test it, read it back.
+
+### Law 2 — Compound Effort
+The tenth task should be faster than the first. Leave the system better than you found it.
+
+- Read the existing context first — this file, the README, the runbooks, the
+  code's own conventions. Match what's there. Don't introduce a second way of
+  doing something that already has a way.
+- Correct the system, not the output. If you got something wrong because the
+  context was missing or stale, fix the context file too, not just this answer.
+- Extract what's reusable. When you solve something that will come up again,
+  make it a template, a component, a helper, or a documented pattern — and say
+  what you extracted.
+- Prefer existing abstractions and the established design system. A new pattern
+  needs a stated reason.
+- Flag rot. If something in this file is stale or contradicts the code, say so.
+
+### Every substantial task ends with
+1. What changed
+2. What you assumed
+3. What's still open or blocked
+4. What you'd add to the context files so the next run is faster
+
+---
+PACE — Parallel Action, Compounding Effort. Free framework: https://wynter.ai/pace</code></pre>
+            </div>
+
+            <div class="block">
+              <p class="label label-accent">Installing it</p>
+              <h4>Three things worth knowing</h4>
+              <ul class="list">
+                <li>Put it at the <strong>top</strong> of the context file, above your
+                  project-specific notes. It sets the working posture; everything below it is
+                  detail.</li>
+                <li>It does not replace your own context. It governs <em>how</em> the agent works;
+                  your file still has to say what the project is.</li>
+                <li>Paste it as one block, including Law 2. The two laws are load-bearing
+                  on each other and half of it is worth much less than all of it.</li>
+              </ul>
+            </div>
+
+            <div class="block">
+              <p class="label">Copy it</p>
+              <p class="caption">The same block, with the right filename for each tool and a short
+                version for a tight context budget, is at
+                <a href="/pace/protocol/">wynter.ai/pace/protocol</a>.</p>
+            </div>
+          </section>
+
+          <!-- ------------------------------------ compounding checklist -->
+          <section class="sub" id="compounding-checklist">
+            <h3>The Compounding Checklist</h3>
+
+            <p class="lead">What should exist in your system and probably doesn&rsquo;t yet.
+              Tick honestly.</p>
+
+            <ul class="check">
+              <li>A context file at the project root, read first in every session.</li>
+              <li>The PACE protocol pasted into it.</li>
+              <li>At least one dispatch brief saved as a reusable template.</li>
+              <li>A named reference implementation for your most common kind of change.</li>
+              <li>Build, test and deploy commands written where the agent will read them.</li>
+              <li>A design system or scaffold, so a new screen starts at zero setup.</li>
+              <li>Branch or worktree isolation, so a bad unattended run costs nothing.</li>
+              <li>A verification step the agent runs before it reports.</li>
+              <li>A standing report format: changed, assumed, open, context to add.</li>
+              <li>A recurring calendar entry to prune the context file.</li>
+              <li>One number you actually track: agent-hours per human-hour.</li>
+              <li>One recurring task you have timed twice, to prove task N beats task 1.</li>
+            </ul>
+
+            <hr class="rule">
+
+            <div class="block">
+              <p class="label label-accent">Scoring</p>
+              <p>Counted honestly, most people have two or three. That is not a criticism — every
+                one of these is invisible until it exists, and none of them are urgent on any given
+                Tuesday.</p>
+              <p>Every box you tick pays out on every task after it. Start with the first two. They
+                take twenty minutes together and they change the shape of every session that
+                follows.</p>
+            </div>
+          </section>
+
+          <!-- ---------------------------------------- week in the life -->
+          <section class="sub" id="week-in-the-life">
+            <h3>A week in the life</h3>
+
+            <p class="lead">Both laws running at once. Deliberately unglamorous — the
+              compounding is invisible on any single day.</p>
+
+            <div class="week">
+              <div class="week-row">
+                <p class="week-day">Monday</p>
+                <div class="week-body">
+                  <p>08:40. Not writing code. Writing four briefs — a CSV export, a flaky-test triage,
+                    a settings page, a documentation pass. Ninety minutes. Feels unproductive; it is
+                    the most leveraged block of the week.</p>
+                  <p>10:15. All four dispatched, each on its own branch. The desk goes quiet. Writing
+                    the settings brief surfaced a decision nobody had actually made, so it gets made —
+                    and it goes in the context file, not just in the brief.</p>
+                </div>
+              </div>
+
+              <div class="week-row">
+                <p class="week-day">Tuesday</p>
+                <div class="week-body">
+                  <p>Three of four came back clean. The docs pass invented a section that doesn&rsquo;t
+                    exist, because the context file still describes a module removed in April. Fix the
+                    docs, then delete the module from the context file. The second part is the part
+                    that counts.</p>
+                  <p>Afternoon: four new briefs. The settings brief is now a template, so the next
+                    screen brief takes eight minutes instead of thirty.</p>
+                </div>
+              </div>
+
+              <div class="week-row">
+                <p class="week-day">Wednesday</p>
+                <div class="week-body">
+                  <p>The flaky test was a real race condition, not flakiness. Fixed. Four lines about
+                    the failure mode go into the context file, because it will happen again somewhere
+                    else.</p>
+                </div>
+              </div>
+
+              <div class="week-row">
+                <p class="week-day">Thursday</p>
+                <div class="week-body">
+                  <p>Six agents, not four. Nothing got harder. The briefs are faster to write because
+                    half of each one is now a pointer to something already written down.</p>
+                </div>
+              </div>
+
+              <div class="week-row">
+                <p class="week-day">Friday</p>
+                <div class="week-body">
+                  <p>16:00. Counting: roughly twenty-six agent-hours against six hours at the desk. Two
+                    months ago the same week ran at one to one, and it did not feel any easier.</p>
+                </div>
+              </div>
+            </div>
+
+            <p class="caption">Nothing there is impressive on a single day. That is the point.
+              Compounding is invisible in a week and obvious in a quarter.</p>
+          </section>
+        </section>
+
+        <!-- ===================================================== close -->
+        <section class="close" aria-labelledby="close-title">
+          <p class="label">Close</p>
+          <h2 id="close-title">That&rsquo;s the whole thing.</h2>
+
+          <p class="lead">Two laws. Stop being the thing your agents wait on. Make sure the tenth
+            task is faster than the first.</p>
+
+          <p>Everything in this guide is downstream of those two sentences. The
+            briefs, the context file, the checklist, the protocol — they are all just ways of
+            making the two laws survive contact with a normal working week, when you are tired
+            and it would be easier to sit and watch the agent type.</p>
+
+          <p>You can start this afternoon, and it does not require a new tool. Write one brief
+            good enough that you can genuinely walk away from it. Then write down one thing you
+            have already explained twice.</p>
+
+          <p>That is a 2:1 day and the first line of a context file. Everything else compounds
+            from there.</p>
+
+          <div class="signoff">
+            <p class="signoff-name">Wynter Jones</p>
+            <p class="signoff-role">wynter.ai</p>
+          </div>
+        </section>
+
+        <aside class="card dl dl-end">
+          <div>
+            <p class="dl-title">Take it with you</p>
+            <p class="dl-note">The same guide, formatted to print — 29 pages of A4 you can read
+              away from a screen, or hand to somebody. Still free, still no email.</p>
+          </div>
+          <a class="btn btn-primary btn-lg" href="/assets/pace-field-guide.pdf" download>Download the PDF</a>
+        </aside>
+
+        <aside class="card cta">
+          <div>
+            <h2 class="tight">This is the guide. PACE is the framework.</h2>
+            <p>The two laws, the protocol and the templates, in one place — and an account if you
+              want the rest of the toolkit. Free.</p>
+          </div>
+          <a class="btn btn-secondary btn-lg" href="/pace/">Read the framework</a>
+        </aside>
+
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="shell">
+    <p>&copy; <span id="year">2026</span> Wynter.ai — built by Wynter Jones.</p>
+    <p class="foot-version">PACE Field Guide v1.0</p>
+    <nav class="foot-links" aria-label="Legal">
+      <a href="/pace/">PACE</a>
+      <a href="/pace/protocol/">Protocol</a>
+      <a href="/about">About</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/site.js" defer></script>
+<script src="/pace.js" defer></script>
+</body>
+</html>
