@@ -1,8 +1,9 @@
 # WynterAI Funnel
 
 Static landing pages for `wynter.ai`. No build step, no dependencies, deployed on
-Netlify. The offer is one thing — **create a free Wynter account** — and every
-call to action on the site points at the hosted lead page below.
+Netlify. The offer is one thing — **create a free account** — and the copy sells
+the outcome (offers, funnels, brands, shipped apps) rather than the product
+names, which appear only on the pricing page where they need to stay findable.
 
 ```
 index.html      single-viewport opt-in page — the funnel
@@ -16,14 +17,20 @@ styles.css      the whole design system, one file
 site.js         the whole site's JavaScript, one file
 netlify.toml    headers, CSP, redirects, caching
 robots.txt  sitemap.xml  site.webmanifest
-assets/         logo, favicons, OG image
+assets/         logo, favicons, OG image, signature
 ```
 
-Open a file directly, or serve the directory:
+To preview locally:
 
 ```bash
-python3 -m http.server 8899
+python3 serve.py          # http://127.0.0.1:8899
 ```
+
+Use `serve.py` rather than `python3 -m http.server`. Every internal link is
+extensionless (`/about`, not `/about.html`) because that is what Netlify serves,
+and a plain file server 404s on the whole nav. `serve.py` adds only the
+behaviours Netlify has — clean URLs, a 301 from the `.html` form, and a real
+`404.html` — and is never deployed.
 
 ## WynterHub lead capture
 
@@ -53,16 +60,121 @@ https://account.wynter.ai/admin/lead-forms/wynter-ai
 Create an active autoresponder in WynterHub and select “WynterAI funnel” as its
 lead-page trigger to start the sequence after consent.
 
-Every CTA on this site uses that link — the hero card, both pricing plans, the
-about page, and the `/signup` and `/join` Netlify redirects — so a signup is
-attributed and enrolled no matter which page converted. `/login` links go
-straight to `account.wynter.ai/login`; there is nothing to capture from someone
-who already has an account.
+That hosted page is still where `/join` and `/signup` (the Netlify redirects)
+point. The home page no longer uses it — see below.
 
 No WynterHub widget is embedded here. `<wynter-login>` renders its own card with
-**Sign in** as the primary button and a sign-up link that bypasses the lead page,
-which is the opposite of what this site is for. Nothing else on a static
-marketing page needs a widget token.
+**Sign in** as the primary button, which is the opposite of what this site is
+for. Nothing else on a static marketing page needs a widget token.
+
+## The home page signup form
+
+`index.html` collects a **name and an email only** — no password field anywhere
+in this flow. It posts to WynterHub, which creates the account and emails a
+sign-in link:
+
+```
+wynter.ai  ──POST name+email+opt-in──▶  account.wynter.ai/start
+                                              │  creates the account
+                                              │  records consent
+                                              │  emails a magic link
+                                              ▼
+                                        "check your email"
+                                              │  (clicking the link is what
+                                              │   proves the mailbox is theirs)
+                                              ▼
+                                          dashboard
+```
+
+Two things fall out of that. A CDN-hosted marketing page never touches a
+credential — every deploy of this repo would otherwise be a credential-handling
+surface. And nobody is signed in until they prove they can read the mailbox, so
+an account created here isn't a claim about who owns the address.
+
+```html
+<form method="post" action="https://account.wynter.ai/start">
+  <input name="name">
+  <input name="email_address" type="email">
+  <input name="marketing_opt_in" type="checkbox" value="1">
+</form>
+```
+
+A native form POST, not `fetch()` — the browser navigates to account.wynter.ai
+to submit, so there's no CORS and no third-party cookie involved, and it works
+with JavaScript off. Validation errors re-render WynterHub's hosted signup with
+the fields filled in, which is why this page has no error state of its own.
+
+The checkbox label is character-for-character `ConsentCapture::MARKETING_WORDING`
+in WynterHub. It's stored verbatim as consent evidence, so changing the wording
+here means bumping `MARKETING_FORM_VERSION` there (currently `marketing-v2`).
+Consent records source `quick_signup`, and promotional mail waits for the
+magic-link click before it enrolls.
+
+The form asks for an **email only**. `User#display_name` in WynterHub already
+falls back to the local part of the address, so a name field cost a field and
+bought a greeting. `QuickSignupsController` still accepts `name` if a future
+form wants to send one.
+
+**The box ships pre-ticked**, by product decision. Under UK/EU GDPR a pre-ticked
+box is not valid consent (Art. 4(11); CJEU *Planet49* C-673/17), so opt-ins
+collected this way are not a defence if a complaint lands — the record will show
+the box was checked before the person touched it. It is permissible in the US
+under CAN-SPAM. Unticking it by default is a one-word change in `index.html`.
+
+### Required: set SIGNUP_FORM_ORIGINS in Railway
+
+`POST /start` can't use CSRF protection — the form is served from another host —
+so an Origin allowlist stands in for it, alongside the existing rate limit. The
+list is **empty by default**, so a misconfigured deploy refuses everyone rather
+than accepting anyone:
+
+```bash
+SIGNUP_FORM_ORIGINS=https://wynter.ai,https://www.wynter.ai
+```
+
+Until that variable is set on the WynterHub service, the form returns 403.
+
+An address that already has an account is never duplicated: its owner gets a
+sign-in link, and the response is identical either way so the endpoint can't be
+used to test which addresses are registered.
+
+### Where each CTA goes
+
+| Page | Action | Target |
+| --- | --- | --- |
+| Home | signup form | `POST account.wynter.ai/start` |
+| Pricing, About | "Create a free account" | `account.wynter.ai/sign-up` (hosted form) |
+| Every page | "Login" | `account.wynter.ai/login` |
+| `/signup`, `/join` | redirect | `account.wynter.ai/join/wynter-ai` |
+
+Pricing and About link to the hosted form rather than duplicating this one:
+one form to keep in sync with WynterHub's contract is enough.
+
+## Positioning
+
+The home page sells **the outcome**: ship real software with agents doing the
+build. Not the act of registering, and not the price — "free" appears exactly
+once on the page, in the card, where it removes a purchase objection rather than
+carrying the pitch. It was up to 24 uses at one point; if it starts creeping
+back, the offer has drifted from the result to the discount.
+
+Copy leads with what someone walks away with, not product names — nobody arrives
+knowing them. The names appear once, on the pricing page's "The apps in the
+suite" table, result first and the name small underneath, so brand-name searches
+still land somewhere. CreateThisOffer was removed from the lineup on
+2026-07-29.
+
+## The signature on /about
+
+`assets/wynter-jones-signature.png` is white strokes on transparent, so like the
+logo it only reads on a dark ground. It was generated, then keyed by using the
+source's luminance as the alpha channel rather than colour-keying — that keeps
+every antialiased edge instead of leaving a fringe.
+
+The prose link rule is scoped `a:not(.btn)`. `.prose a` is specificity (0,1,1)
+and `.btn` is (0,1,0), so a `text-decoration: none` on the button loses no
+matter where it sits in the file; the About CTA came out underlined until the
+exclusion moved onto the prose rule itself.
 
 ## Design
 
@@ -87,9 +199,10 @@ directly under the headline, above the checklist and app strip.
 - Every page carries a title, meta description, canonical, OG/Twitter tags, and
   JSON-LD: `Organization` + `WebSite` on the home page, `Product` + `FAQPage` on
   pricing, `ProfilePage` on about.
-- The app list on the home page is plain markup, not the app-switcher widget.
-  Widget content lives in a shadow root, which crawlers don't index, and the
-  suite *is* the offer.
+- Everything is plain markup, never widget-rendered. Widget content lives in a
+  shadow root, which crawlers don't index.
+- The home page leads with outcomes; the product names live on the pricing page
+  so brand-name searches still land somewhere.
 - `sitemap.xml` lists all five public pages — update `lastmod` when copy changes
   materially.
 
@@ -111,8 +224,14 @@ These are static copy here and will drift if the platform changes:
 
 - **Prices** — Pro `$28/mo` and the credit packs (`500/$5`, `1,500/$12`,
   `5,000/$35`), from `WynterHub/db/seeds.rb`.
-- **App list** — the nine names in the home page strip, from the `APPS` array in
-  the same file.
+- **App list** — the result/name pairs in the pricing page's "The apps in the
+  suite" table, from the `APPS` array in the same file. CreateThisOffer has been
+  removed here; it is still seeded in WynterHub.
+- **Signup form contract** — the `name` / `email_address` / `marketing_opt_in`
+  field names and the consent wording, from `QuickSignupsController` and
+  `ConsentCapture::MARKETING_WORDING`.
+- **Accessibility** — `--text-muted` and `.btn-primary` deviate from WynterHub's
+  scale on purpose (see the note in `styles.css`); don't "fix" them back.
 - **Auth paths** — `/join/:slug`, `/login`, from `WynterHub/config/routes.rb`.
 - **Contact addresses** — `support@wynter.ai` in the terms and
   `privacy@wynter.ai` in the privacy policy need to exist and route somewhere.

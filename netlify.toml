@@ -63,10 +63,13 @@
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
     # No 'unsafe-inline' anywhere: every script lives in /site.js and every rule
-    # in /styles.css, precisely so this can stay strict. The account platform
-    # needs no allowance at all — the handoff to it is ordinary navigation, not
-    # an embedded script or a cross-origin fetch. Add it back to script-src and
-    # connect-src only if a WynterHub widget is ever embedded here.
+    # in /styles.css, precisely so this can stay strict.
+    #
+    # form-action names the account platform because the home page signup form
+    # posts there — without it the browser blocks the submit and the funnel is
+    # dead. It is deliberately the ONLY allowance: script-src and connect-src
+    # stay closed, so nothing here can execute or exfiltrate to another origin,
+    # which is what makes a password field on this site defensible.
     Content-Security-Policy = """\
 default-src 'self'; \
 script-src 'self'; \
@@ -74,7 +77,7 @@ style-src 'self' https://fonts.googleapis.com; \
 font-src 'self' https://fonts.gstatic.com; \
 img-src 'self' data:; \
 connect-src 'self'; \
-form-action 'self'; \
+form-action 'self' https://account.wynter.ai; \
 frame-ancestors 'none'; \
 base-uri 'self'; \
 object-src 'none'; \
