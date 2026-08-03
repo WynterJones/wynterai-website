@@ -31,8 +31,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- The one call to action lands on the account platform, so the connection is
-     worth opening before anyone clicks. -->
+<!-- The signup form posts to the account platform, so the connection is worth
+     opening before anyone submits. -->
 <link rel="preconnect" href="https://account.wynter.ai">
 <link rel="preload" as="image" href="/assets/wynterai-logo.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -72,7 +72,10 @@
       "publisher": { "@id": "https://wynter.ai/#org" },
       "author": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" },
       "primaryImageOfPage": "https://wynter.ai/assets/og.png",
-      "significantLink": "https://wynter.ai/pace/protocol/",
+      "significantLink": [
+        "https://wynter.ai/pace/guide/",
+        "https://wynter.ai/pace/protocol/"
+      ],
       "about": {
         "@type": "Thing",
         "name": "PACE",
@@ -88,9 +91,9 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- The nav keeps About, Pricing and Login reachable but drops the button
-     treatment Login carries elsewhere: this page has exactly one button, and it
-     is the one below the headline. -->
+<!-- The nav is the shared block, byte-identical to every other page bar the
+     aria-current. It drops the button treatment Login carries elsewhere: this
+     page has exactly one button, and it is the one that submits the form. -->
 <header class="site-head">
   <div class="shell">
     <a class="brand" href="/" aria-label="Wynter.ai home">
@@ -108,7 +111,7 @@
 
 <main id="main" class="offer-page">
 
-  <!-- Above the fold: the hook, the two laws named, one button. Nothing else. -->
+  <!-- Above the fold: the hook, the two laws named, the signup. Nothing else. -->
   <section class="hero-offer">
     <div class="shell">
       <div class="offer-lead">
@@ -119,8 +122,64 @@
           PACE is two laws for exactly those two problems: <strong>Act in
           Parallel</strong> and <strong>Compound&nbsp;Effort</strong>.
         </p>
-        <p class="offer-action">
-          <a class="btn btn-primary btn-xl" href="https://account.wynter.ai/join/wynter-ai">Get PACE free</a>
+        <!-- The real signup, not a link to one. A plain top-level cross-origin
+             POST to WynterHub's /start: it creates the account and emails a
+             magic link, then redirects the browser to its own "check your
+             email" screen, so there is no thank-you page on this site to keep
+             in sync. No JavaScript is involved in any of that — the endpoint is
+             Origin-allowlisted, so a fetch() would be refused anyway, and a
+             form that needs script to submit is a funnel that dies with one
+             blocked file.
+
+             Field names are WynterHub's, not ours: `email_address`, not
+             `email`. Renaming one silently drops the value.
+
+             Expect the POST to be refused from localhost or a Netlify preview
+             URL — SIGNUP_FORM_ORIGINS is the two production hosts and the
+             endpoint fails closed. That is the check working. -->
+        <form class="signup-form" id="get-pace"
+              method="post" action="https://account.wynter.ai/start">
+          <div class="field">
+            <label class="field-label" for="signup-name">Your name</label>
+            <input class="field-input" id="signup-name" name="name" type="text"
+                   autocomplete="name" autocapitalize="words" required>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="signup-email">Email address</label>
+            <input class="field-input" id="signup-email" name="email_address" type="email"
+                   autocomplete="email" autocapitalize="none" spellcheck="false" required>
+            <p class="field-hint">
+              We email you a sign-in link. There is no password to invent.
+            </p>
+          </div>
+
+          <!-- Unticked, and the wording says what actually arrives rather than
+               "updates". Consent you have to read the privacy policy to
+               understand is not consent. -->
+          <label class="optin" for="signup-optin">
+            <input type="checkbox" id="signup-optin" name="marketing_opt_in" value="1">
+            <span>
+              Email me new releases, new tools and practical AI workflows &mdash;
+              a few times a month, unsubscribe from any of them. Leave this
+              unticked and you will only hear from us about your&nbsp;account.
+            </span>
+          </label>
+
+          <button class="btn btn-primary btn-xl" type="submit">Get PACE free</button>
+        </form>
+
+        <p class="signup-note">
+          By creating an account you agree to the <a href="/terms">Terms</a> and
+          <a href="/privacy">Privacy&nbsp;Policy</a>.
+        </p>
+
+        <!-- Deliberately a text link, not a second button: the guide is the
+             better first step for anyone not ready to hand over an address, and
+             it must not compete with the form above it. -->
+        <p class="offer-alt">
+          Not ready? <a href="/pace/guide/">Read the whole framework, free</a>
+          &mdash; no account, no email.
         </p>
       </div>
     </div>
@@ -425,13 +484,11 @@ what to add to the context files.
         <h2 class="tight">Get the framework</h2>
         <p>The field guide, both laws in full, and the three templates. Free.</p>
       </div>
-      <a class="btn btn-primary btn-lg" href="https://account.wynter.ai/join/wynter-ai">Get PACE free</a>
+      <!-- Back to the form at the top rather than a second copy of it. One form
+           on the site means one set of field names to keep in step with
+           WynterHub. -->
+      <a class="btn btn-primary btn-lg" href="#get-pace">Get PACE free</a>
     </aside>
-
-    <p class="signup-note">
-      By creating an account you agree to the <a href="/terms">Terms</a> and
-      <a href="/privacy">Privacy&nbsp;Policy</a>.
-    </p>
 
   </div>
 </main>

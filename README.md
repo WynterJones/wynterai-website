@@ -35,33 +35,17 @@ behaviours Netlify has — clean URLs, a 301 from the `.html` form, and a real
 ## WynterHub lead capture
 
 Use WynterHub for identity, explicit email consent, lead attribution, and
-autoresponder enrollment. The default hosted lead page is:
+autoresponder enrollment.
 
-```text
-https://account.wynter.ai/join/wynter-ai
-```
+**This site does not use the hosted lead page.** `account.wynter.ai/join/wynter-ai`
+requires an authenticated session and bounces cold traffic to a login screen, so
+every link to it was a dead end for exactly the visitors the site is for. It is
+referenced nowhere in this repo — not in the HTML, not in the Netlify redirects.
+If you find one, it is a regression.
 
-A static page can use a normal link:
-
-```html
-<a href="https://account.wynter.ai/join/wynter-ai">
-  Get WynterAI updates
-</a>
-```
-
-The visitor signs in or creates their Wynter account, returns to the hosted
-consent screen, confirms the opt-in, and is redirected to the safe URL
-configured in WynterHub admin. Manage the page at:
-
-```text
-https://account.wynter.ai/admin/lead-forms/wynter-ai
-```
-
-Create an active autoresponder in WynterHub and select “WynterAI funnel” as its
-lead-page trigger to start the sequence after consent.
-
-That hosted page is still where `/join` and `/signup` (the Netlify redirects)
-point. The home page no longer uses it — see below.
+What replaced it is a real form on the home page posting to `POST /start` — see
+below. Create an active autoresponder in WynterHub and select “WynterAI funnel”
+as its trigger to start the sequence after consent.
 
 No WynterHub widget is embedded here. `<wynter-login>` renders its own card with
 **Sign in** as the primary button, which is the opposite of what this site is
@@ -69,9 +53,10 @@ for. Nothing else on a static marketing page needs a widget token.
 
 ## The home page signup form
 
-`index.html` collects a **name and an email only** — no password field anywhere
-in this flow. It posts to WynterHub, which creates the account and emails a
-sign-in link:
+`index.html` carries the site's only signup form, in the hero, at `#get-pace`.
+It collects a **name and an email only** — no password field anywhere in this
+flow. It posts to WynterHub, which creates the account and emails a sign-in
+link:
 
 ```
 wynter.ai  ──POST name+email+opt-in──▶  account.wynter.ai/start
@@ -93,33 +78,41 @@ an account created here isn't a claim about who owns the address.
 
 ```html
 <form method="post" action="https://account.wynter.ai/start">
-  <input name="name">
-  <input name="email_address" type="email">
+  <input name="name" required>
+  <input name="email_address" type="email" required>
   <input name="marketing_opt_in" type="checkbox" value="1">
 </form>
 ```
 
+The field is `email_address`, **not** `email`. Renaming it drops the value
+silently — WynterHub reads that exact key and there is no error to see.
+
 A native form POST, not `fetch()` — the browser navigates to account.wynter.ai
 to submit, so there's no CORS and no third-party cookie involved, and it works
-with JavaScript off. Validation errors re-render WynterHub's hosted signup with
-the fields filled in, which is why this page has no error state of its own.
+with JavaScript off. **Nothing in this path may become scripted.** `/start` is
+Origin-allowlisted rather than CSRF-protected, so an XHR would be refused
+anyway, and a funnel that needs a JS file to load is a funnel one blocked
+request kills. Validation errors re-render WynterHub's hosted signup with the
+fields filled in, which is why this page has no error state of its own. Success
+redirects to WynterHub's own "check your email" screen, so there is no
+thank-you page in this repo and no redirect field in the form.
 
-The checkbox label is character-for-character `ConsentCapture::MARKETING_WORDING`
-in WynterHub. It's stored verbatim as consent evidence, so changing the wording
-here means bumping `MARKETING_FORM_VERSION` there (currently `marketing-v2`).
+⚠️ **The opt-in wording here is not WynterHub's `ConsentCapture::MARKETING_WORDING`.**
+That constant is stored verbatim as consent evidence, so the two are supposed to
+match character-for-character. The wording in `index.html` was written for
+honesty and readability without visibility into WynterHub's current value.
+Before this ships: diff the two, and either copy the constant into `index.html`
+or update the constant and bump `MARKETING_FORM_VERSION` (was `marketing-v2`).
 Consent records source `quick_signup`, and promotional mail waits for the
 magic-link click before it enrolls.
 
-The form asks for an **email only**. `User#display_name` in WynterHub already
-falls back to the local part of the address, so a name field cost a field and
-bought a greeting. `QuickSignupsController` still accepts `name` if a future
-form wants to send one.
+The form asks for a name as well as an email. `User#display_name` in WynterHub
+falls back to the local part of the address if it is missing, so the name buys a
+greeting rather than an identity; `QuickSignupsController` accepts it.
 
-**The box ships pre-ticked**, by product decision. Under UK/EU GDPR a pre-ticked
-box is not valid consent (Art. 4(11); CJEU *Planet49* C-673/17), so opt-ins
-collected this way are not a defence if a complaint lands — the record will show
-the box was checked before the person touched it. It is permissible in the US
-under CAN-SPAM. Unticking it by default is a one-word change in `index.html`.
+**The box ships unticked.** Under UK/EU GDPR a pre-ticked box is not valid
+consent (Art. 4(11); CJEU *Planet49* C-673/17) — the record would show the box
+was checked before the person touched it. Do not add `checked`.
 
 ### Required: set SIGNUP_FORM_ORIGINS in Railway
 
@@ -142,13 +135,21 @@ used to test which addresses are registered.
 
 | Page | Action | Target |
 | --- | --- | --- |
-| Home | signup form | `POST account.wynter.ai/start` |
-| Pricing, About | "Create a free account" | `account.wynter.ai/sign-up` (hosted form) |
+| Home | the signup form itself | `POST account.wynter.ai/start` |
+| About, Pricing, Protocol, Guide | "Get PACE free" | `/#get-pace` |
+| Home (secondary) | "Read the whole framework, free" | `/pace/guide/` |
 | Every page | "Login" | `account.wynter.ai/login` |
-| `/signup`, `/join` | redirect | `account.wynter.ai/join/wynter-ai` |
+| `/signup`, `/join` | redirect | `/#get-pace` |
 
-Pricing and About link to the hosted form rather than duplicating this one:
-one form to keep in sync with WynterHub's contract is enough.
+Every page except the home page links to the form rather than duplicating it.
+One form means one set of field names to keep in sync with WynterHub's contract,
+and one copy of the consent wording to keep in sync with `MARKETING_WORDING`.
+
+Every signup CTA on the site reads **"Get PACE free"** and goes to `/#get-pace`.
+One `btn-primary` signup button per page — the plan cards on `/pricing` are
+`btn-secondary` (both of them: there is no way to buy Pro from this site, you
+make a free account and upgrade in billing), and the guide's end CTA is
+`btn-secondary` because the PDF download above it is that page's primary action.
 
 ## Positioning
 

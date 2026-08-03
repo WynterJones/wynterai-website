@@ -357,7 +357,79 @@
 
 .offer-sub strong { color: var(--ink-50); font-weight: 600; }
 
-.offer-action { margin-top: clamp(26px, 4vh, 36px); }
+/* ---------------------------------------------------------- signup form
+ *
+ * The fields themselves are the `.field` / `.field-label` / `.field-input` /
+ * `.optin` primitives from styles.css, unchanged — they were already ported
+ * from WynterHub so that the jump from this form to the account platform does
+ * not look like a jump between two sites. What lives here is only the home
+ * page's arrangement of them.
+ *
+ * Column, not card: on /pace/ the signup sat in a bordered box beside the
+ * headline. Here it is directly under it, and a border would read as a second
+ * panel competing with the one thing on the screen.
+ */
+
+.signup-form {
+  margin-top: clamp(26px, 4vh, 36px);
+  width: 100%;
+  max-width: 420px;
+  /* The sticky bar is 96px, so an unoffset #get-pace jump lands with the name
+     field tucked underneath it. */
+  scroll-margin-top: calc(var(--head-h) + 20px);
+}
+
+/* The first field supplies the gap to the sub-head, so `.field`'s own top
+   margin would double it. */
+.signup-form .field:first-child { margin-top: 0; }
+
+.signup-form .btn[type="submit"] {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Buttons only take a focus ring from the UA sheet, which is invisible on this
+   ground. The inputs get theirs from `.field-input:focus` in styles.css; this
+   is the matching one for the submit and for the checkbox. */
+.signup-form .btn:focus-visible,
+.signup-form input:focus-visible {
+  outline: 2px solid var(--signal-400);
+  outline-offset: 2px;
+}
+
+/* Native validation bubbles fire on submit; this is the only styling of the
+   invalid state, and it is deliberately not applied before the field has been
+   interacted with — `:user-invalid` rather than `:invalid`, so an untouched
+   required field is not red on arrival. */
+.signup-form .field-input:user-invalid { border-color: var(--signal-500); }
+
+/* Pinned to the form's own width rather than the headline's, so it reads as
+   fine print belonging to the button above it. */
+.offer-lead .signup-note { max-width: 420px; }
+
+/* The escape hatch for anyone not ready to hand over an address. A text link
+   one step down in weight from the form, never a button — a second button here
+   is a second call to action. */
+.offer-alt {
+  margin-top: 18px;
+  max-width: 52ch;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+
+.offer-alt a {
+  color: var(--ink-200);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--ink-600);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+
+.offer-alt a:hover {
+  color: var(--ink-50);
+  text-decoration-color: var(--signal-500);
+}
 
 /* ============================================================== law blocks
  *
