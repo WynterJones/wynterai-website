@@ -10,6 +10,7 @@ the three behaviours that matter and nothing else:
 
   * `/about`      -> serves `about.html`
   * `/about.html` -> 301 to `/about`, so the clean URL stays canonical here too
+  * the exact-path redirects from netlify.toml
   * anything missing -> `404.html`, with a real 404 status
 
 Development only. Netlify does all of this in production; this file is never
@@ -23,10 +24,29 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# Mirrors the [[redirects]] blocks in netlify.toml that point at a path on this
+# site. Exact keys, never prefixes — /pace redirects but /pace/guide/ and
+# /pace/protocol/ are live pages, and a prefix match here would hide the very
+# mistake this file exists to catch. Off-site redirects (/login) are omitted:
+# there is nothing local to check about them.
+REDIRECTS = {
+    "/pace": "/",
+    "/pace/": "/",
+    "/signup": "/#get-pace",
+    "/join": "/#get-pace",
+    "/tos": "/terms",
+}
+
 
 class NetlifyLikeHandler(SimpleHTTPRequestHandler):
     def send_head(self):
         path = self.path.split("?", 1)[0].split("#", 1)[0]
+
+        if path in REDIRECTS:
+            self.send_response(301)
+            self.send_header("Location", REDIRECTS[path])
+            self.end_headers()
+            return None
 
         # `/about.html` -> `/about`. Netlify redirects rather than serving both,
         # so a stray .html link in the markup shows up here as a redirect in the

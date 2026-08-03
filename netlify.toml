@@ -24,19 +24,39 @@
   status = 301
   force = true
 
-# Old paths worth catching rather than 404ing.
-# Both go through the hosted lead page, so a typed-in shortcut converts the
-# same way a click from the home page does.
+# --- retired paths ----------------------------------------------------------
+#
+# /pace/ used to be the framework page; the home page is now that page, so the
+# two are the same document and only one of them should be indexable.
+#
+# EXACT paths, never "/pace/*". A splat here would swallow /pace/protocol/ and
+# /pace/guide/, which are live pages and the two most linked things on the site.
+# Netlify matches redirects top-down and stops at the first hit, so these also
+# sit above nothing that could shadow them — but the exactness is what actually
+# protects the children, not the ordering.
+[[redirects]]
+  from = "/pace"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/pace/"
+  to = "/"
+  status = 301
+
+# Typed-in shortcuts. They land on the signup form on the home page rather than
+# on the account platform: /start is a POST endpoint, and the form that posts to
+# it lives here.
 [[redirects]]
   from = "/signup"
-  to = "https://account.wynter.ai/join/wynter-ai"
-  status = 302
+  to = "/#get-pace"
+  status = 301
   force = true
 
 [[redirects]]
   from = "/join"
-  to = "https://account.wynter.ai/join/wynter-ai"
-  status = 302
+  to = "/#get-pace"
+  status = 301
   force = true
 
 [[redirects]]
@@ -67,9 +87,10 @@
     #
     # form-action names the account platform because the home page signup form
     # posts there — without it the browser blocks the submit and the funnel is
-    # dead. It is deliberately the ONLY allowance: script-src and connect-src
-    # stay closed, so nothing here can execute or exfiltrate to another origin,
-    # which is what makes a password field on this site defensible.
+    # dead. That form is a plain <form method="post">, so this line is load
+    # bearing in production and there is no JavaScript fallback if it is
+    # removed. It is deliberately the ONLY allowance: script-src and connect-src
+    # stay closed, so nothing here can execute or exfiltrate to another origin.
     Content-Security-Policy = """\
 default-src 'self'; \
 script-src 'self'; \
@@ -113,3 +134,23 @@ upgrade-insecure-requests"""
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# The PDF build source. It is the same words as /pace/guide/, laid out for a
+# printer — page plates, hard page breaks, no navigation — so in a browser it
+# looks broken, and in an index it competes with the page it was built from.
+# Netlify merges header rules, so this adds to the /* block rather than
+# replacing it. Nothing links here; the header is the belt to that braces, and
+# print.html carries a <meta name="robots"> as well.
+#
+# BOTH paths, because pretty_urls is on: a crawler that finds `print.html` gets
+# 301'd to the extensionless form, and a rule written only for the `.html` URL
+# would not be attached to the page that actually gets indexed.
+[[headers]]
+  for = "/pace/guide/print.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/pace/guide/print"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
