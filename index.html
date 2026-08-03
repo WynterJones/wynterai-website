@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wynter.ai — The agentic engineer's toolkit</title>
-<meta name="description" content="Create your Wynter account and get the full agentic engineering toolkit — the apps, the training, the checklists and templates, and the newsletter where new AI workflows land first.">
+<title>AI didn't 10x you. Here's why. — Wynter.ai</title>
+<meta name="description" content="The bottleneck was never the model's speed. PACE is two laws — Act in Parallel and Compound Effort — for people who work with coding agents. The field guide, the protocol and the templates are free.">
 <link rel="canonical" href="https://wynter.ai/">
 <meta name="theme-color" content="#0a0a0d">
 <meta name="author" content="Wynter Jones">
@@ -12,15 +12,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wynter.ai">
 <meta property="og:url" content="https://wynter.ai/">
-<meta property="og:title" content="The agentic engineer's toolkit">
-<meta property="og:description" content="Create your account and get the apps, the training, the checklists and templates, and the newsletter where new AI workflows land first.">
+<meta property="og:title" content="AI didn't 10x you. Here's why.">
+<meta property="og:description" content="Your agents can run concurrently. You can't. PACE is two laws — Act in Parallel and Compound Effort — and the whole framework is free.">
 <meta property="og:image" content="https://wynter.ai/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Wynter.ai — the agentic engineer's toolkit">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The agentic engineer's toolkit">
-<meta name="twitter:description" content="Create your account and get the apps, the training, the checklists and templates, and the newsletter where new AI workflows land first.">
+<meta name="twitter:title" content="AI didn't 10x you. Here's why.">
+<meta name="twitter:description" content="Your agents can run concurrently. You can't. PACE is two laws — Act in Parallel and Compound Effort — and the whole framework is free.">
 <meta name="twitter:image" content="https://wynter.ai/assets/og.png">
 
 <link rel="icon" href="/assets/favicon.ico" sizes="32x32">
@@ -31,12 +31,15 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Every call to action lands on the account platform, so the connection is
+<!-- The one call to action lands on the account platform, so the connection is
      worth opening before anyone clicks. -->
 <link rel="preconnect" href="https://account.wynter.ai">
 <link rel="preload" as="image" href="/assets/wynterai-logo.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/styles.css">
+<!-- The home page is now a PACE page, so it reuses the same components as
+     /pace/ and /pace/protocol/ rather than growing a stylesheet of its own. -->
+<link rel="stylesheet" href="/pace.css">
 
 <script type="application/ld+json">
 {
@@ -55,24 +58,39 @@
       "@id": "https://wynter.ai/#site",
       "url": "https://wynter.ai/",
       "name": "Wynter.ai",
-      "description": "The agentic engineer's toolkit: a suite of apps for building with AI, plus training, checklists, templates, and a newsletter.",
+      "description": "PACE — Parallel Action, Compounding Effort. A free two-law framework for working with coding agents, with a field guide, a drop-in protocol and templates.",
       "publisher": { "@id": "https://wynter.ai/#org" }
     },
     {
       "@type": "WebPage",
+      "@id": "https://wynter.ai/#webpage",
       "url": "https://wynter.ai/",
-      "name": "The agentic engineer's toolkit",
+      "name": "AI didn't 10x you. Here's why.",
+      "description": "The bottleneck was never the model's speed. PACE is two laws — Act in Parallel and Compound Effort — for people who work with coding agents.",
+      "inLanguage": "en",
       "isPartOf": { "@id": "https://wynter.ai/#site" },
-      "primaryImageOfPage": "https://wynter.ai/assets/og.png"
+      "publisher": { "@id": "https://wynter.ai/#org" },
+      "author": { "@type": "Person", "name": "Wynter Jones", "url": "https://wynter.ai/about" },
+      "primaryImageOfPage": "https://wynter.ai/assets/og.png",
+      "significantLink": "https://wynter.ai/pace/protocol/",
+      "about": {
+        "@type": "Thing",
+        "name": "PACE",
+        "alternateName": "Parallel Action, Compounding Effort",
+        "description": "A two-law framework for working with coding agents: run work in parallel so your attention stops being the bottleneck, and compound effort so the tenth task is faster than the first."
+      }
     }
   ]
 }
 </script>
 </head>
 
-<body class="page-optin">
+<body>
 <a class="skip" href="#main">Skip to content</a>
 
+<!-- The nav keeps About, Pricing and Login reachable but drops the button
+     treatment Login carries elsewhere: this page has exactly one button, and it
+     is the one below the headline. -->
 <header class="site-head">
   <div class="shell">
     <a class="brand" href="/" aria-label="Wynter.ai home">
@@ -81,116 +99,337 @@
     <nav class="nav" aria-label="Main">
       <a href="/about">About</a>
       <a href="/pricing">Pricing</a>
-      <a class="btn btn-secondary" href="https://account.wynter.ai/login">Login</a>
+      <a href="https://account.wynter.ai/login">Login</a>
     </nav>
   </div>
 </header>
 
-<main class="hero" id="main">
+<main id="main" class="offer-page">
+
+  <!-- Above the fold: the hook, the two laws named, one button. Nothing else. -->
+  <section class="hero-offer">
+    <div class="shell">
+      <div class="offer-lead">
+        <p class="eyebrow">The PACE Framework · Free</p>
+        <h1>AI didn't 10x you. <em>Here's why.</em></h1>
+        <p class="offer-sub">
+          Your attention is single-threaded and your work doesn't accumulate.
+          PACE is two laws for exactly those two problems: <strong>Act in
+          Parallel</strong> and <strong>Compound&nbsp;Effort</strong>.
+        </p>
+        <p class="offer-action">
+          <a class="btn btn-primary btn-xl" href="https://account.wynter.ai/join/wynter-ai">Get PACE free</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <div class="shell">
 
-    <div class="hero-lead">
-      <h1>Ship real software with <em>agents</em> doing the build.</h1>
+    <section class="section" aria-labelledby="bottleneck">
+      <h2 class="section-title tight" id="bottleneck">The bottleneck moved.</h2>
+      <div class="prose tight">
+        <p>
+          You got a coding agent that writes a module in four minutes, and your
+          week did not get five times better. That isn't a disappointing model.
+          It's a bottleneck that moved, and nobody told you where it&nbsp;went.
+        </p>
+        <p>
+          It moved to you. The agent can run concurrently. You cannot. You have
+          one attention and you spent it watching a machine work, so every agent
+          you actively supervise runs at exactly the speed of one human &mdash;
+          yours.
+        </p>
+        <p>
+          And nothing you learn stays learned. Task ten costs what task one cost,
+          because nothing from tasks one through nine got written down anywhere
+          the agent can reach. You didn't get a multiplier. You got a faster
+          typist and a new way to be&nbsp;interrupted.
+        </p>
+      </div>
+    </section>
 
-      <p class="hero-sub">
-        Take a rough idea to a spec, a brand, and working code &mdash; with the
-        checklists, templates, and training that keep your agents on the rails
-        instead of wandering off&nbsp;mid-build.
+    <section class="section" aria-labelledby="two-laws">
+      <h2 class="section-title tight" id="two-laws">Two failures, two laws.</h2>
+      <p class="section-lede">
+        PACE is not a productivity system. It's two constraints on how you set
+        work up &mdash; one for each&nbsp;failure.
       </p>
-    </div>
 
-    <div class="hero-detail">
-      <!-- Outcomes, in the order somebody hits them. Product names live on
-           the pricing page; nobody arrives knowing them. -->
-      <ul class="checks">
-        <li>
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
-          <span>Rough idea to spec'd, branded, shipped&nbsp;software</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
-          <span>Agents that stay on the rails instead of wandering&nbsp;off</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
-          <span>AI workflows that hold up in&nbsp;production</span>
-        </li>
-        <li>
-          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
-          <span>New releases and working workflows in your&nbsp;inbox</span>
-        </li>
-      </ul>
-
-      <!-- Plain text, in the document, on purpose: rendering this from a widget
-           would put it in a shadow root, which crawlers do not index. -->
-      <section class="strip" aria-label="What you get">
-        <p class="eyebrow">What you get</p>
-        <ul class="strip-list">
-          <li>Agent workflows</li>
-          <li>Training</li>
-          <li>Checklists</li>
-          <li>Templates</li>
-          <li>Walkthroughs</li>
-          <li>Newsletter</li>
-          <li>Open-source apps</li>
-        </ul>
-      </section>
-    </div>
-
-    <div class="signup">
-      <!-- Email only. No name field: WynterHub's User#display_name already
-           falls back to the local part of the address, so asking for a name up
-           front cost a field and bought a greeting.
-
-           No password field anywhere in this flow either:
-           WynterHub creates the account and emails a sign-in link, and
-           following that link is what proves the mailbox is theirs. A
-           CDN-hosted marketing page never touches a credential.
-
-           A native form POST, not fetch(). The browser navigates to
-           account.wynter.ai to submit, so there is no CORS and no
-           third-party cookie involved, and it works with JavaScript off.
-           Validation errors re-render WynterHub's own signup page with the
-           fields filled in, which is why this page has no error state.
-
-           The checkbox label is character-for-character
-           ConsentCapture::MARKETING_WORDING. What gets stored as consent
-           evidence is literally the text below, so changing the wording here
-           means bumping MARKETING_FORM_VERSION there. -->
-      <form class="card signup-card" method="post"
-            action="https://account.wynter.ai/start">
-        <p class="eyebrow">Get the toolkit</p>
-        <p>Every app, the training, and the templates. Drop your email and we'll
-           send you straight&nbsp;in.</p>
-
-        <div class="field">
-          <label class="field-label" for="su-email">Email</label>
-          <input class="field-input" id="su-email" name="email_address" type="email"
-                 autocomplete="email" required>
+      <!-- Each law: the claim on the left, the figure that proves it on the
+           right. Both figures are lifted from the field guide and re-coloured
+           for the dark ground by the `.fig` rules in pace.css — the markup and
+           its fs-*/st-* classes are unchanged, only the palette they resolve
+           to. -->
+      <article class="law-block">
+        <div class="law-body">
+          <p class="law-num">Law One &middot; fixes the attention problem</p>
+          <h3>Act in Parallel</h3>
+          <p class="law-claim">
+            Your agents can run concurrently. You can't. So stop being the thing
+            they wait&nbsp;on.
+          </p>
+          <p>
+            Structure work so it runs without you. Give a task enough context to
+            go for an hour, get every blocking question answered in one message
+            before it starts, and let it proceed on stated assumptions instead of
+            stopping at the first fork.
+          </p>
+          <p>
+            A vague task interrupts you every four minutes. A well-specified task
+            runs for an hour. That's the whole trade.
+          </p>
+          <p class="law-metric">
+            Metric: <strong>agent-hours per human-hour.</strong> If it's hovering
+            near one, you're supervising, not dispatching.
+          </p>
         </div>
 
-        <!-- Pre-ticked by product decision. Worth knowing what that costs: under
-             UK/EU GDPR a pre-ticked box is not valid consent (Art. 4(11), and
-             Planet49 C-673/17), so opt-ins collected this way are not a defence
-             if a complaint lands. It is legal in the US under CAN-SPAM.
+        <figure class="fig">
+          <figcaption class="fig__head">
+            <span class="fig__n">Figure 01</span>
+            <span class="fig__t">The dispatch loop</span>
+          </figcaption>
 
-             The label is character-for-character ConsentCapture::MARKETING_WORDING
-             in WynterHub, which stores it verbatim as the evidence of what was
-             agreed to. Changing this text without changing it there records
-             consent to wording nobody was shown. -->
-        <label class="optin">
-          <input type="checkbox" name="marketing_opt_in" value="1" checked>
-          <span>Email me about new products and updates.</span>
-        </label>
+          <div class="fig__frame">
+            <svg class="fig__svg" viewBox="0 0 448 200" role="img"
+                 aria-label="A five-step loop: plan, dispatch, the agent runs unattended, review, extract. Your attention follows the first two steps, leaves during the unattended run, and returns at review.">
+              <defs>
+                <marker id="f2-acc" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                        markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-acc"/></marker>
+                <marker id="f2-mid" viewBox="0 0 9 9" refX="8" refY="4.5" markerWidth="9" markerHeight="9"
+                        markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" class="fs-mid"/></marker>
+              </defs>
 
-        <button class="btn btn-primary" type="submit">Get access</button>
-      </form>
+              <!-- your attention: present, then away, then back -->
+              <text x="5" y="30" font-size="7.5" class="t-lab fs-mute">Your attention</text>
+              <path d="M5,52H178" class="st-acc" stroke-width="1.6"/>
+              <path d="M178,52 C190,52 190,26 202,26 H246 C258,26 258,52 270,52"
+                    class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="4 3"/>
+              <path d="M270,52H443" class="st-acc" stroke-width="1.6"/>
+              <text x="224" y="20" font-size="7.5" text-anchor="middle" class="fs-mute">you go elsewhere</text>
+              <g class="st-rules" stroke-width="0.6" stroke-dasharray="2 2">
+                <path d="M42,54V86 M133,54V86 M315,54V86 M406,54V86"/>
+              </g>
 
-      <p class="signup-note">
-        By creating an account you agree to the <a href="/terms">Terms</a> and
-        <a href="/privacy">Privacy&nbsp;Policy</a>.
+              <!-- the five steps -->
+              <g class="fs-none st-rules" stroke-width="0.8">
+                <rect x="5"   y="88" width="74" height="52"/>
+                <rect x="96"  y="88" width="74" height="52"/>
+                <rect x="278" y="88" width="74" height="52"/>
+                <rect x="369" y="88" width="74" height="52"/>
+              </g>
+              <rect x="187" y="88" width="74" height="52" class="fs-none st-mute" stroke-width="0.9" stroke-dasharray="4 3"/>
+
+              <g text-anchor="middle">
+                <text x="42"  y="110" font-size="8.5" class="tw-6 fs-ink">Plan</text>
+                <text x="42"  y="123" font-size="7.5" class="fs-mute">write the brief</text>
+                <text x="133" y="110" font-size="8.5" class="tw-6 fs-ink">Dispatch</text>
+                <text x="133" y="123" font-size="7.5" class="fs-mute">hand it over</text>
+                <text x="224" y="110" font-size="8.5" class="tw-6 fs-acct">Runs</text>
+                <text x="224" y="123" font-size="7.5" class="fs-mute">unattended</text>
+                <text x="315" y="110" font-size="8.5" class="tw-6 fs-ink">Review</text>
+                <text x="315" y="123" font-size="7.5" class="fs-mute">read the output</text>
+                <text x="406" y="110" font-size="8.5" class="tw-6 fs-ink">Extract</text>
+                <text x="406" y="123" font-size="7.5" class="fs-mute">what is reusable</text>
+              </g>
+
+              <g class="st-mid" stroke-width="1" marker-end="url(#f2-mid)">
+                <path d="M81,114H88"/>
+                <path d="M172,114H179"/>
+                <path d="M263,114H270"/>
+                <path d="M354,114H361"/>
+              </g>
+
+              <!-- and round again -->
+              <path d="M406,140 V176 H42 V148" class="st-acc fs-none" stroke-width="1.4" marker-end="url(#f2-acc)"/>
+              <text x="224" y="190" font-size="8" text-anchor="middle" class="fs-mid">and the next brief is already written</text>
+            </svg>
+          </div>
+
+          <p class="fig__cap">
+            The unattended stretch is the whole point. If your attention never
+            leaves the line, you're having a conversation, not running a loop.
+          </p>
+        </figure>
+      </article>
+
+      <article class="law-block">
+        <div class="law-body">
+          <p class="law-num">Law Two &middot; fixes the accumulation problem</p>
+          <h3>Compound Effort</h3>
+          <p class="law-claim">
+            If your tenth task isn't faster than your first, you don't have a
+            system. You have a&nbsp;habit.
+          </p>
+          <p>
+            Make every task leave something behind that makes the next one
+            cheaper. Context written down, corrections folded back into the
+            system, solved problems turned into things you can reuse.
+          </p>
+          <p>
+            The residue is the point. Fixing a wrong answer buys you one task.
+            Fixing the context that produced it buys you every task after it.
+          </p>
+          <p class="law-metric">
+            Metric: <strong>is task ten cheaper than task one?</strong> If not,
+            nothing you did in between was a system.
+          </p>
+        </div>
+
+        <figure class="fig">
+          <figcaption class="fig__head">
+            <span class="fig__n">Figure 02</span>
+            <span class="fig__t">What compounding looks like</span>
+          </figcaption>
+
+          <div class="fig__frame">
+            <svg class="fig__svg" viewBox="0 0 448 250" role="img"
+                 aria-label="Cost per task over ten tasks. Without a system the cost is flat: task ten costs what task one cost. With a system the first task costs more and every task after it costs less, crossing below the flat line between task two and task three.">
+              <path d="M60,28V204" class="st-rules" stroke-width="0.8"/>
+              <path d="M60,204H430" class="st-rules" stroke-width="0.8"/>
+              <g class="st-rules" stroke-width="0.8">
+                <path d="M60,204v4 M100.4,204v4 M140.9,204v4 M181.3,204v4 M221.8,204v4 M262.2,204v4 M302.7,204v4 M343.1,204v4 M383.6,204v4 M424,204v4"/>
+              </g>
+              <g font-size="7.5" text-anchor="middle" class="fs-mute">
+                <text x="60" y="219">1</text><text x="100.4" y="219">2</text><text x="140.9" y="219">3</text>
+                <text x="181.3" y="219">4</text><text x="221.8" y="219">5</text><text x="262.2" y="219">6</text>
+                <text x="302.7" y="219">7</text><text x="343.1" y="219">8</text><text x="383.6" y="219">9</text>
+                <text x="424" y="219">10</text>
+              </g>
+              <text x="242" y="240" font-size="8" text-anchor="middle" class="tw-6 fs-mid">Task number</text>
+              <text x="22" y="119" font-size="8" text-anchor="middle" class="tw-6 fs-mid" transform="rotate(-90 22 119)">Cost per task</text>
+              <text x="54" y="207" font-size="7.5" text-anchor="end" class="fs-mute">0</text>
+
+              <!-- no system: flat, dashed, hollow square markers -->
+              <path d="M60,68H424" class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="6 3"/>
+              <g class="fs-paper st-mute" stroke-width="0.8">
+                <rect x="57.8" y="65.8" width="4.4" height="4.4"/>
+                <rect x="98.2" y="65.8" width="4.4" height="4.4"/>
+                <rect x="138.7" y="65.8" width="4.4" height="4.4"/>
+                <rect x="179.1" y="65.8" width="4.4" height="4.4"/>
+                <rect x="219.6" y="65.8" width="4.4" height="4.4"/>
+                <rect x="260" y="65.8" width="4.4" height="4.4"/>
+                <rect x="300.5" y="65.8" width="4.4" height="4.4"/>
+                <rect x="340.9" y="65.8" width="4.4" height="4.4"/>
+                <rect x="381.4" y="65.8" width="4.4" height="4.4"/>
+                <rect x="421.8" y="65.8" width="4.4" height="4.4"/>
+              </g>
+
+              <!-- compounding: solid, heavier, filled round markers -->
+              <polyline points="60,43.5 100.4,61.2 140.9,74.8 181.3,95.2 221.8,114.2 262.2,129.2 302.7,140.1 343.1,148.2 383.6,155 424,160.5"
+                        class="fs-none st-acc" stroke-width="1.8" stroke-linejoin="round"/>
+              <g class="fs-acc">
+                <circle cx="60" cy="43.5" r="2.4"/><circle cx="100.4" cy="61.2" r="2.4"/>
+                <circle cx="140.9" cy="74.8" r="2.4"/><circle cx="181.3" cy="95.2" r="2.4"/>
+                <circle cx="221.8" cy="114.2" r="2.4"/><circle cx="262.2" cy="129.2" r="2.4"/>
+                <circle cx="302.7" cy="140.1" r="2.4"/><circle cx="343.1" cy="148.2" r="2.4"/>
+                <circle cx="383.6" cy="155" r="2.4"/><circle cx="424" cy="160.5" r="2.4"/>
+              </g>
+
+              <path d="M120.7,68V204" class="st-acc fs-none" stroke-width="0.8" stroke-dasharray="2 2"/>
+              <circle cx="120.7" cy="68" r="4.2" class="fs-paper st-acc" stroke-width="1.4"/>
+              <text x="130" y="50" font-size="8.5" class="tw-6 fs-acct">The pay-back point</text>
+              <text x="130" y="61" font-size="7.5" class="fs-mid">everything after this is profit</text>
+
+              <path d="M200,169H224" class="st-mute fs-none" stroke-width="1.2" stroke-dasharray="6 3"/>
+              <rect x="209.8" y="166.8" width="4.4" height="4.4" class="fs-paper st-mute" stroke-width="0.8"/>
+              <text x="232" y="172" font-size="7.5" class="fs-mid">No system &#8212; task 10 costs what task 1 cost</text>
+              <path d="M200,187H224" class="st-acc fs-none" stroke-width="1.8"/>
+              <circle cx="212" cy="187" r="2.4" class="fs-acc"/>
+              <text x="232" y="190" font-size="7.5" class="fs-mid">Compounding &#8212; every task cheaper than the last</text>
+            </svg>
+          </div>
+
+          <p class="fig__cap">
+            The up-front cost is real: task one is more expensive under a system
+            than without one. It's paid back somewhere around task three.
+          </p>
+        </figure>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="what-you-get">
+      <h2 class="section-title tight" id="what-you-get">What you get</h2>
+      <p class="section-lede">
+        The whole framework, free. No card, no trial&nbsp;clock.
       </p>
-    </div>
+
+      <ul class="kit">
+        <li>
+          <p class="kit-name">The field guide</p>
+          <p class="kit-desc">Both laws end to end, with the figures, the failure modes each one catches, and what a week under them actually looks like.</p>
+        </li>
+        <li>
+          <p class="kit-name">The PACE Protocol</p>
+          <p class="kit-desc">The markdown block that goes in your agent's instruction file. Already public — a piece of it is below.</p>
+        </li>
+        <li>
+          <p class="kit-name">The Dispatch Brief template</p>
+          <p class="kit-desc">The shape of a task an agent can run for an hour without you: scope, constraints, what to assume, what done means.</p>
+        </li>
+        <li>
+          <p class="kit-name">The Context File template</p>
+          <p class="kit-desc">What belongs in a project's context file and what quietly ruins it, so it keeps making runs cheaper.</p>
+        </li>
+        <li>
+          <p class="kit-name">The Compounding Checklist</p>
+          <p class="kit-desc">The end-of-task pass that turns one finished job into a cheaper next one.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="proof">
+      <h2 class="section-title tight" id="proof">Take a piece of it now.</h2>
+      <p class="section-lede">
+        This is the short PACE Protocol &mdash; a drop-in for your agent's
+        instruction file. No account, no email. Paste it and see whether the next
+        session goes&nbsp;differently.
+      </p>
+
+      <!-- Byte-identical to the `protocol-short` block on /pace/protocol/, so
+           the two pages can never hand out two different protocols. The copy
+           button ships `hidden` and is unhidden by /pace.js: with scripting off
+           nobody is offered a button that cannot work, and the text is still
+           there to select. -->
+      <div class="codeblock">
+        <div class="codeblock-bar">
+          <span class="codeblock-name">PACE — short</span>
+          <button class="btn btn-secondary copy-btn" type="button"
+                  data-copy="protocol-home" aria-live="polite" hidden>Copy</button>
+        </div>
+        <pre><code id="protocol-home">## PACE
+Act in Parallel: ask everything blocking up front in one message, then run
+unattended on stated assumptions. Plan first, execute end to end, report once.
+If blocked, park it and move to the next independent piece — never stall.
+
+Compound Effort: read existing context and match it. When something's wrong
+because context was missing, fix the context, not just the output. Extract
+anything reusable. End with: what changed, what you assumed, what's open, and
+what to add to the context files.
+
+— PACE, wynter.ai/pace</code></pre>
+      </div>
+
+      <p class="proof-more">
+        The full protocol &mdash; the long version, with the Codex, Cursor and
+        Windsurf paths &mdash; is on
+        <a href="/pace/protocol/">the protocol page</a>, also free.
+      </p>
+    </section>
+
+    <aside class="card cta">
+      <div>
+        <h2 class="tight">Get the framework</h2>
+        <p>The field guide, both laws in full, and the three templates. Free.</p>
+      </div>
+      <a class="btn btn-primary btn-lg" href="https://account.wynter.ai/join/wynter-ai">Get PACE free</a>
+    </aside>
+
+    <p class="signup-note">
+      By creating an account you agree to the <a href="/terms">Terms</a> and
+      <a href="/privacy">Privacy&nbsp;Policy</a>.
+    </p>
 
   </div>
 </main>
@@ -198,7 +437,10 @@
 <footer class="site-foot">
   <div class="shell">
     <p>&copy; <span id="year">2026</span> Wynter.ai — built by Wynter Jones.</p>
+    <p class="foot-version">PACE Protocol v1.0</p>
     <nav class="foot-links" aria-label="Legal">
+      <a href="/pace/">PACE</a>
+      <a href="/pace/protocol/">Protocol</a>
       <a href="/about">About</a>
       <a href="/pricing">Pricing</a>
       <a href="/terms">Terms</a>
@@ -209,5 +451,6 @@
 </footer>
 
 <script src="/site.js" defer></script>
+<script src="/pace.js" defer></script>
 </body>
 </html>

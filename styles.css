@@ -176,6 +176,11 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 
 .btn-lg { padding: 13px 22px; font-size: 15px; }
 
+/* One size above .btn-lg, for a page whose entire job is a single button. Only
+   the home page uses it, and only once — if a second one ever appears on the
+   same screen, one of them is not the call to action. */
+.btn-xl { padding: 16px 30px; font-size: 16.5px; font-weight: 600; }
+
 .card {
   background: var(--ink-900);
   border: 1px solid var(--ink-700);
