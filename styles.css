@@ -36,10 +36,17 @@
                "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
 
+  /* Muted text is NOT --ink-500. That step is 2.99:1 on --ink-950, which fails
+     the 3.5:1 floor for secondary text — eyebrows, footers, and fine print were
+     all sitting under it. This is the lightest value that clears the floor
+     while staying a visible step below --ink-400, so the hierarchy survives the
+     fix. --ink-500 stays in the scale for borders and non-text use. */
+  --text-muted: #6b6b74;   /* 3.75:1 on --ink-950 */
+
   --radius-tile: 12px;
   --radius-btn: 8px;
   --shell: 1120px;
-  --head-h: 68px;
+  --head-h: 96px;
 
   color-scheme: dark;
 }
@@ -129,7 +136,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-500);
+  color: var(--text-muted);
 }
 
 .btn {
@@ -145,11 +152,20 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   line-height: 1.2;
   white-space: nowrap;
   cursor: pointer;
+  /* Stated on the button itself rather than left to inherit. A .btn dropped
+     inside .prose is still an <a>, so the prose link rule underlined it and the
+     CTA came out looking like a hyperlink wearing a button. Owning the property
+     here means the component survives being nested in any text context. */
+  text-decoration: none;
   transition: background-color 0.15s, border-color 0.15s, color 0.15s, transform 0.15s;
 }
 
-.btn-primary { background: var(--signal-500); color: #fff; }
-.btn-primary:hover { background: var(--signal-600); }
+/* One step down the brand scale from --signal-500. White on #ff3131 is
+   3.66:1, which fails AA for a 14px label; on --signal-600 it is 4.62:1. The
+   brand red keeps its job everywhere it is not carrying text — the headline
+   accent, the checkmarks, the focus ring, the featured-plan border. */
+.btn-primary { background: var(--signal-600); color: #fff; }
+.btn-primary:hover { background: var(--signal-700); }
 
 .btn-secondary {
   background: var(--ink-850);
@@ -159,6 +175,11 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 .btn-secondary:hover { border-color: var(--ink-600); background: var(--ink-800); }
 
 .btn-lg { padding: 13px 22px; font-size: 15px; }
+
+/* One size above .btn-lg, for a page whose entire job is a single button. Only
+   the home page uses it, and only once — if a second one ever appears on the
+   same screen, one of them is not the call to action. */
+.btn-xl { padding: 16px 30px; font-size: 16.5px; font-weight: 600; }
 
 .card {
   background: var(--ink-900);
@@ -187,8 +208,11 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   gap: 16px;
 }
 
+/* The mark carries its own drop shadow and a fair amount of transparent
+   margin, so it needs more height than a typical wordmark to read at the same
+   optical weight. */
 .brand { display: inline-flex; align-items: center; }
-.brand img { height: 26px; width: auto; }
+.brand img { height: 52px; width: auto; }
 
 .nav {
   display: flex;
@@ -218,7 +242,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   border-top: 1px solid var(--ink-800);
   padding-block: 18px;
   font-size: 13px;
-  color: var(--ink-500);
+  color: var(--text-muted);
 }
 
 .site-foot .shell {
@@ -361,6 +385,71 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 
 .signup-card .btn + .btn { margin-top: 8px; }
 
+/* ------------------------------------------------------------ form fields
+ *
+ * Ported from WynterHub's `.field-label` / `.field-input` components. A
+ * visitor fills these in here and lands on account.wynter.ai mid-flow — if the
+ * inputs changed shape across that jump it would read as two different sites
+ * rather than one signup.
+ */
+
+.field { margin-top: 14px; }
+
+.field-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-300);
+}
+
+.field-input {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--ink-700);
+  border-radius: var(--radius-btn);
+  background: var(--ink-950);
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink-100);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* Placeholders are meant to recede behind a real value, and are not
+   content — WCAG's text floor doesn't apply, and lifting it made empty
+   fields look filled in. */
+.field-input::placeholder { color: var(--ink-500); }
+
+.field-input:focus {
+  border-color: var(--signal-500);
+  box-shadow: 0 0 0 2px rgba(255, 49, 49, 0.25);
+  outline: none;
+}
+
+.field-hint { margin-top: 6px; font-size: 12px; color: var(--ink-400); }
+
+/* The marketing opt-in. The wording is WynterHub's stored consent evidence, so
+   it is never abbreviated to fit — the box wraps instead. */
+.optin {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-300);
+  cursor: pointer;
+}
+
+.optin input {
+  margin-top: 2px;
+  accent-color: var(--signal-500);
+  flex: none;
+}
+
+.signup-card .btn[type="submit"] { margin-top: 16px; }
+
 /* The fine print under the card: what happens on the next screen, and the
    legal links. Outside the card rather than in it, so the card stays two
    buttons and a sentence. */
@@ -368,7 +457,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   margin-top: 14px;
   font-size: 12px;
   line-height: 1.55;
-  color: var(--ink-500);
+  color: var(--text-muted);
 }
 .signup-note a { color: var(--ink-400); text-decoration: underline; text-underline-offset: 2px; }
 .signup-note a:hover { color: var(--ink-200); }
@@ -420,10 +509,16 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   font-weight: 700;
 }
 
+/* Deliberately close to the h1 in weight and size. On a page whose headline is
+   a question, the lede is the answer — at 17px regular it read as a caption
+   under the real content rather than as the thing worth reading. */
 .page-head .lede {
-  margin-top: 16px;
-  font-size: 1.0625rem;
-  color: var(--ink-400);
+  margin-top: 18px;
+  font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.011em;
+  color: var(--ink-300);
 }
 
 .prose { max-width: 68ch; margin-top: 40px; }
@@ -451,20 +546,25 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 .prose li { margin-top: 8px; }
 .prose li::marker { color: var(--ink-600); }
 
-.prose a {
+/* `:not(.btn)` rather than a `text-decoration: none` on the button, because
+   `.prose a` is specificity (0,1,1) and `.btn` is (0,1,0) — the button rule
+   loses no matter what order it appears in, which is how a call to action ended
+   up underlined inside the About page's prose. Excluding it here is the only
+   version that holds. */
+.prose a:not(.btn) {
   color: var(--ink-100);
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-color: var(--ink-600);
 }
-.prose a:hover { text-decoration-color: var(--signal-500); }
+.prose a:not(.btn):hover { text-decoration-color: var(--signal-500); }
 
 .prose strong { color: var(--ink-100); font-weight: 600; }
 
 .prose-meta {
   margin-top: 8px;
   font-size: 13px;
-  color: var(--ink-500);
+  color: var(--text-muted);
 }
 
 /* ------------------------------------------------------------ about page */
@@ -486,18 +586,36 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-500);
+  color: var(--text-muted);
 }
 
 /* A plain block rather than a grid: an even grid gap put the same space
    between a term and its own definition as between one pair and the next,
    which read as four loose lines instead of four labelled facts. */
 .sidecard dl { margin-top: 14px; font-size: 14px; }
-.sidecard dt { font-size: 12px; color: var(--ink-500); margin-top: 16px; }
+.sidecard dt { font-size: 12px; color: var(--text-muted); margin-top: 16px; }
 .sidecard dt:first-child { margin-top: 0; }
 .sidecard dd { margin: 3px 0 0; color: var(--ink-200); }
 .sidecard dd a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--ink-600); }
 .sidecard dd a:hover { text-decoration-color: var(--signal-500); }
+
+/* -------------------------------------------------------------- signature
+ *
+ * White strokes on transparent, so it only exists on the dark ground — same
+ * constraint as the logo. Held slightly back: it signs off the page rather
+ * than competing with the call to action underneath it.
+ */
+
+.signature {
+  margin: 40px 0 0;
+}
+
+.signature img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  opacity: 0.82;
+}
 
 /* ---------------------------------------------------------- pricing page */
 
@@ -555,13 +673,39 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   font-variant-numeric: tabular-nums;
 }
 
-.price-per { font-size: 14px; color: var(--ink-500); }
+.price-per { font-size: 14px; color: var(--text-muted); }
 
 .plan-desc { margin-top: 12px; font-size: 14px; color: var(--ink-400); }
 
 .plan .checks { margin-top: 20px; flex: 1; }
 
 .plan .btn { margin-top: 24px; }
+
+/* ------------------------------------------------------- what's included */
+
+.tools {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 32px;
+  list-style: none;
+  padding: 0;
+}
+
+.tools li {
+  border-top: 1px solid var(--ink-800);
+  padding: 13px 0;
+}
+
+.tool-result { font-size: 14.5px; color: var(--ink-200); }
+
+/* Held back deliberately. The product name is here to be findable, not to be
+   the thing anyone reads first. */
+.tool-name {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
 
 /* -------------------------------------------------------- credit packs */
 
@@ -589,7 +733,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   font-variant-numeric: tabular-nums;
 }
 
-.pack-label { font-size: 12px; color: var(--ink-500); margin-top: 2px; }
+.pack-label { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
 .pack-price {
   font-size: 15px;
@@ -624,7 +768,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 
 .faq summary::after {
   content: "+";
-  color: var(--ink-500);
+  color: var(--text-muted);
   font-size: 18px;
   line-height: 1;
   flex: none;
@@ -690,11 +834,33 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   .sidecard { position: static; }
   .plans { grid-template-columns: minmax(0, 1fr); }
   .packs { grid-template-columns: minmax(0, 1fr); }
+  .tools { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+
+/* Guide and Protocol joined the bar, so it carries five destinations plus the
+   mark. That will not fit on one 375px line, and shrinking the labels far
+   enough to make it fit puts them under 12px. Below the tablet breakpoint the
+   header becomes two centred rows instead.
+   --head-h is redefined rather than abandoned because `.sidecard` and the
+   guide's scroll-margin both offset by it; min-height keeps the real bar and
+   the token in agreement. */
+@media (max-width: 720px) {
+  :root { --head-h: 112px; }
+
+  .site-head {
+    height: auto;
+    min-height: var(--head-h);
+    padding-block: 12px;
+  }
+  .site-head .shell { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+  .nav { flex-wrap: wrap; justify-content: center; row-gap: 4px; }
 }
 
 @media (max-width: 560px) {
-  .nav a { padding: 8px 9px; font-size: 13.5px; }
-  .brand img { height: 23px; }
+  /* Sized so all five labels still hold one line inside 375px. */
+  .nav { gap: 2px; }
+  .nav a { padding: 8px 8px; font-size: 13px; }
+  .brand img { height: 38px; }
   .hero { padding-block: 32px; }
   .site-foot .shell { justify-content: flex-start; }
 }

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About Wynter Jones — the builder behind Wynter.ai</title>
-<meta name="description" content="Wynter Jones builds the Wynter suite: a set of AI tools for planning, building, and shipping software and offers — plus the open-source projects Farmwork and OpenPaw.">
+<title>Who's behind PACE — Wynter Jones</title>
+<meta name="description" content="PACE is the working method behind the software on this site, not a theory. Wynter Jones has built for the web for 25+ years — ClickFunnels Classic, Udio, MarketingSecretsAI — and builds with coding agents daily.">
 <link rel="canonical" href="https://wynter.ai/about">
 <meta name="theme-color" content="#0a0a0d">
 <meta name="author" content="Wynter Jones">
@@ -12,14 +12,15 @@
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Wynter.ai">
 <meta property="og:url" content="https://wynter.ai/about">
-<meta property="og:title" content="About Wynter Jones">
-<meta property="og:description" content="The builder behind the Wynter suite, Farmwork, and OpenPaw.">
+<meta property="og:title" content="Who's behind PACE — Wynter Jones">
+<meta property="og:description" content="PACE is the method behind the software on this site, not a theory someone wrote up. The builder behind the Wynter suite, Farmwork, and OpenPaw.">
 <meta property="og:image" content="https://wynter.ai/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wynter.ai — the agentic engineer's toolkit">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Wynter Jones">
-<meta name="twitter:description" content="The builder behind the Wynter suite, Farmwork, and OpenPaw.">
+<meta name="twitter:title" content="Who's behind PACE — Wynter Jones">
+<meta name="twitter:description" content="PACE is the method behind the software on this site, not a theory someone wrote up. The builder behind the Wynter suite, Farmwork, and OpenPaw.">
 <meta name="twitter:image" content="https://wynter.ai/assets/og.png">
 
 <link rel="icon" href="/assets/favicon.ico" sizes="32x32">
@@ -37,16 +38,37 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "url": "https://wynter.ai/about",
-  "mainEntity": {
-    "@type": "Person",
-    "name": "Wynter Jones",
-    "url": "https://wynter.ai/about",
-    "jobTitle": "Founder",
-    "description": "Builder of the Wynter suite of AI product tools, and of the open-source projects Farmwork and OpenPaw.",
-    "worksFor": { "@type": "Organization", "name": "Wynter.ai", "url": "https://wynter.ai/" }
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wynter.ai/#org",
+      "name": "Wynter.ai",
+      "url": "https://wynter.ai/",
+      "logo": "https://wynter.ai/assets/wynterai-logo.png",
+      "founder": { "@type": "Person", "@id": "https://wynter.ai/about#person" }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://wynter.ai/about#webpage",
+      "url": "https://wynter.ai/about",
+      "name": "Who's behind PACE — Wynter Jones",
+      "description": "PACE is the working method behind the software on this site, not a theory. Wynter Jones has built for the web for 25+ years and builds with coding agents daily.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://wynter.ai/#site" },
+      "publisher": { "@id": "https://wynter.ai/#org" },
+      "primaryImageOfPage": "https://wynter.ai/assets/og.png",
+      "mainEntity": { "@id": "https://wynter.ai/about#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://wynter.ai/about#person",
+      "name": "Wynter Jones",
+      "url": "https://wynter.ai/about",
+      "jobTitle": "Founder",
+      "description": "Web developer of 25+ years — ClickFunnels Classic, Udio, MarketingSecretsAI — and builder of Wynter.ai, a suite of apps for building with AI, plus the open-source projects Farmwork and OpenPaw. Author of PACE.",
+      "worksFor": { "@id": "https://wynter.ai/#org" }
+    }
+  ]
 }
 </script>
 </head>
@@ -60,9 +82,11 @@
       <img src="/assets/wynterai-logo.png" alt="Wynter.ai" width="510" height="250" fetchpriority="high">
     </a>
     <nav class="nav" aria-label="Main">
+      <a href="/pace/guide/">Guide</a>
+      <a href="/pace/protocol/">Protocol</a>
       <a href="/about" aria-current="page">About</a>
       <a href="/pricing">Pricing</a>
-      <a class="btn btn-secondary" href="https://account.wynter.ai/login">Login</a>
+      <a href="https://account.wynter.ai/login">Login</a>
     </nav>
   </div>
 </header>
@@ -72,10 +96,10 @@
 
     <div class="page-head">
       <p class="eyebrow">About</p>
-      <h1>Wynter Jones</h1>
+      <h1>PACE is how I work.</h1>
       <p class="lede">
-        I build the tools I needed and couldn't find — then hand them to everyone
-        else on the same account.
+        It isn&rsquo;t a theory I wrote up. It&rsquo;s the method behind the
+        software on this site, after 25 years of building for the&nbsp;web.
       </p>
     </div>
 
@@ -83,71 +107,113 @@
 
       <div class="prose">
         <p>
-          Wynter.ai is a suite of small, sharp products for the work that sits
-          between an idea and a shipped thing: figuring out the offer, planning
-          the build, writing the spec, keeping the tasks moving. Each one started
-          as something I built for my own projects because the alternative was a
-          blank page and a lot of guessing.
+          <a href="/pace/guide/">PACE</a> is two laws for working with coding agents:
+          act in parallel, so your attention stops being the thing they wait on,
+          and compound effort, so the tenth task is faster than the first. It's
+          free, and it's the way I actually&nbsp;work.
         </p>
         <p>
-          They are separate apps on purpose. A single tool that claims to do all
-          of it ends up doing none of it well — so <strong>BuildThisFunnel</strong>
-          only cares about funnels, <strong>CreateThisOffer</strong> only cares
-          about offers, and so on. What holds them together isn't a mega-app,
-          it's one account.
+          That distinction is the whole reason this page exists. A framework
+          nobody has run is a guess with a diagram attached. This one came out of
+          shipping — the apps on this site, the harness underneath them, and a
+          lot of ordinary days finding out which parts of it survive a normal
+          working&nbsp;week.
+        </p>
+
+        <h2>Who's behind it</h2>
+        <p>
+          I'm Wynter Jones, and I've been building for the web for more than 25
+          years. Recent work includes <strong>ClickFunnels Classic</strong>,
+          <strong>Udio</strong>, and <strong>MarketingSecretsAI</strong>, and I
+          work alongside a lot of the marketers who set the pace in this space —
+          Russell Brunson among&nbsp;them.
+        </p>
+        <p>
+          I work small and ship often: narrow tools, in front of people early,
+          sharpened by whatever actually breaks. It's an unglamorous way to
+          build and it's the only one I've seen hold up — a tool nobody has used
+          yet is a guess, however good the plan&nbsp;was.
+        </p>
+
+        <h2>Where the method shows up</h2>
+        <p>
+          <a href="https://farmwork.dev">Farmwork</a> is an open, free workflow
+          framework for agentic development with Claude Code and other AI coding
+          tools — the same harness I use to build everything here. It is what the
+          two laws look like once they stop being advice and become
+          software.
+        </p>
+        <p>
+          <a href="https://openpaw.wynter.ai">OpenPaw</a> is a self-hosted AI
+          workbench: you describe the tool you need, agents build it as a real
+          running service, and the whole thing stays on your own machine. Both
+          are free, both are open to read, and both work with the Wynter account
+          you already&nbsp;have.
+        </p>
+        <p>
+          Wynter.ai itself is a suite of apps for building with AI — planning the
+          build, writing the spec, shaping the brand, keeping the tasks moving.
+          They are separate apps on purpose: a single tool that claims to do all
+          of it ends up doing none of it well, so <strong>BuildThisFunnel</strong>
+          only cares about funnels and <strong>DoTheseTasks</strong> only cares
+          about keeping the work moving. Every one of them started in a real
+          project where I needed the thing, couldn't buy it, and built it anyway
+          — then used it long enough to find out where it was wrong and
+          fixed&nbsp;that.
+        </p>
+
+        <h2>Why PACE is free</h2>
+        <p>
+          The framework costs nothing and always will. The two laws, the
+          templates and the protocol are on this site in full, and the
+          <a href="/pace/guide/">entire field guide reads in the browser</a> with
+          no account and no email&nbsp;form.
+        </p>
+        <p>
+          That's the same reason the free tools, the training, and the checklists
+          sit out front rather than behind a wall. The fastest way to learn
+          whether something works is to watch people use&nbsp;it. A method you
+          can only evaluate after paying isn't a method, it's a brochure.
         </p>
 
         <h2>One account, on purpose</h2>
         <p>
-          Every app in the suite runs on a single Wynter account. One login, one
-          subscription, one shared credit balance — not seven separate signups
-          and seven separate invoices. Sign up once and every app is already open
-          when you get there.
+          Every app runs on a single Wynter account. One login, one subscription,
+          one shared credit balance — not a separate signup and a separate
+          invoice per app. Sign up once and everything is already open when you
+          get&nbsp;there.
         </p>
         <p>
           That's also why the free plan is genuinely free rather than a trial
-          with a countdown. You should be able to use the suite, get something
+          with a countdown. You should be able to use the tools, get something
           out of it, and only pay when you hit the part that's worth paying for.
         </p>
 
-        <h2>Open source too</h2>
-        <p>
-          Not everything is a product. <a href="https://farmwork.dev">Farmwork</a>
-          is an open, free workflow framework for agentic development with Claude
-          Code and other AI coding tools — the same harness I use to build
-          everything here. <a href="https://openpaw.wynter.ai">OpenPaw</a> is a
-          self-hosted AI workbench: you describe the tool you need, agents build
-          it as a real running service, and the whole thing stays on your own
-          machine.
-        </p>
-        <p>
-          Both are free, both are open to read, and both work with the Wynter
-          account you already have.
-        </p>
-
-        <h2>How I build</h2>
-        <p>
-          Small products, shipped fast, then sharpened. I'd rather put a narrow
-          tool in front of people this month than a broad one next year, and I'd
-          rather fix the thing people actually hit than the thing I imagined
-          they'd hit. Most of what's in the suite exists because a real project
-          of mine needed it first.
-        </p>
+        <figure class="signature">
+          <img src="/assets/wynter-jones-signature.png" alt="Wynter Jones"
+               width="720" height="411" loading="lazy" decoding="async">
+        </figure>
 
         <aside class="card cta">
           <div>
-            <h2 class="tight">Try the whole suite free</h2>
-            <p>One account opens every app. No card required.</p>
+            <h2 class="tight">Get the framework</h2>
+            <p>The field guide, both laws in full, and the three templates. Free.</p>
           </div>
-          <a class="btn btn-primary btn-lg" href="https://account.wynter.ai/join/wynter-ai">Create a free account</a>
+          <a class="btn btn-primary btn-lg" href="/#get-pace">Get PACE free</a>
         </aside>
       </div>
 
       <aside class="card sidecard">
         <h2>At a glance</h2>
         <dl>
+          <dt>Method</dt>
+          <dd><a href="/pace/guide/">PACE</a> &mdash; Parallel Action, Compounding Effort. Free.</dd>
+
+          <dt>Experience</dt>
+          <dd>25+ years building for the web &mdash; ClickFunnels Classic, Udio, MarketingSecretsAI.</dd>
+
           <dt>Building</dt>
-          <dd>The Wynter suite — seven apps for planning, building, and selling software.</dd>
+          <dd>A suite of apps for building with AI, plus the free tools and resources around them.</dd>
 
           <dt>Open source</dt>
           <dd>
@@ -171,7 +237,11 @@
 <footer class="site-foot">
   <div class="shell">
     <p>&copy; <span id="year">2026</span> Wynter.ai — built by Wynter Jones.</p>
-    <nav class="foot-links" aria-label="Legal">
+    <p class="foot-version">PACE Protocol v1.0</p>
+    <nav class="foot-links" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/pace/guide/">Field Guide</a>
+      <a href="/pace/protocol/">Protocol</a>
       <a href="/about">About</a>
       <a href="/pricing">Pricing</a>
       <a href="/terms">Terms</a>
