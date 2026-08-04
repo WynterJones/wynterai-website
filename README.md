@@ -172,7 +172,7 @@ sits outside that count.
 
 ## Positioning
 
-The home page sells **the free account**, and what the account opens: the six
+The home page sells **the free account**, and what the account opens: the five
 apps, the newsletter, and PACE. It used to sell PACE alone, which was one asset
 standing in for the whole offer, with the form buried mid-page where it read as
 an afterthought.
