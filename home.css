@@ -41,8 +41,12 @@
   opacity: 0.55;
 }
 
-/* Two washes, not one. The radial keeps the text column dark enough for
-   reversed type at any width; the linear ties the bottom edge back into
+/* Three washes, not one, and the first is the accessibility one rather than the
+   pretty one. Wherever type sits over the plate, the ground has to stay dark
+   enough that a bright track passing under a word doesn't eat the contrast:
+   at 96% the worst case behind --ink-400 is 3.85:1, above the 3.5:1 floor this
+   site holds secondary text to. The second wash opens the right-hand third so
+   the drawing is still visible, and the third ties the bottom edge back into
    --ink-950 so the band ends without a seam. */
 .home-hero::after {
   content: "";
@@ -50,13 +54,21 @@
   inset: 0;
   z-index: -1;
   background:
+    linear-gradient(90deg,
+      rgba(10, 10, 13, 0.97) 0%, rgba(10, 10, 13, 0.96) 46%,
+      rgba(10, 10, 13, 0.55) 68%, rgba(10, 10, 13, 0.18) 100%),
     radial-gradient(115% 95% at 8% 45%,
-      rgba(10, 10, 13, 0.96), rgba(10, 10, 13, 0.62) 48%, rgba(10, 10, 13, 0.1) 78%),
+      rgba(10, 10, 13, 0.55), rgba(10, 10, 13, 0.25) 48%, transparent 78%),
     linear-gradient(180deg,
       rgba(10, 10, 13, 0.7), rgba(10, 10, 13, 0.15) 35%, var(--ink-950));
 }
 
 .home-hero .shell { position: relative; }
+
+/* One step up from the site-wide muted grey. Everything in this block sits on
+   artwork rather than on flat --ink-950, and --text-muted only has 3.75:1 to
+   give away before it drops under the floor. */
+.home-hero .eyebrow { color: var(--ink-400); }
 
 .home-title {
   margin-top: 18px;
@@ -114,7 +126,7 @@
   list-style: none;
   padding: 0;
   font-size: 13.5px;
-  color: var(--text-muted);
+  color: var(--ink-400);
 }
 
 .home-facts li { display: flex; align-items: center; gap: 9px; }
@@ -221,11 +233,14 @@
   padding: 22px 20px 24px;
 }
 
+/* --ink-600 is where this wants to sit optically and it is 1.9:1 on the tile,
+   which is not a colour text is allowed to be. --text-muted is the darkest step
+   that clears 3.5:1 against --ink-900. */
 .suite-n {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: var(--ink-600);
+  color: var(--text-muted);
 }
 
 .suite-name {
@@ -321,12 +336,16 @@
   overflow: hidden;
 }
 
+/* 96% for the width the copy occupies, and only then does it open up. The rays
+   in this plate converge just right of the text block, so the crossover has to
+   sit past the measure rather than under it. */
 .pace-banner::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg,
-    rgba(10, 10, 13, 0.94), rgba(10, 10, 13, 0.72) 42%, rgba(10, 10, 13, 0.15));
+    rgba(10, 10, 13, 0.97) 0%, rgba(10, 10, 13, 0.96) 42%,
+    rgba(10, 10, 13, 0.28) 58%, rgba(10, 10, 13, 0.06) 100%);
 }
 
 .pace-banner-in {
@@ -335,6 +354,8 @@
   max-width: 44ch;
   padding: clamp(22px, 3vw, 34px);
 }
+
+.pace-banner-in .eyebrow { color: var(--ink-300); }
 
 .pace-banner-in h3 {
   margin-top: 10px;
@@ -400,12 +421,14 @@
 }
 .res-card:hover { border-color: var(--signal-500); background: var(--ink-850); }
 
+/* --ink-400 rather than --text-muted, because the hover state lifts the card to
+   --ink-850 and --text-muted only has 3.39:1 there. */
 .res-kind {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--ink-400);
 }
 
 .res-name {
@@ -455,8 +478,8 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(75% 70% at 50% 50%,
-    rgba(10, 10, 13, 0.94), rgba(10, 10, 13, 0.72) 60%, rgba(10, 10, 13, 0.4));
+  background: radial-gradient(78% 74% at 50% 50%,
+    rgba(10, 10, 13, 0.97), rgba(10, 10, 13, 0.96) 55%, rgba(10, 10, 13, 0.35));
 }
 
 .home-cta .shell { position: relative; }
@@ -480,7 +503,7 @@
 .home-cta-fine {
   margin-top: 20px;
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--ink-400);
 }
 
 .home-cta-fine a {
@@ -501,11 +524,14 @@
 
 @media (max-width: 560px) {
   /* The plates are 1400px wide drawings of fine line work. Scaled into a 375px
-     band they stop being a drawing and become noise, so the hero drops to a
-     flat ground and the banner keeps only its left third. */
+     band they stop being a drawing and become texture, so all three drop back
+     — and the banner's left-to-right wipe becomes a flat wash, because on a
+     box this narrow the copy covers the whole width and there is no right-hand
+     third left to open up. */
   .home-hero::before { opacity: 0.3; }
   .home-cta::before { opacity: 0.32; }
-  .pace-banner { min-height: 0; background-position: 18% center; }
+  .pace-banner { min-height: 0; }
+  .pace-banner::after { background: rgba(10, 10, 13, 0.9); }
   .home-title { max-width: none; }
   .home-facts { gap: 8px 20px; }
   .home-actions .btn { width: 100%; }

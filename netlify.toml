@@ -81,9 +81,9 @@
     # No 'unsafe-inline' anywhere: every script lives in /site.js and every rule
     # in /styles.css, precisely so this can stay strict.
     #
-    # form-action names the account platform because the home page signup form
-    # posts there — without it the browser blocks the submit and the funnel is
-    # dead. That form is a plain <form method="post">, so this line is load
+    # form-action names the account platform because the signup form at
+    # /signup/ posts there — without it the browser blocks the submit and the
+    # funnel is dead. That form is a plain <form method="post">, so this is load
     # bearing in production and there is no JavaScript fallback if it is
     # removed. It is deliberately the ONLY allowance: script-src and connect-src
     # stay closed, so nothing here can execute or exfiltrate to another origin.
