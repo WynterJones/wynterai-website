@@ -44,18 +44,14 @@
   to = "/"
   status = 301
 
-# Typed-in shortcuts. They land on the signup form on the home page rather than
-# on the account platform: /start is a POST endpoint, and the form that posts to
-# it lives here.
-[[redirects]]
-  from = "/signup"
-  to = "/#get-pace"
-  status = 301
-  force = true
-
+# Typed-in shortcut. It lands on the signup page rather than on the account
+# platform: /start is a POST endpoint, and the form that posts to it lives here.
+#
+# There is no rule for `/signup` any more — it is a real page at /signup/, and
+# `force = true` on a redirect would shadow the document it now points at.
 [[redirects]]
   from = "/join"
-  to = "/#get-pace"
+  to = "/signup/"
   status = 301
   force = true
 

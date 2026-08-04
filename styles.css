@@ -231,10 +231,12 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 .nav a:hover { color: var(--ink-50); background: var(--ink-850); }
 .nav a[aria-current="page"] { color: var(--ink-50); }
 
-/* The login link is the one action in the bar, so it takes a button shape
-   while About/Pricing stay as plain text links. */
-.nav .btn { margin-left: 6px; }
-.nav .btn:hover { background: var(--ink-800); }
+/* Signing up is the one action in the bar, so it takes the button shape while
+   every destination — Login included — stays a plain text link. Two buttons in
+   a header is two calls to action, and only one of them can be the point.
+   Deliberately NOT `.nav .btn`: that selector is one step above
+   `.btn-primary:hover` and quietly ate the button's own hover colour. */
+.nav-cta { margin-left: 6px; }
 
 /* --------------------------------------------------------------- footer */
 
@@ -257,13 +259,13 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 .foot-links a { transition: color 0.15s; }
 .foot-links a:hover { color: var(--ink-200); }
 
-/* ============================================================ opt-in page
+/* =========================================================== sign-up page
  *
- * One viewport, no scrolling: header, hero, footer laid out as three rows of
- * a full-height grid. `dvh` rather than `vh` so mobile browser chrome doesn't
- * push the footer under the fold. It degrades to scrolling on short or narrow
- * viewports — `min-height` rather than `height` — because a hero clipped to
- * fit is worse than a hero you nudge.
+ * /signup/ and /404. One viewport, no scrolling: header, hero, footer laid out
+ * as three rows of a full-height grid. `dvh` rather than `vh` so mobile browser
+ * chrome doesn't push the footer under the fold. It degrades to scrolling on
+ * short or narrow viewports — `min-height` rather than `height` — because a
+ * hero clipped to fit is worse than a hero you nudge.
  */
 
 .page-optin {
@@ -272,7 +274,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   grid-template-rows: auto 1fr auto;
 }
 
-/* The opt-in header doesn't stick: there is nothing to scroll past. */
+/* This header doesn't stick: there is nothing to scroll past. */
 .page-optin .site-head { position: static; backdrop-filter: none; background: none; }
 
 .hero {
@@ -281,25 +283,19 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   padding-block: clamp(24px, 5vh, 64px);
 }
 
-/* Three blocks, two columns. The copy is split into `lead` (eyebrow, headline,
-   sub) and `detail` (the checklist and app strip) rather than one column, so
-   the phone layout can slot the sign-up card between them — see the stacked
-   areas under `max-width: 900px`. Left as one block, the card landed below a
-   checklist and nine app pills, which is a long way to scroll to reach the
-   only button that matters. */
+/* Two columns: what you are signing up for on the left, the form on the right.
+   They stack in that order on a phone — see the areas under `max-width:900px`
+   — so the promise is always read before the fields, never after them. */
 .hero .shell {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  grid-template-areas:
-    "lead   signup"
-    "detail signup";
+  grid-template-areas: "lead signup";
   align-content: center;
   align-items: center;
   column-gap: clamp(32px, 5vw, 72px);
 }
 
 .hero-lead { grid-area: lead; }
-.hero-detail { grid-area: detail; }
 .signup { grid-area: signup; }
 
 /* Pages with nothing in the second column (the 404) get the full width. */
@@ -366,24 +362,32 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 }
 
 /* Padding and button metrics match <wynter-login>'s own card in WynterHub
-   (widgets/scripts/v1.js). Nothing on this site embeds that widget — the CTA
-   goes to the hosted lead page instead — but the card a visitor lands on next
-   is the account platform's, and arriving at an identically proportioned card
-   is what makes the handoff feel like one flow rather than two sites. */
-.signup-card { padding: 18px; }
+   (widgets/scripts/v1.js). Nothing on this site embeds that widget — this form
+   posts straight to the platform instead — but the screen a visitor lands on
+   next is the account platform's, and arriving at an identically proportioned
+   card is what makes the handoff feel like one flow rather than two sites. */
+.signup-form { padding: 22px; }
 
-.signup-card p {
-  margin: 8px 0 16px;
-  font-size: 14px;
-  color: var(--ink-300);
-}
+/* The card's own padding supplies the gap above the first field, so `.field`'s
+   top margin would double it. */
+.signup-form .field:first-child { margin-top: 0; }
 
-.signup-card .btn {
+.signup-form .btn[type="submit"] {
+  margin-top: 20px;
   width: 100%;
-  padding: 9px 16px;
 }
 
-.signup-card .btn + .btn { margin-top: 8px; }
+/* Buttons and checkboxes only take a focus ring from the UA sheet, which is
+   invisible on this ground. Text inputs get theirs from `.field-input:focus`. */
+.signup-form .btn:focus-visible,
+.signup-form input:focus-visible {
+  outline: 2px solid var(--signal-400);
+  outline-offset: 2px;
+}
+
+/* `:user-invalid` rather than `:invalid`, so a required field that nobody has
+   touched yet is not already red on arrival. */
+.signup-form .field-input:user-invalid { border-color: var(--signal-500); }
 
 /* ------------------------------------------------------------ form fields
  *
@@ -448,11 +452,9 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   flex: none;
 }
 
-.signup-card .btn[type="submit"] { margin-top: 16px; }
-
 /* The fine print under the card: what happens on the next screen, and the
-   legal links. Outside the card rather than in it, so the card stays two
-   buttons and a sentence. */
+   legal links. Outside the card rather than in it, so the card stays fields
+   and one button. */
 .signup-note {
   margin-top: 14px;
   font-size: 12px;
@@ -470,32 +472,6 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   flex-wrap: wrap;
   gap: 10px;
 }
-
-/* ------------------------------------------------------------- app strip */
-
-.strip { margin-top: clamp(22px, 4vh, 34px); }
-
-.strip-list {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  list-style: none;
-  padding: 0;
-}
-
-.strip-list li {
-  border: 1px solid var(--ink-800);
-  background: var(--ink-900);
-  border-radius: 999px;
-  padding: 5px 11px;
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--ink-400);
-  transition: color 0.15s, border-color 0.15s;
-}
-.strip-list li:hover { color: var(--ink-100); border-color: var(--ink-600); }
 
 /* ========================================================= content pages */
 
@@ -821,15 +797,16 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 /* ----------------------------------------------------------- responsive */
 
 @media (max-width: 900px) {
-  /* Headline, then the sign-up card, then the supporting detail. */
+  /* Headline and the checklist first, then the form under them. */
   .hero .shell {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "lead" "signup" "detail";
+    grid-template-areas: "lead" "signup";
     row-gap: 30px;
   }
   .hero .shell-single { grid-template-areas: "lead"; }
-  .signup { max-width: none; }
-  .strip { margin-top: 26px; }
+  /* Stacked, the card keeps a measure and sits left under the copy rather than
+     stretching a 14px label across a 728px tablet. */
+  .signup { max-width: 520px; margin-inline: 0; }
   .about-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .sidecard { position: static; }
   .plans { grid-template-columns: minmax(0, 1fr); }
