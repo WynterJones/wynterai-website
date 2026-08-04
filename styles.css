@@ -176,9 +176,10 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 
 .btn-lg { padding: 13px 22px; font-size: 15px; }
 
-/* One size above .btn-lg, for a page whose entire job is a single button. Only
-   the home page uses it, and only once — if a second one ever appears on the
-   same screen, one of them is not the call to action. */
+/* One size above .btn-lg, for the one button a page is actually for. Only the
+   home page's hero uses it — the closing call takes .btn-lg, because if two
+   buttons ever land on the same screen at the same weight, one of them is not
+   the call to action. */
 .btn-xl { padding: 16px 30px; font-size: 16.5px; font-weight: 600; }
 
 .card {
@@ -220,7 +221,12 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   gap: 4px;
 }
 
-.nav a {
+/* `:not(.btn)` for the same reason `.prose a` carries it: `.nav a` is
+   specificity (0,1,1) and `.btn` is (0,1,0), so without the exclusion the link
+   rule wins over the button's own padding, size and colour — and `.nav a:hover`
+   wins over `.btn-primary:hover`, which turned the signup button grey under the
+   cursor. */
+.nav a:not(.btn) {
   padding: 8px 12px;
   border-radius: var(--radius-btn);
   font-size: 14px;
@@ -228,7 +234,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   color: var(--ink-300);
   transition: color 0.15s, background-color 0.15s;
 }
-.nav a:hover { color: var(--ink-50); background: var(--ink-850); }
+.nav a:not(.btn):hover { color: var(--ink-50); background: var(--ink-850); }
 .nav a[aria-current="page"] { color: var(--ink-50); }
 
 /* Signing up is the one action in the bar, so it takes the button shape while
@@ -814,29 +820,33 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   .tools { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
 
-/* Guide and Protocol joined the bar, so it carries five destinations plus the
-   mark. That will not fit on one 375px line, and shrinking the labels far
-   enough to make it fit puts them under 12px. Below the tablet breakpoint the
-   header becomes two centred rows instead.
+/* The bar carries five destinations, the signup button and the mark. That will
+   not fit on one 375px line, and shrinking the labels far enough to make it fit
+   puts them under 12px. Below the tablet breakpoint the header becomes three
+   centred rows instead — mark, links, button — and everything in it tightens,
+   because a sticky bar is a permanent tax on the viewport underneath it.
    --head-h is redefined rather than abandoned because `.sidecard` and the
    guide's scroll-margin both offset by it; min-height keeps the real bar and
    the token in agreement. */
 @media (max-width: 720px) {
-  :root { --head-h: 112px; }
+  :root { --head-h: 144px; }
 
   .site-head {
     height: auto;
     min-height: var(--head-h);
-    padding-block: 12px;
+    padding-block: 10px;
   }
-  .site-head .shell { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
-  .nav { flex-wrap: wrap; justify-content: center; row-gap: 4px; }
+  .site-head .shell { flex-wrap: wrap; justify-content: center; row-gap: 6px; }
+  .nav { flex-wrap: wrap; justify-content: center; row-gap: 6px; }
+  .brand img { height: 42px; }
+  /* On its own row the offset is no longer a gap between two things. */
+  .nav-cta { margin-left: 0; }
 }
 
 @media (max-width: 560px) {
   /* Sized so all five labels still hold one line inside 375px. */
   .nav { gap: 2px; }
-  .nav a { padding: 8px 8px; font-size: 13px; }
+  .nav a:not(.btn) { padding: 8px 8px; font-size: 13px; }
   .brand img { height: 38px; }
   .hero { padding-block: 32px; }
   .site-foot .shell { justify-content: flex-start; }

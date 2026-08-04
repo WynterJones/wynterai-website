@@ -1,0 +1,512 @@
+/* wynter.ai — the home page, and only the home page.
+ *
+ * Loaded after styles.css and additive only: every token, primitive and
+ * component there (.shell, .btn, .card, .eyebrow, .site-head, .site-foot) is
+ * reused as-is. What lives here is the front door's own composition — the one
+ * page on the site that is allowed more visual ambition than the interiors,
+ * because it is the only one people arrive at without having decided anything.
+ *
+ * The artwork is the five PACE plates from `assets/pace/`, the same drawings
+ * the field guide uses as chapter banners. They are backgrounds rather than
+ * <img> here: nothing in them carries meaning the copy doesn't already carry,
+ * so they take no alt text and no place in the document.
+ *
+ * Same constraint as the other stylesheets: the Content-Security-Policy in
+ * netlify.toml serves `style-src 'self'` with no `unsafe-inline`, so nothing
+ * here may be pushed into a `style` attribute later.
+ */
+
+/* ================================================================== hero
+ *
+ * The parallel-tracks plate, held well back and washed out from the left, so
+ * the headline sits on near-flat ground and the drawing only shows up in the
+ * margins. `isolation: isolate` keeps the two pseudo-element layers in this
+ * element's own stacking context rather than sliding under the sticky header.
+ */
+
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink-800);
+  padding-block: clamp(56px, 11vh, 132px) clamp(52px, 9vh, 108px);
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("/assets/pace/divider-02-parallel-web.webp") center / cover no-repeat;
+  opacity: 0.55;
+}
+
+/* Two washes, not one. The radial keeps the text column dark enough for
+   reversed type at any width; the linear ties the bottom edge back into
+   --ink-950 so the band ends without a seam. */
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(115% 95% at 8% 45%,
+      rgba(10, 10, 13, 0.96), rgba(10, 10, 13, 0.62) 48%, rgba(10, 10, 13, 0.1) 78%),
+    linear-gradient(180deg,
+      rgba(10, 10, 13, 0.7), rgba(10, 10, 13, 0.15) 35%, var(--ink-950));
+}
+
+.home-hero .shell { position: relative; }
+
+.home-title {
+  margin-top: 18px;
+  max-width: 17ch;
+  font-size: clamp(2.5rem, 1.35rem + 4.3vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+/* Red falls on the word carrying the offer, never on a whole line. It is the
+   only accent in the system and it stops meaning "act here" the moment it
+   decorates. */
+.home-title em { font-style: normal; color: var(--signal-500); }
+
+.home-lede {
+  margin-top: 22px;
+  max-width: 56ch;
+  font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.375rem);
+  line-height: 1.5;
+  color: var(--ink-300);
+}
+
+.home-lede strong { color: var(--ink-50); font-weight: 600; }
+
+.home-actions {
+  margin-top: clamp(28px, 4vh, 38px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+
+/* A text link beside the button, never a second button. Anyone not ready to
+   hand over an address should have somewhere to go that isn't a dead end, and
+   it must not compete with the one click the page is for. */
+.home-alt {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink-200);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--ink-600);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.home-alt:hover { color: var(--ink-50); text-decoration-color: var(--signal-500); }
+
+/* Three facts, not three claims: each one is either on the pricing page or in
+   the account platform's own behaviour. */
+.home-facts {
+  margin-top: clamp(30px, 4vh, 44px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  list-style: none;
+  padding: 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.home-facts li { display: flex; align-items: center; gap: 9px; }
+
+.home-facts li::before {
+  content: "";
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal-500);
+}
+
+/* One entrance, on the block that is above the fold, and nothing else on the
+   page moves on load. The reduced-motion rule in styles.css collapses the
+   duration to 0.01ms, and because the animation ends at the visible state that
+   leaves the hero rendered rather than hidden. */
+@keyframes home-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.home-hero .shell { animation: home-rise 0.5s ease-out both; }
+
+/* ============================================================== bands
+ *
+ * Every section below the hero shares one frame: a hairline, a numbered mark,
+ * a title and a lede. The numerals are the same device the field guide uses for
+ * its parts, which is what makes a marketing page and a 40-page PDF read as one
+ * publication.
+ */
+
+.band { border-top: 1px solid var(--ink-800); padding-block: clamp(52px, 8vh, 92px); }
+
+.band-mark {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.band-n {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--signal-400);
+}
+
+.band-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.band-title {
+  margin-top: 16px;
+  max-width: 20ch;
+  font-size: clamp(1.75rem, 1.25rem + 1.6vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.032em;
+}
+
+.band-sub {
+  margin-top: 16px;
+  max-width: 62ch;
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  line-height: 1.55;
+  color: var(--ink-400);
+}
+
+.band-sub strong { color: var(--ink-200); font-weight: 600; }
+
+.band-sub a {
+  color: var(--ink-100);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--ink-600);
+}
+.band-sub a:hover { text-decoration-color: var(--signal-500); }
+
+/* ============================================================ the suite
+ *
+ * Tiles, not links: there is no per-app page on this site to send anyone to,
+ * and a card that lifts under the cursor and then does nothing is a lie about
+ * what it is. All the craft here is static — the mono index, the measure, the
+ * gradient that lets the grid sit slightly above the page ground.
+ */
+
+.suite {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+}
+
+.suite li {
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-tile);
+  background: linear-gradient(180deg, var(--ink-900), rgba(18, 18, 22, 0.35));
+  padding: 22px 20px 24px;
+}
+
+.suite-n {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-600);
+}
+
+.suite-name {
+  margin-top: 12px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  color: var(--ink-50);
+}
+
+.suite-desc {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-400);
+}
+
+.suite-note {
+  margin-top: 26px;
+  max-width: 66ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-400);
+}
+
+.suite-note a {
+  color: var(--ink-100);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--ink-600);
+}
+.suite-note a:hover { text-decoration-color: var(--signal-500); }
+
+.suite-note strong { color: var(--ink-200); font-weight: 600; }
+
+/* ========================================================== newsletter */
+
+.news {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 52px);
+  align-items: start;
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-tile);
+  background: var(--ink-900);
+  padding: clamp(22px, 3.2vw, 36px);
+}
+
+.news h3 { font-size: 1.0625rem; font-weight: 600; }
+
+.news p {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-400);
+}
+
+.news-list {
+  display: grid;
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-list li {
+  border-top: 1px solid var(--ink-800);
+  padding: 14px 0;
+}
+.news-list li:first-child { border-top: 0; padding-top: 0; }
+
+.news-name { font-size: 14.5px; font-weight: 600; color: var(--ink-100); }
+.news-desc { margin-top: 4px; font-size: 13.5px; line-height: 1.55; color: var(--ink-400); }
+
+/* ================================================================= PACE
+ *
+ * The bottleneck plate, used the way the guide uses it: a full-width band with
+ * the title set into it. The drawing is near-black line work to begin with, so
+ * the scrim only has to lift the left third far enough for reversed type — a
+ * heavier wash would flatten it into a texture.
+ */
+
+.pace-banner {
+  position: relative;
+  margin-top: 34px;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(200px, 26vw, 300px);
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-tile);
+  background: url("/assets/pace/divider-01-bottleneck-web.webp") center / cover no-repeat;
+  overflow: hidden;
+}
+
+.pace-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgba(10, 10, 13, 0.94), rgba(10, 10, 13, 0.72) 42%, rgba(10, 10, 13, 0.15));
+}
+
+.pace-banner-in {
+  position: relative;
+  z-index: 1;
+  max-width: 44ch;
+  padding: clamp(22px, 3vw, 34px);
+}
+
+.pace-banner-in h3 {
+  margin-top: 10px;
+  font-size: clamp(1.375rem, 1.05rem + 1.1vw, 1.875rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.pace-banner-in p {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-300);
+}
+
+/* The two laws, stated once each. The full argument is the field guide's job;
+   here they only have to be legible enough to be worth the click. */
+.laws-brief {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 26px 44px;
+  list-style: none;
+  padding: 0;
+}
+
+.law-name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink-50);
+}
+
+.law-name span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-400);
+}
+
+.law-line { margin-top: 8px; font-size: 14.5px; line-height: 1.6; color: var(--ink-400); }
+
+/* ---------------------------------------------------- the two resources */
+
+.res {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 14px;
+}
+
+/* These ARE links, so they get the hover the suite tiles don't. */
+.res-card {
+  display: block;
+  border: 1px solid var(--ink-700);
+  border-radius: var(--radius-tile);
+  background: var(--ink-900);
+  padding: 22px;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.res-card:hover { border-color: var(--signal-500); background: var(--ink-850); }
+
+.res-kind {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.res-name {
+  margin-top: 10px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink-50);
+}
+
+.res-desc { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--ink-400); }
+
+.res-go {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--signal-400);
+}
+
+/* ========================================================= closing call
+ *
+ * The toolkit plate, faint, behind a centred block. Same button as the hero,
+ * same destination, same words — a second call to action that says something
+ * different is a second offer.
+ */
+
+.home-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-top: 1px solid var(--ink-800);
+  padding-block: clamp(60px, 10vh, 112px);
+  text-align: center;
+}
+
+.home-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("/assets/pace/divider-05-toolkit-web.webp") center / cover no-repeat;
+  opacity: 0.5;
+}
+
+.home-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(75% 70% at 50% 50%,
+    rgba(10, 10, 13, 0.94), rgba(10, 10, 13, 0.72) 60%, rgba(10, 10, 13, 0.4));
+}
+
+.home-cta .shell { position: relative; }
+
+.home-cta h2 {
+  font-size: clamp(1.875rem, 1.3rem + 1.9vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.home-cta p {
+  margin: 16px auto 0;
+  max-width: 52ch;
+  font-size: clamp(0.9375rem, 0.9rem + 0.3vw, 1.0625rem);
+  line-height: 1.55;
+  color: var(--ink-300);
+}
+
+.home-cta .btn { margin-top: 30px; }
+
+.home-cta-fine {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.home-cta-fine a {
+  color: var(--ink-300);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--ink-600);
+}
+.home-cta-fine a:hover { color: var(--ink-50); text-decoration-color: var(--signal-500); }
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 860px) {
+  /* The newsletter panel's two columns are a heading beside a list. Below this
+     the list would be four words wide, so it goes under the copy instead. */
+  .news { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  /* The plates are 1400px wide drawings of fine line work. Scaled into a 375px
+     band they stop being a drawing and become noise, so the hero drops to a
+     flat ground and the banner keeps only its left third. */
+  .home-hero::before { opacity: 0.3; }
+  .home-cta::before { opacity: 0.32; }
+  .pace-banner { min-height: 0; background-position: 18% center; }
+  .home-title { max-width: none; }
+  .home-facts { gap: 8px 20px; }
+  .home-actions .btn { width: 100%; }
+}
