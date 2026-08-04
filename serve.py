@@ -32,8 +32,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 REDIRECTS = {
     "/pace": "/",
     "/pace/": "/",
-    "/signup": "/#get-pace",
-    "/join": "/#get-pace",
+    "/join": "/signup/",
     "/tos": "/terms",
 }
 
