@@ -522,6 +522,25 @@
   .news { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* Five tiles divide evenly into neither two columns nor three, so whatever
+   lands on the last row stretches over the tracks that would otherwise sit
+   empty beside it. Left as-is, the auto-fit grid above puts one tile alone in
+   a half-width box at tablet and leaves a tile-shaped hole at desktop, and
+   both read as a missing item rather than as the end of the list. The two
+   thresholds are where that grid flips to two and three columns. */
+@media (min-width: 614px) {
+  .suite li:last-child { grid-column: 1 / -1; }
+}
+
+@media (min-width: 908px) {
+  /* Six tracks, not three: a tile spans two of them, and the two on the last
+     row span three each so the row closes flush. */
+  .suite { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .suite li { grid-column: span 2; }
+  .suite li:nth-child(4),
+  .suite li:last-child { grid-column: span 3; }
+}
+
 @media (max-width: 560px) {
   /* The plates are 1400px wide drawings of fine line work. Scaled into a 375px
      band they stop being a drawing and become texture, so all three drop back
