@@ -202,8 +202,18 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   z-index: 40;
 }
 
+/* `flex-wrap: wrap` on both rows is stated here rather than only inside the
+   720px breakpoint below, and it is load bearing. A nav that cannot wrap has no
+   way to fail except by running off the side of the phone, which is exactly
+   what shipped: seven items, 449px of them, in a 390px viewport, with "Get
+   started free" sliced through the middle of the word. Wrapping at every width
+   costs nothing on a desktop — there is far more room than the bar needs, so it
+   never takes a second line — and it means the breakpoint is now a refinement
+   of a layout that is already safe, not the only thing standing between the
+   header and the edge of the screen. */
 .site-head .shell {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
@@ -217,6 +227,7 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 4px;
 }
