@@ -112,18 +112,29 @@ upgrade-insecure-requests"""
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Same reasoning one level down: CSS and JS change with the site, so an hour is
-# long enough to help repeat visits and short enough that a fix lands the day
-# it ships.
+# CSS and JS revalidate on every load, exactly like the HTML that references
+# them. `max-age=3600` here used to be the compromise, and it is the bug that
+# put a broken nav on phones: the HTML must-revalidates, so a visitor picked up
+# markup from the current deploy while a browser cache served them a stylesheet
+# from up to an hour earlier. New HTML against old CSS is not a slower page, it
+# is a different page — in this case one whose header had no mobile breakpoint,
+# so the nav ran 449px wide inside a 390px viewport.
+#
+# The filenames carry no content hash (there is no build step to add one), so
+# there is nothing else keeping the pair in step. A 304 on two small files is a
+# cheaper thing to pay than a layout that is wrong for an hour after it is
+# fixed. The `?v=` on every <link> and <script> is the belt to this braces: it
+# also rescues caches populated under the old header, which would otherwise
+# keep the broken stylesheet no matter what this file says now.
 [[headers]]
   for = "/*.css"
   [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/*.js"
   [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Logos and icons are stable — if one changes, it changes filename.
 [[headers]]
