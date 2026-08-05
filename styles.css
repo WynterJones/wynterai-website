@@ -861,6 +861,27 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   .brand img { height: 38px; }
   .hero { padding-block: 32px; }
   .site-foot .shell { justify-content: flex-start; }
+
+  /* The CTA takes a row of its own, structurally, rather than being left to
+     flex-wrap's arithmetic.
+
+     It is the widest single item in the bar and the only one whose label
+     cannot break — `white-space: nowrap` on `.btn` is what keeps "Get started
+     free" from becoming two lines of button. Everything else here wraps or
+     shrinks. So if the header is ever going to exceed the viewport, this is
+     the item that does it, and whether it does was previously decided by a
+     measurement: five labels come to ~301px against 350px of content width at
+     390px, leaving 49px, and the button needs 143px. That is a comfortable
+     miss today and it wraps correctly — but it is still a sum, and a sum can
+     be flipped by a wider fallback face, a user-set minimum font size, a
+     translated label, or a sixth destination in the bar.
+
+     `flex-basis: 100%` replaces the sum with a rule: the item claims a whole
+     line, so there is no width at which it can share one with the links. Full
+     width rather than its natural 143px is the consequence and an improvement
+     — it is a 44px-tall tap target spanning the bar, and it matches the hero's
+     own button, which is already `width: 100%` at this breakpoint. */
+  .nav-cta { flex-basis: 100%; }
 }
 
 /* Below roughly a landscape phone there is no honest way to fit a headline, a
