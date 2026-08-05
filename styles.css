@@ -225,6 +225,46 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 .brand { display: inline-flex; align-items: center; }
 .brand img { height: 52px; width: auto; }
 
+/* The bar's five destinations live inside a <details> so they can collapse
+   behind one control on a phone. <details> rather than a scripted menu because
+   the disclosure, its keyboard behaviour and its expanded state are all native:
+   it opens with Enter or Space, it is a single stop in the tab order, the
+   accessibility tree gets the expanded/collapsed state without an aria-expanded
+   we would have to keep in sync, and all of it works with scripting off. There
+   is no JavaScript anywhere in this header.
+
+   Above 560px there is no toggle at all — the summary is hidden and the links
+   render as the row they always were. Un-hiding the content of a *closed*
+   <details> takes two declarations because engines have implemented the hiding
+   two different ways: older ones put `display: none` on the content, current
+   ones use `content-visibility: hidden` via ::details-content. Setting both
+   covers the transition rather than betting on one. */
+.nav-menu {
+  /* Absorbs the free space, so the links and the CTA stay grouped at the right
+     end of the bar the way they were when the CTA lived inside .nav. */
+  margin-left: auto;
+}
+
+/* A closed menu is laid out away entirely, not merely hidden from view.
+   Without this the shut panel still generates boxes, and because
+   `content-visibility: hidden` on ::details-content brings layout containment
+   with it, the <details> — not `.shell` — becomes the containing block for the
+   absolutely positioned panel below. The links then lay themselves out inside
+   the toggle's own 76px box and report a right edge past the viewport. It never
+   widened the document, since a contained, unpainted subtree contributes no
+   scrollable overflow — but it is the kind of phantom that any honest
+   "which elements stick out?" audit will find and rightly refuse to ignore.
+   `display: none` leaves nothing to measure. */
+.nav-menu:not([open]) > .nav { display: none; }
+
+@media (min-width: 561px) {
+  /* Above the phone breakpoint there is no toggle and no disclosure: the links
+     are simply the row they have always been, even though the element is still
+     a shut <details>. The !important is what outranks the rule above. */
+  .nav-menu > .nav { display: flex !important; }
+  .nav-menu::details-content { content-visibility: visible; display: contents; }
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -247,6 +287,43 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 }
 .nav a:not(.btn):hover { color: var(--ink-50); background: var(--ink-850); }
 .nav a[aria-current="page"] { color: var(--ink-50); }
+
+/* The phone's one nav control. Styled as a quiet secondary button so the red
+   CTA beside it stays the only thing in the header asking to be pressed. */
+.nav-toggle {
+  /* Shown only at the phone breakpoint, which turns it on. Declared off here
+     rather than switched off in a min-width query, because this rule sits below
+     that query in the file and would otherwise win over it. */
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--ink-700);
+  border-radius: var(--radius-btn);
+  background: var(--ink-850);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-200);
+  cursor: pointer;
+  user-select: none;
+  /* The UA's disclosure triangle, removed in both spellings. */
+  list-style: none;
+}
+.nav-toggle::-webkit-details-marker { display: none; }
+
+/* A chevron that points down when the menu is shut and up when it is open, so
+   the control states which way it is about to move. */
+.nav-toggle::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+}
+.nav-menu[open] > .nav-toggle::after { transform: rotate(-135deg); margin-top: 2px; }
 
 /* Signing up is the one action in the bar, so it takes the button shape while
    every destination — Login included — stays a plain text link. Two buttons in
@@ -833,9 +910,10 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 
 /* The bar carries five destinations, the signup button and the mark. That will
    not fit on one 375px line, and shrinking the labels far enough to make it fit
-   puts them under 12px. Below the tablet breakpoint the header becomes three
-   centred rows instead — mark, links, button — and everything in it tightens,
-   because a sticky bar is a permanent tax on the viewport underneath it.
+   puts them under 12px. Between this width and 560px the header becomes three
+   centred rows — mark, links, button — and everything in it tightens, because a
+   sticky bar is a permanent tax on the viewport underneath it. Below 560px the
+   links collapse behind the toggle entirely; see that block.
    --head-h is redefined rather than abandoned because `.sidecard` and the
    guide's scroll-margin both offset by it; min-height keeps the real bar and
    the token in agreement. */
@@ -850,37 +928,60 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   .site-head .shell { flex-wrap: wrap; justify-content: center; row-gap: 6px; }
   .nav { flex-wrap: wrap; justify-content: center; row-gap: 6px; }
   .brand img { height: 42px; }
+  /* Centred rows, so the auto margin that grouped things right is wrong here. */
+  .nav-menu { margin-left: 0; }
   /* On its own row the offset is no longer a gap between two things. */
   .nav-cta { margin-left: 0; }
 }
 
+/* The phone header. Five labels on one line is a fight this bar loses at any
+   honest type size, so below this width it stops having the fight: the links go
+   behind the toggle and the bar carries the mark, one control and the CTA.
+   Nothing here is measured against a label's width, which is the point — there
+   is no arrangement of the five destinations that can widen the header, because
+   at this width the header never lays them out at all until asked.
+   --head-h drops to match: two short rows instead of three. */
 @media (max-width: 560px) {
-  /* Sized so all five labels still hold one line inside 375px. */
-  .nav { gap: 2px; }
-  .nav a:not(.btn) { padding: 8px 8px; font-size: 13px; }
+  :root { --head-h: 108px; }
+
   .brand img { height: 38px; }
   .hero { padding-block: 32px; }
   .site-foot .shell { justify-content: flex-start; }
 
-  /* The CTA takes a row of its own, structurally, rather than being left to
-     flex-wrap's arithmetic.
+  /* Row one is the mark and the toggle, pushed to opposite ends. */
+  .site-head .shell { justify-content: space-between; position: relative; }
+  .nav-menu { margin-left: 0; }
+  .nav-toggle { display: inline-flex; }
 
-     It is the widest single item in the bar and the only one whose label
+  /* Open, the links drop out of the bar as a panel pinned to the shell's own
+     edges rather than growing inside the flex row — a menu that reflows the
+     header while it opens moves the control you just pressed out from under
+     your thumb. The header is already the stacking context (position: sticky,
+     z-index 40), so the panel covers the page rather than parting it. */
+  .nav-menu > .nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 10px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 8px 20px 14px;
+    background: var(--ink-950);
+    border-bottom: 1px solid var(--ink-800);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .nav-menu > .nav a:not(.btn) { padding: 11px 10px; font-size: 15px; }
+
+  /* Row two, in full. The CTA is the one item left in the bar whose label
      cannot break — `white-space: nowrap` on `.btn` is what keeps "Get started
-     free" from becoming two lines of button. Everything else here wraps or
-     shrinks. So if the header is ever going to exceed the viewport, this is
-     the item that does it, and whether it does was previously decided by a
-     measurement: five labels come to ~301px against 350px of content width at
-     390px, leaving 49px, and the button needs 143px. That is a comfortable
-     miss today and it wraps correctly — but it is still a sum, and a sum can
-     be flipped by a wider fallback face, a user-set minimum font size, a
-     translated label, or a sixth destination in the bar.
-
-     `flex-basis: 100%` replaces the sum with a rule: the item claims a whole
-     line, so there is no width at which it can share one with the links. Full
-     width rather than its natural 143px is the consequence and an improvement
-     — it is a 44px-tall tap target spanning the bar, and it matches the hero's
-     own button, which is already `width: 100%` at this breakpoint. */
+     free" from becoming two lines of button — so it is the only thing that
+     could still put a hard minimum under the header's width. `flex-basis: 100%`
+     settles that structurally instead of leaving it to a sum: the item claims a
+     whole line, so it never competes with the mark or the toggle for one. Full
+     width is the consequence and an improvement — a 44px-tall target spanning
+     the bar, matching the hero button, which is already `width: 100%` here. */
   .nav-cta { flex-basis: 100%; }
 }
 
