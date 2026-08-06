@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>One free account, the whole suite — Wynter.ai</title>
-<meta name="description" content="Five apps for building with AI, the PACE field guide and drop-in protocol, and a newsletter on working with coding agents. One free account opens all of it — no card, no trial clock.">
+<meta name="description" content="Five apps for building with AI, one login across all of them, and one $28/mo subscription that unlocks the premium features everywhere at once. One free account opens all of it — no card, no trial clock.">
 <link rel="canonical" href="https://wynter.ai/">
 <meta name="theme-color" content="#0a0a0d">
 <meta name="author" content="Wynter Jones">
@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="Wynter.ai">
 <meta property="og:url" content="https://wynter.ai/">
 <meta property="og:title" content="One free account, the whole suite">
-<meta property="og:description" content="Five apps for building with AI, the PACE field guide and protocol, and a newsletter on working with coding agents. One free account opens all of it.">
+<meta property="og:description" content="Five apps for building with AI, one login across all of them, and one subscription that unlocks the premium features everywhere at once. One free account opens all of it.">
 <meta property="og:image" content="https://wynter.ai/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Wynter.ai — the agentic engineer's toolkit">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="One free account, the whole suite">
-<meta name="twitter:description" content="Five apps for building with AI, the PACE field guide and protocol, and a newsletter on working with coding agents. One free account opens all of it.">
+<meta name="twitter:description" content="Five apps for building with AI, one login across all of them, and one subscription that unlocks the premium features everywhere at once. One free account opens all of it.">
 <meta name="twitter:image" content="https://wynter.ai/assets/og.png">
 
 <link rel="icon" href="/assets/favicon.ico" sizes="32x32">
@@ -36,8 +36,8 @@
      CSS background, which the preload scanner will not find on its own. -->
 <link rel="preload" as="image" href="/assets/pace/divider-02-parallel-web.webp">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/styles.css?v=20260804">
-<link rel="stylesheet" href="/home.css?v=20260804">
+<link rel="stylesheet" href="/styles.css?v=20260806">
+<link rel="stylesheet" href="/home.css?v=20260806">
 
 <script type="application/ld+json">
 {
@@ -56,7 +56,7 @@
       "@id": "https://wynter.ai/#site",
       "url": "https://wynter.ai/",
       "name": "Wynter.ai",
-      "description": "A suite of apps for building with AI, the free PACE framework, and a newsletter on working with coding agents. One free account opens all of it.",
+      "description": "A suite of apps for building with AI on one account, one subscription and one shared credit balance. One free account opens all of it.",
       "publisher": { "@id": "https://wynter.ai/#org" }
     },
     {
@@ -64,7 +64,7 @@
       "@id": "https://wynter.ai/#webpage",
       "url": "https://wynter.ai/",
       "name": "One free account, the whole suite — Wynter.ai",
-      "description": "Five apps for building with AI, the PACE field guide and drop-in protocol, and a newsletter on working with coding agents. One free account opens all of it.",
+      "description": "Five apps for building with AI, one login across all of them, and one subscription that unlocks the premium features everywhere at once. One free account opens all of it.",
       "inLanguage": "en",
       "isPartOf": { "@id": "https://wynter.ai/#site" },
       "publisher": { "@id": "https://wynter.ai/#org" },
@@ -93,8 +93,14 @@
     <details class="nav-menu">
       <summary class="nav-toggle">Menu</summary>
       <nav class="nav" aria-label="Main">
-        <a href="/pace/guide/">Guide</a>
-        <a href="/pace/protocol/">Protocol</a>
+        <details class="nav-drop">
+          <summary class="nav-drop-toggle">Learn</summary>
+          <div class="nav-drop-panel">
+            <a href="/pace/guide/">Field Guide</a>
+            <a href="/pace/protocol/">Protocol</a>
+          </div>
+        </details>
+        <a href="/history">History</a>
         <a href="/about">About</a>
         <a href="/pricing">Pricing</a>
         <a href="https://account.wynter.ai/login">Login</a>
@@ -111,17 +117,17 @@
        and collects does neither well. -->
   <section class="home-hero" aria-labelledby="home-title">
     <div class="shell">
-      <p class="eyebrow">Free account &middot; Newsletter &middot; PACE</p>
+      <p class="eyebrow">Free account &middot; One login &middot; One price</p>
       <h1 class="home-title" id="home-title">The whole suite, on a <em>free</em> account.</h1>
       <p class="home-lede">
-        Five apps for building with AI, the <strong>PACE</strong> field guide and
-        protocol, and a newsletter about what actually works with coding agents.
-        One account opens all of&nbsp;it.
+        Five apps for building with AI, one login across all of them, and one
+        subscription that unlocks the premium features everywhere at once. AI
+        usage is bought as credits, when you want&nbsp;them.
       </p>
 
       <p class="home-actions">
         <a class="btn btn-primary btn-xl" href="/signup/">Create your free account</a>
-        <a class="home-alt" href="/pace/guide/">Or read the field guide first</a>
+        <a class="home-alt" href="/pricing">Or see what Pro costs first</a>
       </p>
 
       <ul class="home-facts">
@@ -239,18 +245,19 @@
       </div>
     </section>
 
-    <!-- PACE, compressed. The full argument is /pace/guide/ — this is the
-         reason to click through, not a second copy of the guide. -->
+    <!-- PACE, compressed to the hook and the two links. The full argument is
+         /pace/guide/ — this is the reason to click through, not a second copy
+         of the guide, and not the site's thesis either. -->
     <section class="band" aria-labelledby="pace-title">
       <p class="band-mark">
         <span class="band-n">03</span>
-        <span class="band-label">The method</span>
+        <span class="band-label">Free reading</span>
       </p>
-      <h2 class="band-title" id="pace-title">PACE, free and complete.</h2>
+      <h2 class="band-title" id="pace-title">PACE, the method behind them.</h2>
       <p class="band-sub">
-        The framework costs nothing and always will. Both laws, the field guide
-        and the protocol are published here in full, readable without an
-        account, with nothing held back for a paid&nbsp;tier.
+        The apps came out of a way of working with coding agents, and that
+        method is written up free: two laws, a field guide and a drop-in
+        protocol, readable here without an&nbsp;account.
       </p>
 
       <div class="pace-banner">
@@ -265,25 +272,6 @@
           </p>
         </div>
       </div>
-
-      <ul class="laws-brief">
-        <li>
-          <p class="law-name"><span>Law one</span>Act in Parallel</p>
-          <p class="law-line">
-            Your agents can run concurrently. You can't. So stop being the thing
-            they wait on: give a task enough context to run for an hour, and get
-            every blocking question answered before it&nbsp;starts.
-          </p>
-        </li>
-        <li>
-          <p class="law-name"><span>Law two</span>Compound Effort</p>
-          <p class="law-line">
-            If your tenth task isn't faster than your first, you don't have a
-            system — you have a habit. Fix the context that produced a wrong
-            answer, not just the&nbsp;answer.
-          </p>
-        </li>
-      </ul>
 
       <div class="res">
         <a class="res-card" href="/pace/guide/">
@@ -334,6 +322,7 @@
       <a href="/">Home</a>
       <a href="/pace/guide/">Field Guide</a>
       <a href="/pace/protocol/">Protocol</a>
+      <a href="/history">History</a>
       <a href="/about">About</a>
       <a href="/pricing">Pricing</a>
       <a href="/terms">Terms</a>
@@ -343,6 +332,6 @@
   </div>
 </footer>
 
-<script src="/site.js?v=20260804" defer></script>
+<script src="/site.js?v=20260806" defer></script>
 </body>
 </html>

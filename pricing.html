@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pricing — PACE is free. Pro is $28/mo | Wynter.ai</title>
-<meta name="description" content="The PACE framework is free and always will be — guide, protocol and templates, no card. Pro is $28/month and unlocks every premium feature across the suite. Credits are bought as you go.">
+<title>Pricing — every app, one price, $28/mo | Wynter.ai</title>
+<meta name="description" content="One free account opens every app in the suite. Pro is $28/month and unlocks every premium feature across all of them at once — one subscription, not one per app. Credits are metered AI usage, bought in packs as you go.">
 <link rel="canonical" href="https://wynter.ai/pricing">
 <meta name="theme-color" content="#0a0a0d">
 <meta name="author" content="Wynter Jones">
@@ -12,15 +12,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wynter.ai">
 <meta property="og:url" content="https://wynter.ai/pricing">
-<meta property="og:title" content="Pricing — PACE is free. Pro is $28/mo">
-<meta property="og:description" content="The framework costs nothing and always will. Pro is $28/month and unlocks every premium feature across the suite.">
+<meta property="og:title" content="Pricing — every app, one price, $28/mo">
+<meta property="og:description" content="Every app is open on the free plan. Pro is $28/month and unlocks every premium feature across all of them at once. Credits are bought in packs as you go.">
 <meta property="og:image" content="https://wynter.ai/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Wynter.ai — the agentic engineer's toolkit">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Pricing — PACE is free. Pro is $28/mo">
-<meta name="twitter:description" content="The framework costs nothing and always will. Pro is $28/month and unlocks every premium feature across the suite.">
+<meta name="twitter:title" content="Pricing — every app, one price, $28/mo">
+<meta name="twitter:description" content="Every app is open on the free plan. Pro is $28/month and unlocks every premium feature across all of them at once. Credits are bought in packs as you go.">
 <meta name="twitter:image" content="https://wynter.ai/assets/og.png">
 
 <link rel="icon" href="/assets/favicon.ico" sizes="32x32">
@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://account.wynter.ai">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/styles.css?v=20260804">
+<link rel="stylesheet" href="/styles.css?v=20260806">
 
 <script type="application/ld+json">
 {
@@ -51,8 +51,8 @@
       "@type": "WebPage",
       "@id": "https://wynter.ai/pricing#webpage",
       "url": "https://wynter.ai/pricing",
-      "name": "Pricing — PACE is free. Pro is $28/mo",
-      "description": "The PACE framework is free and always will be. Pro is $28/month and unlocks every premium feature across the suite.",
+      "name": "Pricing — every app, one price, $28/mo",
+      "description": "Every app in the suite is open on the free plan. Pro is $28/month and unlocks every premium feature across all of them at once. Credits are bought in packs as you go.",
       "inLanguage": "en",
       "isPartOf": { "@id": "https://wynter.ai/#site" },
       "publisher": { "@id": "https://wynter.ai/#org" }
@@ -76,18 +76,10 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Do I have to pay for PACE?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. The PACE framework is free and always will be. The two laws, the complete field guide and the drop-in protocol are published on wynter.ai in full, readable without an account. Nothing about the method is held back for a paid tier."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "Is the free plan really free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. A free account costs nothing and never expires. It opens the free tools, the resource library, and the newsletter, with no card required to create it."
+            "text": "Yes. A free account costs nothing and never expires. Every app in the suite is open on it, along with the resource library and the newsletter, with no card required to create it."
           }
         },
         {
@@ -113,6 +105,22 @@
             "@type": "Answer",
             "text": "Yes. Cancel from your billing settings at any time. You keep Pro until the end of the period you have paid for, then drop back to the free plan with your account and any remaining credits intact."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a separate login for each app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. One account signs you into everything, and your subscription and credit balance follow you between apps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to pay for PACE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. PACE is the free working method published on this site — the field guide and the drop-in protocol are readable without an account, and none of it is part of what you pay for here."
+          }
         }
       ]
     }
@@ -132,8 +140,14 @@
     <details class="nav-menu">
       <summary class="nav-toggle">Menu</summary>
       <nav class="nav" aria-label="Main">
-        <a href="/pace/guide/">Guide</a>
-        <a href="/pace/protocol/">Protocol</a>
+        <details class="nav-drop">
+          <summary class="nav-drop-toggle">Learn</summary>
+          <div class="nav-drop-panel">
+            <a href="/pace/guide/">Field Guide</a>
+            <a href="/pace/protocol/">Protocol</a>
+          </div>
+        </details>
+        <a href="/history">History</a>
         <a href="/about">About</a>
         <a href="/pricing" aria-current="page">Pricing</a>
         <a href="https://account.wynter.ai/login">Login</a>
@@ -148,30 +162,29 @@
 
     <div class="page-head">
       <p class="eyebrow">Pricing</p>
-      <h1>PACE is free. It always will be.</h1>
+      <h1>One price. Every app.</h1>
       <p class="lede">
-        The framework and everything you need to run it cost nothing. Pro is the
-        tooling that makes running it fast, and it&rsquo;s
-        $28&nbsp;a&nbsp;month.
+        A suite of apps for building with AI, all open on a free account. Pro is
+        $28&nbsp;a&nbsp;month and unlocks the premium features in every one of
+        them at once. AI usage is bought as credits, when you want&nbsp;them.
       </p>
     </div>
 
-    <!-- Stated before the plan cards, not after them. The framework being free
-         is the position the whole site takes, and a reader who meets the price
-         table first has already decided this page is where the free part
-         stops. -->
+    <!-- Stated before the plan cards, not after them: the thing that makes this
+         page different from a per-tool price list is that there is only one
+         subscription and one balance, and a reader who meets the table first
+         assumes otherwise. -->
     <div class="prose tight">
       <p>
-        Read that first line literally. <a href="/">The two laws</a>, the
-        <a href="/pace/guide/">complete field guide</a> and the
-        <a href="/pace/protocol/">drop-in protocol</a> are on this site in full,
-        with no account, no email form and nothing held back for a paid tier.
-        There is no version of PACE you unlock by&nbsp;paying.
+        There is no plan per app. One free account opens all of them, one $28
+        subscription unlocks the premium features everywhere at once, and one
+        credit balance covers the AI usage across the lot. Nothing here is
+        priced per&nbsp;seat, per&nbsp;app or per&nbsp;project.
       </p>
       <p>
-        What money buys here is software, not access to the method. The apps
-        below are the tooling I built to run PACE faster than I could run it by
-        hand — and the free plan opens every one of&nbsp;them.
+        Everything else on this site — the resource library and the free
+        <a href="/pace/guide/">PACE field guide</a> — costs nothing and stays
+        that way. What money buys here is the software.
       </p>
     </div>
 
@@ -188,17 +201,18 @@
         </p>
 
         <p class="plan-desc">
-          The framework and everything you need to run it. No card to create it.
+          Every app in the suite, open. No card to create it, and nothing
+          expires.
         </p>
 
         <ul class="checks">
           <li>
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
-            <span>The whole PACE framework: field guide, protocol, and&nbsp;templates</span>
+            <span>Every app in the suite, with the free features in&nbsp;each</span>
           </li>
           <li>
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
-            <span>Free tools for building with AI, with nothing to upgrade</span>
+            <span>One login and one credit balance across all of&nbsp;them</span>
           </li>
           <li>
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
@@ -210,7 +224,7 @@
           </li>
           <li>
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 0 1 1.4-1.4l3.8 3.8 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
-            <span>The newsletter: releases and practical AI&nbsp;workflows</span>
+            <span>The newsletter, and the free <a href="/pace/guide/">PACE field&nbsp;guide</a></span>
           </li>
         </ul>
 
@@ -229,8 +243,8 @@
         </p>
 
         <p class="plan-desc">
-          The tooling that makes running PACE fast. Every premium feature
-          unlocked at once, for one price. Cancel any time.
+          Every premium feature in every app, unlocked at once, for one price.
+          Cancel any time.
         </p>
 
         <ul class="checks">
@@ -354,29 +368,19 @@
 
       <div class="faq">
         <details>
-          <summary>Do I have to pay for PACE?</summary>
-          <p>
-            No. The framework is free and always will be. The two laws, the
-            <a href="/pace/guide/">complete field guide</a> and the
-            <a href="/pace/protocol/">drop-in protocol</a> are published here in
-            full and readable without an account. Nothing about the method is
-            held back for a paid&nbsp;tier.
-          </p>
-        </details>
-        <details>
           <summary>Is the free plan really free?</summary>
           <p>
-            Yes. A free account costs nothing and never expires. It opens the
-            free tools, the resource library, and the newsletter, and no card is
-            required to create&nbsp;one.
+            Yes. A free account costs nothing and never expires. Every app in
+            the suite is open on it, along with the resource library and the
+            newsletter, and no card is required to create&nbsp;one.
           </p>
         </details>
         <details>
           <summary>What exactly does Pro unlock?</summary>
           <p>
-            The premium features in each tool — the ones held back on the free
+            The premium features in each app — the ones held back on the free
             plan. It is one subscription across everything rather than a separate
-            plan per tool, so upgrading once unlocks all of them.
+            plan per app, so upgrading once unlocks all of them.
           </p>
         </details>
         <details>
@@ -397,10 +401,21 @@
           </p>
         </details>
         <details>
-          <summary>Do I need a separate login for each tool?</summary>
+          <summary>Do I need a separate login for each app?</summary>
           <p>
             No. One account signs you into everything, and your subscription and
-            credit balance follow you between tools.
+            credit balance follow you between apps.
+          </p>
+        </details>
+        <details>
+          <summary>Do I have to pay for PACE?</summary>
+          <p>
+            No, and it isn't part of what you're buying here. PACE is the
+            working method behind the apps, published free: the
+            <a href="/pace/guide/">field guide</a> and the
+            <a href="/pace/protocol/">drop-in protocol</a> read in the browser
+            without an account, and nothing about it is held back for a
+            paid&nbsp;tier.
           </p>
         </details>
       </div>
@@ -425,6 +440,7 @@
       <a href="/">Home</a>
       <a href="/pace/guide/">Field Guide</a>
       <a href="/pace/protocol/">Protocol</a>
+      <a href="/history">History</a>
       <a href="/about">About</a>
       <a href="/pricing">Pricing</a>
       <a href="/terms">Terms</a>
@@ -434,6 +450,6 @@
   </div>
 </footer>
 
-<script src="/site.js?v=20260804" defer></script>
+<script src="/site.js?v=20260806" defer></script>
 </body>
 </html>

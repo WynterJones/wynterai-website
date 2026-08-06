@@ -288,6 +288,76 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
 .nav a:not(.btn):hover { color: var(--ink-50); background: var(--ink-850); }
 .nav a[aria-current="page"] { color: var(--ink-50); }
 
+/* "Learn" — the guide and the protocol, folded behind one label. A disclosure
+   widget, deliberately not an ARIA menu: no role="menu" and no aria-haspopup,
+   because this implements neither the matching roles nor the arrow-key
+   contract, and claiming either is a promise to a screen reader we do not keep.
+   <details> is the same mechanism the phone nav already uses and it opens with
+   no JavaScript, which matters on a site whose CSP refuses inline script.
+   Anchor positioning would be the modern way to tether the panel, but Firefox
+   and Safari don't ship it and the only polyfill is a CDN script that same CSP
+   would block — the panel hangs off a trigger in a known spot, so a plain
+   offset is the honest tool here. */
+.nav-drop { position: relative; }
+
+/* Every declaration below matches `.nav a:not(.btn)`: the trigger sits in a row
+   of links and any difference in padding, weight or colour reads as a mistake
+   rather than a distinction. */
+.nav-drop-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius-btn);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-300);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s, background-color 0.15s;
+  list-style: none;
+}
+.nav-drop-toggle::-webkit-details-marker { display: none; }
+.nav-drop-toggle:hover { color: var(--ink-50); background: var(--ink-850); }
+.nav-drop[open] > .nav-drop-toggle { color: var(--ink-50); }
+
+/* On the guide and the protocol the current page is inside the closed panel,
+   so the trigger has to carry the marker or the nav shows nothing selected. */
+.nav-drop:has([aria-current="page"]) > .nav-drop-toggle { color: var(--ink-50); }
+
+/* The same chevron as the phone toggle, at link scale. */
+.nav-drop-toggle::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s;
+}
+.nav-drop[open] > .nav-drop-toggle::after { transform: rotate(-135deg); margin-top: 2px; }
+
+.nav-drop-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  /* Right-aligned: the trigger sits in the right-hand cluster of the bar, and a
+     left-aligned panel is the one that runs off the edge. */
+  right: 0;
+  z-index: 1;
+  min-width: 176px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  background: var(--ink-950);
+  border: 1px solid var(--ink-800);
+  border-radius: var(--radius-btn);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+}
+
+.nav-drop-panel a:not(.btn) { white-space: nowrap; }
+
 /* The phone's one nav control. Styled as a quiet secondary button so the red
    CTA beside it stays the only thing in the header asking to be pressed. */
 .nav-toggle {
@@ -973,6 +1043,29 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   }
 
   .nav-menu > .nav a:not(.btn) { padding: 11px 10px; font-size: 15px; }
+
+  /* Inside the phone panel the dropdown expands in place. A second absolutely
+     positioned layer nested in one that is already absolute has nothing sane to
+     hang off — it would sit over the links beside it or past the screen edge —
+     and there is no width pressure here to hide from anyway: the panel is
+     already a column, so the two entries just indent under their heading. */
+  .nav-drop { width: 100%; }
+  .nav-drop-toggle {
+    justify-content: space-between;
+    padding: 11px 10px;
+    font-size: 15px;
+  }
+  .nav-drop-panel {
+    position: static;
+    min-width: 0;
+    margin: 2px 0 4px 10px;
+    padding: 0 0 0 12px;
+    background: none;
+    border: 0;
+    border-left: 1px solid var(--ink-800);
+    border-radius: 0;
+    box-shadow: none;
+  }
 
   /* Row two, in full. The CTA is the one item left in the bar whose label
      cannot break — `white-space: nowrap` on `.btn` is what keeps "Get started

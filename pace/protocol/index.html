@@ -32,8 +32,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/styles.css?v=20260804">
-<link rel="stylesheet" href="/pace.css?v=20260804">
+<link rel="stylesheet" href="/styles.css?v=20260806">
+<link rel="stylesheet" href="/pace.css?v=20260806">
 
 <script type="application/ld+json">
 {
@@ -82,8 +82,14 @@
     <details class="nav-menu">
       <summary class="nav-toggle">Menu</summary>
       <nav class="nav" aria-label="Main">
-        <a href="/pace/guide/">Guide</a>
-        <a href="/pace/protocol/" aria-current="page">Protocol</a>
+        <details class="nav-drop">
+          <summary class="nav-drop-toggle">Learn</summary>
+          <div class="nav-drop-panel">
+            <a href="/pace/guide/">Field Guide</a>
+            <a href="/pace/protocol/" aria-current="page">Protocol</a>
+          </div>
+        </details>
+        <a href="/history">History</a>
         <a href="/about">About</a>
         <a href="/pricing">Pricing</a>
         <a href="https://account.wynter.ai/login">Login</a>
@@ -190,10 +196,7 @@ The tenth task should be faster than the first. Leave the system better than you
 1. What changed
 2. What you assumed
 3. What's still open or blocked
-4. What you'd add to the context files so the next run is faster
-
----
-PACE — Parallel Action, Compounding Effort. Free framework: https://wynter.ai/pace</code></pre>
+4. What you'd add to the context files so the next run is faster</code></pre>
     </div>
 
     <section class="section" aria-labelledby="what-changes">
@@ -241,9 +244,7 @@ If blocked, park it and move to the next independent piece — never stall.
 Compound Effort: read existing context and match it. When something's wrong
 because context was missing, fix the context, not just the output. Extract
 anything reusable. End with: what changed, what you assumed, what's open, and
-what to add to the context files.
-
-— PACE, wynter.ai/pace</code></pre>
+what to add to the context files.</code></pre>
       </div>
     </details>
 
@@ -268,6 +269,7 @@ what to add to the context files.
       <a href="/">Home</a>
       <a href="/pace/guide/">Field Guide</a>
       <a href="/pace/protocol/">Protocol</a>
+      <a href="/history">History</a>
       <a href="/about">About</a>
       <a href="/pricing">Pricing</a>
       <a href="/terms">Terms</a>
@@ -277,7 +279,7 @@ what to add to the context files.
   </div>
 </footer>
 
-<script src="/site.js?v=20260804" defer></script>
-<script src="/pace.js?v=20260804" defer></script>
+<script src="/site.js?v=20260806" defer></script>
+<script src="/pace.js?v=20260806" defer></script>
 </body>
 </html>
